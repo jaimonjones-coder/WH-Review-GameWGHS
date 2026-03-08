@@ -920,6 +920,58 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
   .bar > div{ transition: none !important; }
 }
 
+
+/* ===== Dashboard + semantic control polish ===== */
+:root{
+  --space-10: 10px;
+  --space-12: 12px;
+}
+.mt-10{ margin-top: var(--space-10); }
+.mt-12{ margin-top: var(--space-12); }
+.grow{ flex: 1; }
+.justify-between{ justify-content: space-between; }
+.align-start{ align-items: flex-start; }
+.align-end{ align-items: flex-end; }
+
+.modeCard,
+.tile,
+.featuredCard{
+  appearance: none;
+  font: inherit;
+  color: inherit;
+}
+.modeCard{ width: 100%; text-align: left; cursor: pointer; }
+.modeMeta{ display:grid; gap: 4px; margin-top: 10px; font-size: 11px; color: rgba(226,232,240,.8); }
+.modeMeta .recommend{ color: #fde68a; font-weight: 700; }
+
+.featuredStrip{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.featuredCard{
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(2,6,23,.42);
+  border-radius: 14px;
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+.featuredCard .fTitle{ font-weight: 800; }
+.featuredCard .fMeta{ margin-top: 6px; color: rgba(226,232,240,.78); font-size: 12px; }
+
+.modeCard:focus-visible,
+.tile:focus-visible,
+.featuredCard:focus-visible,
+.btn:focus-visible,
+.pill:focus-visible{
+  outline: 2px solid rgba(250,204,21,.95);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(250,204,21,.2);
+}
+
+.tile{ width: 100%; text-align:left; }
+
+@media (max-width: 900px){
+  .featuredStrip{ grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body>
@@ -950,6 +1002,23 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
       </div>
     </div>
 
+    <div class="card section col-span-12">
+      <h2 class="title">Continue learning</h2>
+      <div class="row justify-between mt-10 align-start">
+        <div class="grow" id="continueLearningCard"></div>
+        <div class="row mt-10">
+          <button class="btn" id="btnContinueReview">Review misses</button>
+          <button class="btn primary" id="btnContinueQuick">Resume Quick Quiz</button>
+          <button class="btn" id="btnOpenProgress">Open Progress</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section col-span-12">
+      <h2 class="title">Featured modes</h2>
+      <div class="featuredStrip mt-10" id="featuredModes"></div>
+    </div>
+
     <div class="card section col-span-7">
       <h2 class="title">Quick start</h2>
       <p class="muted">Pick your units, then jump into a mode. Everything is auto‑graded on this device.</p>
@@ -969,15 +1038,15 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
         <button class="btn" id="btnTeams" title="Edit teams">Edit teams</button>
       </div>
 
-      <div class="row" style="margin-top:10px; align-items:flex-end;">
-        <div class="col" style="flex:1;">
+      <div class="row mt-10 align-end">
+        <div class="col grow">
           <label class="mini" for="globalSearchInput" style="margin-bottom:6px; display:block;">Search</label>
           <input id="globalSearchInput" class="input" placeholder="Type to filter questions…" />
           <div class="mini muted" style="margin-top:6px;">Units + Search filters apply to every mode.</div>
         </div>
       </div>
 
-      <div class="row" style="margin-top:12px;">
+      <div class="row mt-12">
         <label class="tag">Units</label>
         <button class="pill active" data-unit="unit2" aria-pressed="true">Unit 2</button>
         <button class="pill active" data-unit="unit3" aria-pressed="true">Unit 3</button>
@@ -989,7 +1058,7 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
         <button class="pill active" data-unit="unit9" aria-pressed="true">Unit 9</button>
       </div>
 
-      <div class="row" style="margin-top:12px;">
+      <div class="row mt-12">
         <button class="btn primary" data-start="quick">▶ Quick Quiz</button>
         <button class="btn" data-start="lightning">⚡ Lightning</button>
         <button class="btn" data-start="streak">🔥 Streak Sprint</button>
@@ -1011,7 +1080,7 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
         <li><strong>World History theme</strong> (map/timeline vibe)</li>
       </ul>
 
-      <div class="row" style="margin-top:12px;">
+      <div class="row mt-12">
         <button class="btn" data-start="mystery">🟦 Mystery Grid</button>
         <button class="btn" data-start="showdown">🏁 Team Showdown</button>
       </div>
@@ -1032,7 +1101,7 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
       <h2 class="title">Mastery</h2>
       <p class="muted">Tracks correctness per question (on this device). Use “Review misses” to target weak spots.</p>
       <div id="masteryBars" style="margin-top:12px;"></div>
-      <div class="row" style="margin-top:12px;">
+      <div class="row mt-12">
         <button class="btn" id="btnReviewMisses">🎯 Review misses</button>
         <button class="btn" id="btnResetProgress">Reset progress</button>
       </div>
@@ -1082,7 +1151,7 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
           <option value="off">Off</option>
         </select>
       </div>
-      <div class="row" style="margin-top:12px;">
+      <div class="row mt-12">
         <button class="btn" id="btnSaveSettings">Save settings</button>
       </div>
 
@@ -1287,7 +1356,8 @@ const STORAGE_KEYS = {
   decks: "whra_decks_v2",
   leitner: "whra_leitner_v1",
   mistakes: "whra_mistakes_v1",
-  teams: "whra_teams_v1"
+  teams: "whra_teams_v1",
+  modeStats: "whra_mode_stats_v1"
 };
 
 const App = {
@@ -1310,6 +1380,7 @@ const App = {
   progress: {}, // by question id => {attempts, correct}
   mistakes: [], // question ids missed recently
   leitner: {},  // id => box 1-4
+  modeStats: {}, // by mode id => {bestScore,lastPlayed,plays}
   session: null // active mode session
 };
 
@@ -1431,6 +1502,7 @@ function persist() {
   saveJSON(STORAGE_KEYS.leitner, App.leitner);
   saveJSON(STORAGE_KEYS.mistakes, App.mistakes);
   saveJSON(STORAGE_KEYS.teams, App.teams);
+  saveJSON(STORAGE_KEYS.modeStats, App.modeStats);
   saveJSON(STORAGE_KEYS.decks, App.decks);
 }
 
@@ -1439,7 +1511,9 @@ function load() {
   App.progress = loadJSON(STORAGE_KEYS.progress, {});
   App.leitner = loadJSON(STORAGE_KEYS.leitner, {});
   App.mistakes = loadJSON(STORAGE_KEYS.mistakes, []);
-  App.teams = loadJSON(STORAGE_KEYS.teams, App.teams);  const savedDecks = loadJSON(STORAGE_KEYS.decks, null);
+  App.teams = loadJSON(STORAGE_KEYS.teams, App.teams);
+  App.modeStats = loadJSON(STORAGE_KEYS.modeStats, {});
+  const savedDecks = loadJSON(STORAGE_KEYS.decks, null);
 
   // If a previous version saved a partial/incorrect deck, automatically restore the built-in World History deck.
   const expectedCore = Array.isArray(DEFAULT_DECKS?.core) ? DEFAULT_DECKS.core.length : 0;
@@ -1604,7 +1678,7 @@ $("#btnTeams").addEventListener("click", () => {
   showModal("Edit teams", `
     <p class="muted">Pass-and-play: teams share one device.</p>
     ${rows}
-    <div class="row" style="margin-top:12px;">
+    <div class="row mt-12">
       <button class="btn" id="addTeam">Add team</button>
       <button class="btn primary" id="saveTeams">Save</button>
     </div>
@@ -1690,7 +1764,7 @@ if ($("#btnOpenEditor")) $("#btnOpenEditor").addEventListener("click", () => {
   showModal("Question editor (JSON)", `
     <p class="muted">Paste a question object or an array. If an id already exists, it will be replaced. If id starts with <code>core-</code>, it updates Core; otherwise Extended.</p>
     <textarea id="editorArea">${escapeHtml(JSON.stringify(example, null, 2))}</textarea>
-    <div class="row" style="margin-top:12px;">
+    <div class="row mt-12">
       <button class="btn primary" id="applyEditor">Apply</button>
       <button class="btn" id="exportDecks">Copy all decks</button>
     </div>
@@ -1734,7 +1808,7 @@ $("#btnExport").addEventListener("click", async () => {
   showModal("Export (copy/paste)", `
     <p class="muted">Copy this JSON to save or move to another device.</p>
     <textarea id="exportArea">${escapeHtml(txt)}</textarea>
-    <div class="row" style="margin-top:12px;">
+    <div class="row mt-12">
       <button class="btn" id="copyExport">Copy</button>
     </div>
   `);
@@ -1747,7 +1821,7 @@ $("#btnImport").addEventListener("click", () => {
   showModal("Import", `
     <p class="muted">Paste an exported JSON blob here. This will overwrite current progress/settings.</p>
     <textarea id="importArea"></textarea>
-    <div class="row" style="margin-top:12px;">
+    <div class="row mt-12">
       <button class="btn primary" id="doImport">Import</button>
     </div>
   `);
@@ -1775,7 +1849,7 @@ $("#btnImport").addEventListener("click", () => {
 $("#btnResetProgress").addEventListener("click", () => {
   showModal("Reset progress?", `
     <p class="muted">This clears attempts, mastery, and the mistake bank on this device.</p>
-    <div class="row" style="margin-top:12px;">
+    <div class="row mt-12">
       <button class="btn bad" id="confirmReset">Yes, reset</button>
       <button class="btn" id="cancelReset">Cancel</button>
     </div>
@@ -1944,12 +2018,109 @@ function beepSoft() {
 function renderAll() {
   syncHomeControls();
   syncSettingsUI();
+  renderContinueLearning();
+  renderFeaturedModes();
   renderModeGrid();
   renderHomeKpis();
   renderProgress();
   renderAboutKpis();
   if (!$("#view-game").classList.contains("hidden")) renderGame();
 }
+
+function getModeMeta(modeId) {
+  const modeMeta = {
+    quick: { duration: "3–5 min", fit: "both", vibe: "core practice" },
+    lightning: { duration: "2–3 min", fit: "solo", vibe: "fast warm-up" },
+    streak: { duration: "1 min", fit: "solo", vibe: "high intensity" },
+    flashcards: { duration: "5+ min", fit: "both", vibe: "memory builder" },
+    match: { duration: "3–4 min", fit: "both", vibe: "term matching" },
+    showdown: { duration: "4–6 min", fit: "teams", vibe: "class battle" },
+    mystery: { duration: "4–6 min", fit: "teams", vibe: "projector friendly" },
+    buzzbowl: { duration: "4–7 min", fit: "teams", vibe: "quiz bowl" },
+    sudden: { duration: "3–5 min", fit: "teams", vibe: "elimination" },
+    relay: { duration: "3–4 min", fit: "teams", vibe: "pass-and-play" },
+    timeline: { duration: "4–6 min", fit: "both", vibe: "chronology" },
+    review: { duration: "5–10 min", fit: "both", vibe: "from your misses" },
+    blitz: { duration: "2–3 min", fit: "both", vibe: "speed run" },
+    type: { duration: "1–2 min", fit: "both", vibe: "typing sprint" },
+    boss: { duration: "4–6 min", fit: "both", vibe: "boss fight" },
+    conquest: { duration: "5–7 min", fit: "teams", vibe: "strategy grid" },
+    chrono: { duration: "2–4 min", fit: "both", vibe: "before/after" },
+    survival: { duration: "3–6 min", fit: "both", vibe: "last as long as possible" },
+    memory: { duration: "3–5 min", fit: "both", vibe: "flip cards" },
+    jeopardy: { duration: "6–10 min", fit: "teams", vibe: "projector favorite" },
+    wager: { duration: "3–5 min", fit: "both", vibe: "risk/reward" }
+  };
+  return modeMeta[modeId] || { duration: "3–5 min", fit: "both", vibe: "review" };
+}
+
+function getModeStat(modeId) {
+  const fallback = { bestScore: 0, lastPlayed: null, plays: 0 };
+  return Object.assign({}, fallback, App.modeStats?.[modeId] || {});
+}
+
+function isRecommendedMode(modeId) {
+  if (modeId === "review") return App.mistakes.length > 0;
+  if (modeId === "lightning") return App.mistakes.length === 0;
+  return false;
+}
+
+function timeAgo(ts) {
+  if (!ts) return "";
+  const diff = Date.now() - ts;
+  const h = Math.floor(diff / 3600000);
+  if (h < 1) return "just now";
+  if (h < 24) return `${h}h ago`;
+  const d = Math.floor(h / 24);
+  return d === 1 ? "1 day ago" : `${d} days ago`;
+}
+
+function renderContinueLearning() {
+  const units = Object.keys(UNIT_META).filter(u => App.settings.units[u]);
+  const weakest = units
+    .map(u => ({ u, m: masteryForUnit(u) }))
+    .sort((a,b) => (a.m.attempts || 9999) - (b.m.attempts || 9999) || a.m.rate - b.m.rate)[0];
+  const weakestText = weakest
+    ? `${UNIT_META[weakest.u].split("•")[0].trim()} — ${Math.round((weakest.m.rate || 0) * 100)}% accuracy`
+    : "Build data by answering a few questions";
+  const strong = Object.entries(App.modeStats || {}).sort((a,b) => (b[1].bestScore||0) - (a[1].bestScore||0))[0];
+  const strongMode = strong ? (MODES.find(m => m.id === strong[0])?.title || "Quick Quiz") : "Quick Quiz";
+  const recommended = App.mistakes.length ? "Review misses" : "Lightning";
+  $("#continueLearningCard").innerHTML = `
+    <div class="kpi">
+      <div class="chip"><strong>Weakest area:</strong> ${escapeHtml(weakestText)}</div>
+      <div class="chip"><strong>Mistake bank:</strong> ${App.mistakes.length} questions</div>
+      <div class="chip"><strong>Recommended next step:</strong> ${escapeHtml(recommended)}</div>
+      <div class="chip"><strong>Last strong mode:</strong> ${escapeHtml(strongMode)}</div>
+    </div>
+  `;
+
+  const btnReview = $("#btnContinueReview");
+  if (btnReview) btnReview.onclick = () => $("#btnReviewMisses")?.click();
+  const btnQuick = $("#btnContinueQuick");
+  if (btnQuick) btnQuick.onclick = () => startMode("quick");
+  const btnProgress = $("#btnOpenProgress");
+  if (btnProgress) btnProgress.onclick = () => setNav("progress");
+}
+
+function renderFeaturedModes() {
+  const featured = [
+    { id: "lightning", blurb: "2 min • fastest warm-up" },
+    { id: "mystery", blurb: "Best for projector" },
+    { id: "review", blurb: "Built from your errors" }
+  ];
+  const container = $("#featuredModes");
+  if (!container) return;
+  container.innerHTML = featured.map(({id, blurb}) => {
+    const mode = MODES.find(m => m.id === id);
+    if (!mode) return "";
+    return `<button type="button" class="featuredCard" data-start="${id}" aria-label="Start ${escapeHtml(mode.title)}">
+      <div class="fTitle">${mode.icon} ${escapeHtml(mode.title)}</div>
+      <div class="fMeta">${escapeHtml(blurb)}</div>
+    </button>`;
+  }).join("");
+}
+
 function renderModeGrid() {
   const grid = $("#modeGrid");
   if (!grid) return;
@@ -1974,14 +2145,25 @@ function renderModeGrid() {
 
   grid.innerHTML = MODES.map(m => {
     const c = colorMap[m.id] || "cyan";
+    const meta = getModeMeta(m.id);
+    const stat = getModeStat(m.id);
+    const isRecommended = isRecommendedMode(m.id);
+    const fitLabel = (meta.fit === "both") ? (App.settings.play === "teams" ? "Teams" : "Solo") : (meta.fit === "teams" ? "Teams" : "Solo");
     return `
-      <div class="modeCard" data-start="${m.id}" data-color="${c}">
-        <div class="row" style="justify-content:space-between;">
+      <button type="button" class="modeCard" data-start="${m.id}" data-color="${c}" aria-label="Start ${escapeHtml(m.title)}">
+        <div class="row justify-between">
           <h3>${m.icon} ${escapeHtml(m.title)}</h3>
-          <span class="tag">${escapeHtml(App.settings.play === "teams" ? "Teams" : "Solo")}</span>
+          <span class="tag">${escapeHtml(fitLabel)}</span>
         </div>
         <p>${escapeHtml(m.desc)}</p>
-      </div>
+        <div class="modeMeta">
+          <span>${escapeHtml(meta.duration)}</span>
+          <span>${escapeHtml(meta.vibe)}</span>
+          <span>${stat.bestScore ? `Best score: ${stat.bestScore}` : "No score yet"}</span>
+          <span>${stat.lastPlayed ? `Last played ${timeAgo(stat.lastPlayed)}` : "Not played yet"}</span>
+          ${isRecommended ? '<span class="recommend">Recommended</span>' : ''}
+        </div>
+      </button>
     `;
   }).join("");
 
@@ -2330,7 +2512,7 @@ function renderTimeline() {
               <button class="iconBtn" data-move="-1" title="Move up">▲</button>
               <button class="iconBtn" data-move="1" title="Move down">▼</button>
             </div>
-          </div>
+          </button>
         `).join("")}
       </div>
       <div class="row">
@@ -2400,7 +2582,7 @@ function renderTimeline() {
     showModal("Timeline results", `
       <p class="muted">${escapeHtml(teamName)} scored <strong>${points}</strong> points (${correctPos}/${correct.length} positions correct) • ${speedTag}</p>
       <pre style="white-space:pre-wrap; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:14px; padding:10px;">${escapeHtml(reveal)}</pre>
-      <div class="row" style="margin-top:12px;">
+      <div class="row mt-12">
         <button class="btn primary" id="tlNext">Next</button>
         <button class="btn" id="tlExit">Exit</button>
       </div>
@@ -2528,7 +2710,7 @@ function advanceRelayTeam() {
 
   showModal("Pass the device", `
     <p class="muted">Hand it to <strong>${teamLabel(next)}</strong>. They get 30 seconds.</p>
-    <div class="row" style="margin-top:12px;">
+    <div class="row mt-12">
       <button class="btn primary" id="relayReady">Ready</button>
       <button class="btn" id="relayExit">Exit</button>
     </div>
@@ -2604,7 +2786,7 @@ if (!s.question) {
     setTimeout(renderSurvival, App.settings.reduceMotion ? 150 : 420);
   };
   $("#prompt").innerHTML = `
-    <div class="row" style="justify-content:space-between;">
+    <div class="row justify-between">
       <div style="font-weight:900;">${escapeHtml(UNIT_META[q.unit] || q.unitName || q.unit)}</div>
       <span class="tag">${hasAutoAnswers(q) ? "Auto‑graded" : "Self‑check"}</span>
     </div>
@@ -3134,7 +3316,7 @@ function renderMatch() {
           return `<button class="choice" style="${style}" data-mcard="${escapeHtml(c.key)}">${label}</button>`;
         }).join("")}
       </div>
-      <div class="row" style="margin-top:12px;">
+      <div class="row mt-12">
         <span class="badge">Moves: ${ms.moves}</span>
         <span class="badge">Matched: ${ms.matched.size}/${pairs.length}</span>
         <button class="btn" id="reshuffle">Reshuffle</button>
@@ -3199,15 +3381,15 @@ function renderMysteryGrid() {
         <div style="font-weight:900;">Mystery Grid</div>
         <span class="tag">${escapeHtml(App.settings.play==="teams" ? "Teams" : "Solo")}</span>
       </div>
-      <div class="muted" style="margin-top:10px;">Pick a tile to reveal a question. Mark it correct/incorrect.</div>
+      <div class="muted mt-10">Pick a tile to reveal a question. Mark it correct/incorrect.</div>
     `;
     $("#gameControls").innerHTML = `
       <div class="gridTiles">
         ${tiles.map(t => `
-          <div class="tile ${t.used ? "used" : ""}" data-tile="${t.key}">
+          <button type="button" class="tile ${t.used ? "used" : ""}" data-tile="${t.key}" aria-label="${escapeHtml(t.label)} ${t.used ? "used" : "tile"}" ${t.used ? "disabled" : ""}>
             <div class="tTitle">${escapeHtml(t.label)}</div>
             <div class="tMeta">${escapeHtml(t.used ? "Used" : "Tap to reveal")}</div>
-          </div>
+          </button>
         `).join("")}
       </div>
       <div class="row" style="padding:0 14px 14px;">
@@ -3227,7 +3409,7 @@ function renderMysteryGrid() {
         showModal("Tile question", `
           <div style="font-weight:900; margin-bottom:8px;">${escapeHtml(UNIT_META[pick.unit] || pick.unitName || pick.unit)}</div>
           <div style="line-height:1.35;">${formatPrompt(pick)}</div>
-          <div class="row" style="margin-top:12px;">
+          <div class="row mt-12">
             <button class="btn good" id="tileCorrect">Correct</button>
             <button class="btn bad" id="tileWrong">Incorrect</button>
           </div>
@@ -3258,6 +3440,15 @@ function endSession() {
   stopTimer();
   const s = App.session;
   const finalScore = s?.score || 0;
+  if (s?.modeId) {
+    const prev = App.modeStats[s.modeId] || { bestScore: 0, plays: 0, lastPlayed: null };
+    App.modeStats[s.modeId] = {
+      bestScore: Math.max(prev.bestScore || 0, finalScore),
+      plays: (prev.plays || 0) + 1,
+      lastPlayed: Date.now()
+    };
+    persist();
+  }
   const teamScores = (App.settings.play==="teams") ? App.teams.map(t => `${t.name}: ${t.score}`).join(" • ") : null;
   showModal("Session complete", `
     <p class="muted">Play again, switch units, or try a different mode.</p>
@@ -3266,7 +3457,7 @@ function endSession() {
       ${teamScores ? `<div class="chip"><strong>${escapeHtml(teamScores)}</strong></div>` : ""}
       <div class="chip"><strong>${App.mistakes.length}</strong> in mistake bank</div>
     </div>
-    <div class="row" style="margin-top:12px;">
+    <div class="row mt-12">
       <button class="btn primary" id="playAgain">Play again</button>
       <button class="btn" id="goHome">Home</button>
     </div>
