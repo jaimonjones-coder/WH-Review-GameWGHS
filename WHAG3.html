@@ -1554,6 +1554,13 @@ load();
 })();
 
 /** ========= Navigation ========= */
+function clearBuzzTimer() {
+  if (App.session?._buzzTimer) {
+    clearTimeout(App.session._buzzTimer);
+    App.session._buzzTimer = null;
+  }
+}
+
 function setNav(view) {
   const views = ["home","modes","progress","settings","game"];
   for (const v of views) {
@@ -1562,7 +1569,7 @@ function setNav(view) {
     el.classList.toggle("hidden", v !== view);
   }
   $all("nav .pill").forEach(btn => btn.classList.toggle("active", btn.dataset.nav === view));
-  if (view !== "game") App.session = null;
+  if (view !== "game") { clearBuzzTimer(); App.session = null; }
   renderAll();
 }
 $all("nav .pill").forEach(btn => btn.addEventListener("click", () => setNav(btn.dataset.nav)));
@@ -1913,8 +1920,6 @@ function startMode(modeId, opts={}) {
   if (modeId === "relay") { App.session.relay = { team: 0, done: [] }; App.session.teamIndex = 0; App.session.timeLeft = 30; }
   if (modeId === "timeline") { App.session.timeline = null; }
   // Arcade imports (offline v11) — init mode state
-  if (modeId === "blitz") { App.session.blitz = { remaining: 10, correct: 0 }; App.session.timeLeft = App.settings.timerSeconds; }
-  if (modeId === "type") { App.session.typeSprint = { correct: 0, wrong: 0 }; App.session.timeLeft = 60; }
   if (modeId === "survival") { App.session.survival = { lives: 3, best: App.bestSurvival||0 }; }
   if (modeId === "detective") { App.session.detective = { clueIndex: 0 }; }
   if (modeId === "mapdrop") { App.session.mapdrop = { round: 0, total: 6 }; }
@@ -1995,6 +2000,7 @@ function onTimeUp() {
       return;
     }
     if (s.modeId === "buzzbowl") {
+      clearBuzzTimer();
       if (s.buzz) { s.buzz.team = null; s.buzz.open = true; }
       showAfter("Time’s up", `Correct: ${bestAnswerText(s.question)}.`, "bad");
       return;
@@ -2050,8 +2056,6 @@ function getModeMeta(modeId) {
     relay: { duration: "3–4 min", fit: "teams", vibe: "pass-and-play" },
     timeline: { duration: "4–6 min", fit: "both", vibe: "chronology" },
     review: { duration: "5–10 min", fit: "both", vibe: "from your misses" },
-    blitz: { duration: "2–3 min", fit: "both", vibe: "speed run" },
-    type: { duration: "1–2 min", fit: "both", vibe: "typing sprint" },
     boss: { duration: "4–6 min", fit: "both", vibe: "boss fight" },
     conquest: { duration: "5–7 min", fit: "teams", vibe: "strategy grid" },
     chrono: { duration: "2–4 min", fit: "both", vibe: "before/after" },
@@ -2646,7 +2650,7 @@ function renderBuzzBowl(q) {
       if (buzz.used.has(team)) return;
       buzz.team = team;
       buzz.open = false;
-      clearTimeout(s._buzzTimer);
+      clearBuzzTimer();
       s._buzzTimer = setTimeout(() => {
         if (!App.session || App.session.modeId !== "buzzbowl") return;
         if (App.session.buzz?.team === team) {
@@ -2660,6 +2664,7 @@ function renderBuzzBowl(q) {
       renderBuzzBowl(q);
     }));
     $("#skipBtn").addEventListener("click", () => {
+      clearBuzzTimer();
       recordAttempt(q, false);
       showAfter("Skipped", `Correct: ${bestAnswerText(q)}.`, "bad");
     });
@@ -2702,6 +2707,7 @@ function renderBuzzBowl(q) {
   if (blanks<=1) { $("#answerInput").focus(); $("#answerInput").addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); }); }
   $("#submitBtn").addEventListener("click", submit);
   $("#passBtn").addEventListener("click", () => {
+    clearBuzzTimer();
     buzz.used.add(buzz.team);
     buzz.team = null;
     buzz.open = true;
@@ -2832,6 +2838,7 @@ function renderTyped(q) {
     $("#submitBtn").addEventListener("click", submit);
     input.addEventListener("keydown", (e) => { if (e.key === "Enter") submit(); });
     $("#skipBtn").addEventListener("click", () => {
+      clearBuzzTimer();
       recordAttempt(q, false);
       if (App.session?.modeId === "relay") {
       toast("⏭️", `Correct: ${bestAnswerText(q)}`);
@@ -3066,6 +3073,7 @@ function handleAnswer(q, userAnswer) {
     recordAttempt(q, verdict);
 
     if (verdict) {
+      clearBuzzTimer();
       const gained = 10;
       s.score += gained;
       if (App.settings.play==="teams") App.teams[team].score += gained;
@@ -3076,6 +3084,7 @@ function handleAnswer(q, userAnswer) {
     }
 
     // Wrong: open steal
+    clearBuzzTimer();
     s.buzz.used.add(team);
     s.buzz.team = null;
     s.buzz.open = true;
@@ -3091,6 +3100,7 @@ function handleAnswer(q, userAnswer) {
     recordAttempt(q, verdict);
 
     if (verdict) {
+      clearBuzzTimer();
       const gained = 10;
       s.score += gained;
       App.teams[s.teamIndex].score += gained;
@@ -3288,91 +3298,7 @@ function renderFlashcards() {
 }
 
 /** ========= Match-Up ========= */
-function renderMatch() {
-  const s = App.session;
-  stopTimer();
-  $("#timerBadge").textContent = "⏱ Off";
 
-  const pool = (s.opts.customPool || s.pool).filter(q => hasAutoAnswers(q) && !Array.isArray(q.acceptedAnswers[0]));
-  const pairs = sample(pool, 6).map(q => ({ id: q.id, term: q.acceptedAnswers[0], def: q.prompt.replace(/_{5,}/g, "_____"), unit: q.unit }));
-  if (pairs.length < 4) {
-    $("#prompt").innerHTML = `<div class="muted">Not enough auto-graded questions for Match‑Up. Turn on Core deck or more units.</div>`;
-    $("#gameControls").innerHTML = `<button class="btn primary" id="backHome">Back</button>`;
-    $("#backHome").addEventListener("click", ()=>setNav("home"));
-    return;
-  }
-
-  const terms = shuffle(pairs.map(p => ({ key: "t-"+p.id, kind:"term", text:p.term, match:p.id })));
-  const defs  = shuffle(pairs.map(p => ({ key: "d-"+p.id, kind:"def",  text:p.def,  match:p.id })));
-  const cards = [...terms, ...defs];
-
-  s.matchState = { cards, picked: [], matched: new Set(), moves: 0 };
-
-  $("#prompt").innerHTML = `
-    <div class="row" style="justify-content:space-between;">
-      <div style="font-weight:900;">Match‑Up</div>
-      <span class="tag">Match terms ↔ definitions</span>
-    </div>
-    <div class="muted" style="margin-top:10px;">Tap two cards. If they match, they stay revealed.</div>
-  `;
-
-  const renderBoard = () => {
-    const ms = s.matchState;
-    $("#gameControls").innerHTML = `
-      <div class="choices" style="grid-template-columns: repeat(2, minmax(0,1fr));">
-        ${ms.cards.map(c => {
-          const isPicked = ms.picked.includes(c.key);
-          const isMatched = ms.matched.has(c.match);
-          const show = isPicked || isMatched;
-          const label = show ? escapeHtml(c.text) : "• • •";
-          const style = isMatched ? "opacity:.6;" : "";
-          return `<button class="choice" style="${style}" data-mcard="${escapeHtml(c.key)}">${label}</button>`;
-        }).join("")}
-      </div>
-      <div class="row mt-12">
-        <span class="badge">Moves: ${ms.moves}</span>
-        <span class="badge">Matched: ${ms.matched.size}/${pairs.length}</span>
-        <button class="btn" id="reshuffle">Reshuffle</button>
-      </div>
-    `;
-    $all("[data-mcard]").forEach(btn => btn.addEventListener("click", () => onPick(btn.dataset.mcard)));
-    $("#reshuffle").addEventListener("click", () => { ms.cards = shuffle(ms.cards); ms.picked = []; renderBoard(); });
-    renderScoreStrip();
-  };
-
-  const onPick = (key) => {
-    const ms = s.matchState;
-    const card = ms.cards.find(c => c.key === key);
-    if (!card) return;
-    if (ms.matched.has(card.match)) return;
-    if (ms.picked.includes(key)) return;
-    if (ms.picked.length >= 2) return;
-
-    ms.picked.push(key);
-    if (ms.picked.length === 2) {
-      ms.moves += 1;
-      const a = ms.cards.find(c => c.key === ms.picked[0]);
-      const b = ms.cards.find(c => c.key === ms.picked[1]);
-      const match = a && b && a.match === b.match && a.kind !== b.kind;
-      if (match) {
-        ms.matched.add(a.match);
-        s.score += 10;
-        if (App.settings.play==="teams") App.teams[s.teamIndex].score += 10;
-        beepSoft();
-        ms.picked = [];
-        if (ms.matched.size === pairs.length) endSession();
-      } else {
-        setTimeout(() => { ms.picked = []; renderBoard(); }, App.settings.reduceMotion ? 150 : 650);
-        return;
-      }
-    }
-    renderBoard();
-  };
-
-  renderBoard();
-}
-
-/** ========= Mystery Grid ========= */
 function renderMysteryGrid() {
   const s = App.session;
   stopTimer();
@@ -3402,7 +3328,7 @@ function renderMysteryGrid() {
           <button type="button" class="tile ${t.used ? "used" : ""}" data-tile="${t.key}" aria-label="${escapeHtml(t.label)} ${t.used ? "used" : "tile"}" ${t.used ? "disabled" : ""}>
             <div class="tTitle">${escapeHtml(t.label)}</div>
             <div class="tMeta">${escapeHtml(t.used ? "Used" : "Tap to reveal")}</div>
-          </div>
+          </button>
         `).join("")}
       </div>
       <div class="row" style="padding:0 14px 14px;">
@@ -3633,6 +3559,7 @@ function renderPropagandaDecoder() {
 /** ========= End session ========= */
 function endSession() {
   stopTimer();
+  clearBuzzTimer();
   const s = App.session;
   const finalScore = s?.score || 0;
   if (s?.modeId) {
@@ -3747,7 +3674,7 @@ function openGameOverlay(title, html, opts={}) {
   }
 }
 
-function closeGameOverlay() {
+function closeGameOverlay(reason = "dismiss") {
   const s = App.session;
   $("#gameOverlay")?.classList.add("hidden");
   // stop timer and clear handler
@@ -3755,7 +3682,7 @@ function closeGameOverlay() {
   if (s) s.onTimeUp = null;
   const cb = s?._overlayOnClose;
   if (s) s._overlayOnClose = null;
-  if (typeof cb === "function") { try { cb(); } catch(e){} }
+  if (typeof cb === "function") { try { cb(reason); } catch(e){} }
 }
 /** ---- Shared: build 4-option MC for a question when possible ----
  *  Smarter distractors:
@@ -3894,12 +3821,12 @@ function overlayAskQuestion(q, title, opts={}) {
         // time up counts wrong
         if (!App.session) return;
         recordAttempt(q, false);
-        closeGameOverlay();
+        closeGameOverlay("timeout");
         (opts.onResult||(()=>{}))(false, mc.accepted, "timeout");
       },
-      onClose: () => {
-        // If player closes without answering, treat as wrong if required
-        if (opts.closeIsWrong) {
+      onClose: (reason) => {
+        // Only explicit dismiss counts as wrong-close
+        if (reason === "dismiss" && opts.closeIsWrong) {
           recordAttempt(q, false);
           (opts.onResult||(()=>{}))(false, mc.accepted, "closed");
         }
@@ -3920,7 +3847,7 @@ function overlayAskQuestion(q, title, opts={}) {
         stopTimer();
         recordAttempt(q, correct);
         setTimeout(() => {
-          closeGameOverlay();
+          closeGameOverlay("answered");
           (opts.onResult||(()=>{}))(correct, mc.accepted, "answered");
         }, App.settings.reduceMotion ? 150 : 420);
       });
@@ -3948,11 +3875,11 @@ function overlayAskQuestion(q, title, opts={}) {
     onTimeUp: () => {
       if (!App.session) return;
       recordAttempt(q, false);
-      closeGameOverlay();
+      closeGameOverlay("timeout");
       (opts.onResult||(()=>{}))(false, bestAnswerText(q), "timeout");
     },
-    onClose: () => {
-      if (opts.closeIsWrong) {
+    onClose: (reason) => {
+      if (reason === "dismiss" && opts.closeIsWrong) {
         recordAttempt(q, false);
         (opts.onResult||(()=>{}))(false, bestAnswerText(q), "closed");
       }
@@ -3979,19 +3906,19 @@ function overlayAskQuestion(q, title, opts={}) {
       inp.disabled = true;
       $("#ovMarkCorrect").addEventListener("click", () => {
         recordAttempt(q, true);
-        closeGameOverlay();
+        closeGameOverlay("answered");
         (opts.onResult||(()=>{}))(true, bestAnswerText(q), "self");
       });
       $("#ovMarkWrong").addEventListener("click", () => {
         recordAttempt(q, false);
-        closeGameOverlay();
+        closeGameOverlay("answered");
         (opts.onResult||(()=>{}))(false, bestAnswerText(q), "self");
       });
       return;
     }
     stopTimer();
     recordAttempt(q, v);
-    closeGameOverlay();
+    closeGameOverlay("answered");
     (opts.onResult||(()=>{}))(v, bestAnswerText(q), "answered");
   };
   $("#ovSubmitBtn").addEventListener("click", submit);
@@ -4000,209 +3927,6 @@ function overlayAskQuestion(q, title, opts={}) {
   return { kind:"typed" };
 }
 
-/** =======================
- * Mode: Neon Blitz (10 Q speed run)
- * ======================= */
-function renderNeonBlitz() {
-  const s = App.session;
-  const pool = s.opts.customPool || s.pool;
-  if (!s.blitz) s.blitz = { remaining: 10, correct: 0 };
-
-  $("#prompt").innerHTML = `
-    <div class="row" style="justify-content:space-between;">
-      <div class="font-tech neon-text-blue" style="font-weight:900;">NEON BLITZ</div>
-      <div class="tag">Remaining: ${s.blitz.remaining}</div>
-    </div>
-    <div class="mini" style="margin-top:8px;">10 questions. Fast answers score more.</div>
-  `;
-
-  if (s.blitz.remaining <= 0) {
-    showAfter("Blitz complete", `Correct: ${s.blitz.correct}/10 • Score: ${s.score}`, "good");
-    $("#afterControls").classList.remove("hidden");
-    $("#afterControls").innerHTML = `<div class="row" style="gap:10px;">
-      <button class="btn primary" id="blitzAgain">Play again</button>
-      <button class="btn" id="blitzExit">Exit</button>
-    </div>`;
-    $("#blitzAgain").addEventListener("click", () => startMode("blitz"));
-    $("#blitzExit").addEventListener("click", endSession);
-    return;
-  }
-
-  // draw next q (not using global s.question loop)
-  const q = pickNextQuestion();
-  if (!q) { endSession(); return; }
-  s.used.add(q.id);
-
-  // per question timer
-  if (App.settings.timerOn) { 
-    s.timeLeft = App.settings.timerSeconds; 
-    startTimer(); 
-  } else { 
-    stopTimer(); 
-    $("#timerBadge").textContent = "⏱ Off"; 
-  }
-  // If time runs out in Blitz, count it as wrong and move on.
-  s.onTimeUp = () => {
-    if (!App.session || App.session.modeId !== "blitz") return;
-    recordAttempt(q, false);
-    toast("Time’s up", `Answer: ${bestAnswerText(q)}`);
-    if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
-    s.blitz.remaining -= 1;
-    s.question = null;
-    setTimeout(renderNeonBlitz, App.settings.reduceMotion ? 150 : 420);
-  };
-
-  // MC when possible else typed
-  const mc = buildMCOptionsFor(q, pool, 4);
-  $("#prompt").insertAdjacentHTML("beforeend", `<div style="margin-top:10px;">${formatPrompt(q)}</div>`);
-  if (mc) {
-    $("#gameControls").innerHTML = `
-      <div class="choices">
-        ${mc.options.map((o,i)=>`<button class="choice" data-bchoice="${i}">${escapeHtml(o)}</button>`).join("")}
-      </div>
-      <div class="mini" style="margin-top:10px;">Bonus scales with time left.</div>
-    `;
-    $all("[data-bchoice]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const pick = mc.options[Number(btn.dataset.bchoice)];
-        const correct = normalize(pick) === normalize(mc.accepted);
-        stopTimer();
-        recordAttempt(q, correct);
-        if (correct) {
-          s.blitz.correct += 1;
-          const base = 12;
-          const bonus = App.settings.timerOn ? Math.floor((s.timeLeft / App.settings.timerSeconds) * 10) : 5;
-          const gained = base + bonus;
-          s.score += gained;
-          if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
-          beepSoft();
-          toast("Correct", `+${gained} • ${mc.accepted}`);
-        } else {
-          toast("Miss", `Answer: ${mc.accepted}`);
-        }
-        if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
-        s.blitz.remaining -= 1;
-        setTimeout(renderNeonBlitz, App.settings.reduceMotion ? 150 : 420);
-      });
-    });
-  } else {
-    // typed fallback
-    $("#gameControls").innerHTML = `
-      <div class="row">
-        <input id="answerInput" class="input" placeholder="Type your answer…" autocomplete="off" />
-        <button class="btn primary" id="submitBtn">Submit</button>
-        <button class="btn" id="skipBtn">Skip</button>
-      </div>
-    `;
-    const input = $("#answerInput"); input.focus();
-    const submit = () => {
-      const v = isCorrect(q, input.value);
-      if (v === null) { showSelfCheck(q, input.value); return; }
-      stopTimer();
-      recordAttempt(q, v);
-      if (v) {
-        s.blitz.correct += 1;
-        const gained = 12;
-        s.score += gained;
-        if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
-        beepSoft();
-        toast("Correct", `+${gained} • ${bestAnswerText(q)}`);
-      } else {
-        toast("Miss", `Answer: ${bestAnswerText(q)}`);
-      }
-      if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
-      s.blitz.remaining -= 1;
-      s.question = null;
-      setTimeout(renderNeonBlitz, App.settings.reduceMotion ? 150 : 420);
-    };
-    $("#submitBtn").addEventListener("click", submit);
-    input.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
-    $("#skipBtn").addEventListener("click", () => { stopTimer(); recordAttempt(q,false); s.blitz.remaining -= 1; toast("Skipped", `Answer: ${bestAnswerText(q)}`); setTimeout(renderNeonBlitz, 250); });
-  }
-
-  renderScoreStrip();
-}
-
-/** =======================
- * Mode: Type-It Sprint (60s continuous)
- * ======================= */
-function renderTypeSprint() {
-  const s = App.session;
-  if (!s.typeSprint) s.typeSprint = { correct: 0, wrong: 0 };
-
-  // continuous timer
-  if (App.settings.timerOn) {
-    if (!s.timer) { s.timeLeft = 60; startTimer();
-      // End sprint cleanly on timeout
-      s.onTimeUp = () => { renderTypeSprint(); }; }
-  } else {
-    stopTimer();
-    $("#timerBadge").textContent = "⏱ Off";
-  }
-
-  if (App.settings.timerOn && s.timeLeft <= 0) {
-    showAfter("Time!", `Correct: ${s.typeSprint.correct} • Wrong: ${s.typeSprint.wrong} • Score: ${s.score}`, "good");
-    $("#afterControls").classList.remove("hidden");
-    $("#afterControls").innerHTML = `<div class="row" style="gap:10px;">
-      <button class="btn primary" id="typeAgain">Play again</button>
-      <button class="btn" id="typeExit">Exit</button>
-    </div>`;
-    $("#typeAgain").addEventListener("click", () => startMode("type"));
-    $("#typeExit").addEventListener("click", endSession);
-    return;
-  }
-
-  // Ask next typed question using standard picker
-  const q = pickNextQuestion();
-  if (!q) { endSession(); return; }
-  s.used.add(q.id);
-
-  $("#prompt").innerHTML = `
-    <div class="row" style="justify-content:space-between;">
-      <div class="font-tech neon-text-pink" style="font-weight:900;">TYPE‑IT SPRINT</div>
-      <div class="tag">✅ ${s.typeSprint.correct} / ❌ ${s.typeSprint.wrong}</div>
-    </div>
-    <div style="margin-top:10px;">${formatPrompt(q)}</div>
-  `;
-
-  $("#gameControls").innerHTML = `
-    <div class="row">
-      <input id="answerInput" class="input" placeholder="Type your answer…" autocomplete="off" />
-      <button class="btn primary" id="submitBtn">Submit</button>
-      <button class="btn" id="skipBtn">Skip</button>
-    </div>
-    <div class="mini" style="margin-top:10px;">60 seconds. Keep moving.</div>
-  `;
-  const input = $("#answerInput"); input.focus();
-
-  const submit = () => {
-    const v = isCorrect(q, input.value);
-    if (v === null) { showSelfCheck(q, input.value); return; }
-    recordAttempt(q, v);
-    if (v) {
-      s.typeSprint.correct += 1;
-      const gained = 8;
-      s.score += gained;
-      if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
-      beepSoft();
-      toast("✅", `+${gained}`);
-    } else {
-      s.typeSprint.wrong += 1;
-      toast("❌", `Ans: ${bestAnswerText(q)}`);
-    }
-    if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
-    renderTypeSprint();
-  };
-  $("#submitBtn").addEventListener("click", submit);
-  input.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
-  $("#skipBtn").addEventListener("click", () => { recordAttempt(q,false); s.typeSprint.wrong += 1; toast("Skipped", `Ans: ${bestAnswerText(q)}`); renderTypeSprint(); });
-
-  renderScoreStrip();
-}
-
-/** =======================
- * Mode: Survival (3 lives)
- * ======================= */
 function renderSurvival() {
   const s = App.session;
   if (!s.survival) s.survival = { lives: 3 };
