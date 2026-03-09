@@ -1063,7 +1063,10 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
         <button class="btn" data-start="lightning">⚡ Lightning</button>
         <button class="btn" data-start="streak">🔥 Streak Sprint</button>
         <button class="btn" data-start="flashcards">🃏 Flashcards</button>
-        <button class="btn" data-start="match">🧩 Match‑Up</button>
+        <button class="btn" data-start="detective">🕵️ Historical Detective</button>
+        <button class="btn" data-start="mapdrop">🗺️ Map Drop</button>
+        <button class="btn" data-start="causechain">⛓️ Cause & Effect Chain</button>
+        <button class="btn" data-start="propaganda">📰 Propaganda Decoder</button>
         <button class="btn" data-start="review">📝 Auto‑graded Review Guide</button>
       </div>
 
@@ -1082,7 +1085,7 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
 
       <div class="row mt-12">
         <button class="btn" data-start="mystery">🟦 Mystery Grid</button>
-        <button class="btn" data-start="showdown">🏁 Team Showdown</button>
+        <button class="btn" data-start="buzzbowl">🔔 Buzz Bowl</button>
       </div>
 
       
@@ -1236,22 +1239,21 @@ const MODES = [
 {"id": "lightning", "title": "Lightning", "desc": "Multiple‑choice speed round. 10 questions, timed.", "icon": "⚡"},
 {"id": "streak", "title": "Streak Sprint", "desc": "60 seconds. Answer as many as you can. Streak boosts points.", "icon": "🔥"},
 {"id": "flashcards", "title": "Flashcards", "desc": "Flip, self‑rate, and build mastery (simple spaced review).", "icon": "🃏"},
-{"id": "match", "title": "Match‑Up", "desc": "Match key terms to definitions (pulled from prompts).", "icon": "🧩"},
-{"id": "showdown", "title": "Team Showdown", "desc": "Pass‑and‑play. Teams take turns; optional steals.", "icon": "🏁"},
+{"id": "memory", "title": "Memory Flip", "desc": "Flip cards to match prompt ↔ answer pairs.", "icon": "🧠"},
+{"id": "detective", "title": "Historical Detective", "desc": "Deduce the historical answer from escalating clues.", "icon": "🕵️"},
+{"id": "mapdrop", "title": "Map Drop", "desc": "Place empires, routes, and battles in the correct world region.", "icon": "🗺️"},
+{"id": "causechain", "title": "Cause & Effect Chain", "desc": "Arrange events into the strongest causal sequence.", "icon": "⛓️"},
+{"id": "propaganda", "title": "Propaganda Decoder", "desc": "Interpret perspective, purpose, and context from short sources.", "icon": "📰"},
 {"id": "mystery", "title": "Mystery Grid", "desc": "Pick tiles to reveal questions. Projector‑friendly.", "icon": "🟦"},
 {"id": "buzzbowl", "title": "Buzz Bowl", "desc": "Local quiz‑bowl style: teams buzz in, answer, and steal.", "icon": "🔔"},
 {"id": "sudden", "title": "Sudden Death", "desc": "Teams are eliminated on a miss. Last team standing wins.", "icon": "💀"},
 {"id": "relay", "title": "Relay Sprint", "desc": "Each team gets 30 seconds. Pass the device between teams.", "icon": "🔁"},
 {"id": "timeline", "title": "Timeline Showdown", "desc": "Drag events into chronological order. Score by accuracy + speed.", "icon": "🗓️"},
-{"id": "review", "title": "Auto‑graded Review Guide", "desc": "Fill every blank, then click Grade. Units + Search filters apply.", "icon": "📝"}
-,
-{"id": "blitz", "title": "Neon Blitz", "desc": "10-question speed run. Fast points and flashy feedback.", "icon": "⚡"},
-{"id": "type", "title": "Type‑It Sprint", "desc": "Short-answer rush. One minute, as many as you can.", "icon": "⌨️"},
+{"id": "review", "title": "Auto‑graded Review Guide", "desc": "Fill every blank, then click Grade. Units + Search filters apply.", "icon": "📝"},
 {"id": "boss", "title": "Boss Battle", "desc": "HP bars + hits. Correct answers deal damage; mistakes hurt.", "icon": "👑"},
-{"id": "conquest", "title": "Realm Conquest", "desc": "3×3 grid war. Attack adjacent tiles to expand your empire.", "icon": "🗺️"},
+{"id": "conquest", "title": "Realm Conquest", "desc": "3×3 grid war. Attack adjacent tiles to expand your empire.", "icon": "🏰"},
 {"id": "chrono", "title": "Time Stream", "desc": "Before/After chronology duel. Keep the streak alive.", "icon": "⏳"},
 {"id": "survival", "title": "Survival", "desc": "Three lives. Stay alive as long as you can.", "icon": "❤️"},
-{"id": "memory", "title": "Memory Flip", "desc": "Flip cards to match prompt ↔ answer pairs.", "icon": "🃏"},
 {"id": "jeopardy", "title": "Jeopardy Grid", "desc": "Pick tiles, answer, earn points. Great for teams.", "icon": "🏆"},
 {"id": "wager", "title": "Wager Wheel", "desc": "Choose your wager each question. Risk it for big points.", "icon": "🎰"}
 ];
@@ -1869,12 +1871,9 @@ $("#btnResetProgress").addEventListener("click", () => {
 
 /** ========= Mode launcher ========= */
 function startMode(modeId, opts={}) {
-  // Redirect "showdown" to Quick Quiz with team rules + steals
+  // Legacy deep-link support
   if (modeId === "showdown") {
-    App.settings.play = "teams";
-    persist();
-    syncHomeControls();
-    return startMode("quick", { label: "Team Showdown" });
+    modeId = "detective";
   }
 
   // Competitive local modes default to Teams
@@ -1916,6 +1915,10 @@ function startMode(modeId, opts={}) {
   if (modeId === "blitz") { App.session.blitz = { remaining: 10, correct: 0 }; App.session.timeLeft = App.settings.timerSeconds; }
   if (modeId === "type") { App.session.typeSprint = { correct: 0, wrong: 0 }; App.session.timeLeft = 60; }
   if (modeId === "survival") { App.session.survival = { lives: 3, best: App.bestSurvival||0 }; }
+  if (modeId === "detective") { App.session.detective = { clueIndex: 0 }; }
+  if (modeId === "mapdrop") { App.session.mapdrop = { round: 0, total: 6 }; }
+  if (modeId === "causechain") { App.session.causechain = { round: 0, total: 5 }; }
+  if (modeId === "propaganda") { App.session.propaganda = { round: 0, total: 6 }; }
   if (modeId === "boss") { App.session.boss = { playerHP: 100, bossHP: 120, phase: "fight" }; }
   if (modeId === "conquest") { App.session.conquest = { grid: initConquestGrid(), turn: 1, selected: null, msg: "Attack an adjacent tile." }; }
   if (modeId === "jeopardy") { App.session.jeopardy = initJeopardyBoard(); }
@@ -2030,6 +2033,10 @@ function renderAll() {
 function getModeMeta(modeId) {
   const modeMeta = {
     quick: { duration: "3–5 min", fit: "both", vibe: "core practice" },
+    detective: { duration: "3–5 min", fit: "both", vibe: "deduction" },
+    mapdrop: { duration: "3–5 min", fit: "both", vibe: "spatial history" },
+    causechain: { duration: "3–6 min", fit: "both", vibe: "causal reasoning" },
+    propaganda: { duration: "3–5 min", fit: "both", vibe: "source analysis" },
     lightning: { duration: "2–3 min", fit: "solo", vibe: "fast warm-up" },
     streak: { duration: "1 min", fit: "solo", vibe: "high intensity" },
     flashcards: { duration: "5+ min", fit: "both", vibe: "memory builder" },
@@ -2106,7 +2113,7 @@ function renderContinueLearning() {
 function renderFeaturedModes() {
   const featured = [
     { id: "lightning", blurb: "2 min • fastest warm-up" },
-    { id: "mystery", blurb: "Best for projector" },
+    { id: "detective", blurb: "Deduce with clues for bigger points" },
     { id: "review", blurb: "Built from your errors" }
   ];
   const container = $("#featuredModes");
@@ -2119,6 +2126,7 @@ function renderFeaturedModes() {
       <div class="fMeta">${escapeHtml(blurb)}</div>
     </button>`;
   }).join("");
+  $all("#featuredModes [data-start]").forEach(btn => btn.addEventListener("click", () => startMode(btn.dataset.start)));
 }
 
 function renderModeGrid() {
@@ -2128,13 +2136,13 @@ function renderModeGrid() {
   // Map each mode to a neon "cabinet" color (matches the Retro‑Futuristic Cyber‑Arcade theme)
   const colorMap = {
     // Tech / Quiz
-    quick: "cyan", type: "cyan", review: "cyan", blitz: "cyan",
+    quick: "cyan", review: "cyan", propaganda: "cyan",
     // Speed / Timeline
-    lightning: "yellow", streak: "yellow", chrono: "yellow", timeline: "yellow",
+    lightning: "yellow", streak: "yellow", chrono: "yellow", detective: "yellow",
     // Memory / Cards
-    flashcards: "purple", match: "purple", memory: "purple",
+    flashcards: "purple", memory: "purple", causechain: "purple",
     // Strategy / Grids
-    conquest: "emerald", mystery: "emerald",
+    conquest: "emerald", mystery: "emerald", mapdrop: "emerald",
     // Competitive / Buzzers
     showdown: "pink", jeopardy: "pink", buzzbowl: "pink", sudden: "pink", relay: "pink",
     // Combat / Survival
@@ -2739,7 +2747,7 @@ function renderGame() {
   $("#afterControls").classList.add("hidden");
   $("#afterControls").innerHTML = "";
 
-  if (s.modeId === "match") { renderMatch(); return; }
+  if (s.modeId === "causechain") { renderCauseChain(); return; }
   if (s.modeId === "review") { renderReviewGuide(); return; }
   if (s.modeId === "flashcards") { renderFlashcards(); return; }
   if (s.modeId === "mystery") { renderMysteryGrid(); return; }
@@ -2753,8 +2761,9 @@ function renderGame() {
   if (s.modeId === "memory") { renderMemoryFlip(); return; }
   if (s.modeId === "chrono") { renderChronoStream(); return; }
   if (s.modeId === "wager") { renderWagerWheel(); return; }
-  if (s.modeId === "type") { renderTypeSprint(); return; }
-  if (s.modeId === "blitz") { renderNeonBlitz(); return; }
+  if (s.modeId === "detective") { renderHistoricalDetective(); return; }
+  if (s.modeId === "mapdrop") { renderMapDrop(); return; }
+  if (s.modeId === "propaganda") { renderPropagandaDecoder(); return; }
   if (s.modeId === "survival") { renderSurvival(); return; }
 
 if (!s.question) {
@@ -3435,6 +3444,166 @@ function renderMysteryGrid() {
   renderTiles();
 }
 
+
+const MAP_DROP_ITEMS = [
+  { prompt: "Ottoman Empire core", answer: "Southwest Asia" },
+  { prompt: "Silk Road trade heartland", answer: "Central Asia" },
+  { prompt: "Battle of Stalingrad", answer: "Eastern Europe" },
+  { prompt: "Mali Empire", answer: "West Africa" },
+  { prompt: "Meiji Japan", answer: "East Asia" },
+  { prompt: "Inca Empire", answer: "South America" },
+  { prompt: "Mughal Empire", answer: "South Asia" },
+  { prompt: "Aztec Empire", answer: "Mesoamerica" }
+];
+const MAP_REGIONS = ["East Asia","South Asia","Central Asia","Southwest Asia","Eastern Europe","West Africa","South America","Mesoamerica"];
+
+const CAUSE_CHAINS = [
+  ["Industrialization", "Urbanization", "Labor unrest", "Reform movements"],
+  ["Nationalism", "Alliance building", "Assassination at Sarajevo", "World War I"],
+  ["Enlightenment ideas", "American Revolution", "French Revolution", "Latin American independence"],
+  ["Imperial rivalry", "Colonial resistance", "Resource extraction", "Global conflict"],
+  ["Treaty of Versailles", "Economic instability", "Authoritarian rise", "World War II"]
+];
+
+const PROPAGANDA_PROMPTS = [
+  { text: "Our empire must civilize less developed peoples.", choices:["Imperial justification","Anti-colonial protest","Labor union appeal"], answer:"Imperial justification" },
+  { text: "Workers of all nations, unite against exploitation.", choices:["Nationalist slogan","Socialist perspective","Religious reform"], answer:"Socialist perspective" },
+  { text: "The fatherland is in danger; every citizen must serve.", choices:["Pacifist appeal","Wartime mobilization","Trade charter"], answer:"Wartime mobilization" },
+  { text: "Glorious progress comes from factories and science.", choices:["Industrial boosterism","Medieval worldview","Feudal contract"], answer:"Industrial boosterism" },
+  { text: "Decolonization is our right and destiny.", choices:["Imperial edict","Independence movement","Mercantilist policy"], answer:"Independence movement" },
+  { text: "One leader, one people, one destiny.", choices:["Democratic pluralism","Authoritarian propaganda","UN charter language"], answer:"Authoritarian propaganda" }
+];
+
+function renderHistoricalDetective() {
+  const s = App.session;
+  stopTimer();
+  const q = s.question || pickNextQuestion();
+  if (!q) { endSession(); return; }
+  s.question = q;
+
+  const answerText = bestAnswerText(q).split("/")[0].trim();
+  const cluePack = [
+    `Unit: ${q.unitName || UNIT_META[q.unit] || q.unit}`,
+    `Hint: ${q.hint || "Think about key terms and context."}`,
+    `Prompt starts: ${(q.prompt || "").slice(0, 44)}...`,
+    `Answer length: ${answerText.length} characters`
+  ];
+  const clueIndex = s.detective?.clueIndex || 0;
+  const visible = cluePack.slice(0, Math.max(1, clueIndex + 1));
+  const points = Math.max(6, 20 - clueIndex * 4);
+
+  $("#prompt").innerHTML = `
+    <div class="row justify-between"><div style="font-weight:900;">Historical Detective</div><span class="badge">Worth ${points}</span></div>
+    <div class="muted mt-10">Solve early for more points. Reveal clues only if needed.</div>
+    <ul class="muted mt-10">${visible.map(c=>`<li>${escapeHtml(c)}</li>`).join("")}</ul>
+  `;
+  $("#gameControls").innerHTML = `
+    <div class="row mt-12">
+      <input id="detectiveInput" class="input" placeholder="Your deduction..." />
+      <button class="btn primary" id="detectiveGuess">Submit guess</button>
+      <button class="btn" id="detectiveReveal" ${clueIndex >= cluePack.length-1 ? "disabled" : ""}>Reveal clue</button>
+      <button class="btn" id="detectiveSkip">Skip</button>
+    </div>
+  `;
+  $("#detectiveGuess").addEventListener("click", () => {
+    const val = $("#detectiveInput").value;
+    const ok = isCorrect(q, val);
+    recordAttempt(q, !!ok);
+    if (ok) {
+      s.score += points;
+      if (App.settings.play === "teams") App.teams[s.teamIndex].score += points;
+      showAfter("Solved!", `+${points} • ${bestAnswerText(q)}`, "good");
+    } else {
+      if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
+      showAfter("Not quite", `Answer: ${bestAnswerText(q)}`, "bad");
+    }
+    s.question = null;
+    s.detective.clueIndex = 0;
+    setTimeout(renderGame, 260);
+  });
+  $("#detectiveReveal").addEventListener("click", () => { s.detective.clueIndex += 1; renderHistoricalDetective(); });
+  $("#detectiveSkip").addEventListener("click", () => { recordAttempt(q,false); s.question = null; s.detective.clueIndex = 0; setTimeout(renderGame, 120); });
+  renderScoreStrip();
+}
+
+function renderMapDrop() {
+  const s = App.session;
+  stopTimer();
+  if (!s.mapdrop.deck) s.mapdrop.deck = sample(MAP_DROP_ITEMS, s.mapdrop.total);
+  if (s.mapdrop.round >= s.mapdrop.deck.length) { endSession(); return; }
+  const item = s.mapdrop.deck[s.mapdrop.round];
+  $("#prompt").innerHTML = `<div style="font-weight:900;">Map Drop</div><div class="muted mt-10">Round ${s.mapdrop.round+1}/${s.mapdrop.deck.length}: ${escapeHtml(item.prompt)}</div>`;
+  $("#gameControls").innerHTML = `<div class="choices">${MAP_REGIONS.map(r=>`<button class="choice" data-region="${escapeHtml(r)}">${escapeHtml(r)}</button>`).join("")}</div>`;
+  $all("[data-region]").forEach(b=>b.addEventListener("click",()=>{
+    const ok = b.dataset.region === item.answer;
+    if (ok) {
+      s.score += 12;
+      if (App.settings.play==="teams") App.teams[s.teamIndex].score += 12;
+      showAfter("Placed!", `${escapeHtml(item.prompt)} → ${escapeHtml(item.answer)}`, "good");
+    } else {
+      showAfter("Miss", `Correct region: ${escapeHtml(item.answer)}`, "bad");
+      if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
+    }
+    s.mapdrop.round += 1;
+    setTimeout(renderMapDrop, 260);
+  }));
+  renderScoreStrip();
+}
+
+function renderCauseChain() {
+  const s = App.session;
+  stopTimer();
+  if (!s.causechain.deck) s.causechain.deck = sample(CAUSE_CHAINS, s.causechain.total);
+  if (s.causechain.round >= s.causechain.deck.length) { endSession(); return; }
+  const chain = s.causechain.deck[s.causechain.round];
+  if (!s.causechain.order) s.causechain.order = shuffle(chain);
+  if (!s.causechain.pick) s.causechain.pick = [];
+
+  $("#prompt").innerHTML = `<div style="font-weight:900;">Cause & Effect Chain</div><div class="muted mt-10">Build the strongest causal sequence.</div>`;
+  $("#gameControls").innerHTML = `
+    <div class="kpi">${s.causechain.pick.map(x=>`<div class="chip"><strong>${escapeHtml(x)}</strong></div>`).join("")}</div>
+    <div class="choices mt-12">${s.causechain.order.filter(x=>!s.causechain.pick.includes(x)).map(x=>`<button class="choice" data-step="${escapeHtml(x)}">${escapeHtml(x)}</button>`).join("")}</div>
+    <div class="row mt-12"><button class="btn primary" id="chainSubmit" ${s.causechain.pick.length!==chain.length?"disabled":""}>Submit chain</button><button class="btn" id="chainReset">Reset</button></div>
+  `;
+  $all("[data-step]").forEach(b=>b.addEventListener("click",()=>{ s.causechain.pick.push(b.dataset.step); renderCauseChain(); }));
+  $("#chainReset").addEventListener("click",()=>{ s.causechain.pick=[]; renderCauseChain(); });
+  $("#chainSubmit").addEventListener("click",()=>{
+    let score = 0;
+    s.causechain.pick.forEach((x,i)=>{ if (chain[i]===x) score += 4; });
+    s.score += score;
+    if (App.settings.play==="teams") App.teams[s.teamIndex].score += score;
+    showAfter("Chain scored", `You earned ${score} points.`, score>=12?"good":"bad");
+    s.causechain.round += 1; s.causechain.pick=[]; s.causechain.order=null;
+    if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
+    setTimeout(renderCauseChain, 260);
+  });
+  renderScoreStrip();
+}
+
+function renderPropagandaDecoder() {
+  const s = App.session;
+  stopTimer();
+  if (!s.propaganda.deck) s.propaganda.deck = sample(PROPAGANDA_PROMPTS, s.propaganda.total);
+  if (s.propaganda.round >= s.propaganda.deck.length) { endSession(); return; }
+  const item = s.propaganda.deck[s.propaganda.round];
+  $("#prompt").innerHTML = `<div style="font-weight:900;">Propaganda Decoder</div><div class="muted mt-10">Identify perspective/purpose: “${escapeHtml(item.text)}”</div>`;
+  $("#gameControls").innerHTML = `<div class="choices">${item.choices.map(c=>`<button class="choice" data-ans="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join("")}</div>`;
+  $all("[data-ans]").forEach(b=>b.addEventListener("click",()=>{
+    const ok = b.dataset.ans === item.answer;
+    if (ok) {
+      s.score += 10;
+      if (App.settings.play==="teams") App.teams[s.teamIndex].score += 10;
+      showAfter("Decoded", `${escapeHtml(item.answer)} (+10)`, "good");
+    } else {
+      showAfter("Not quite", `Best answer: ${escapeHtml(item.answer)}`, "bad");
+      if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
+    }
+    s.propaganda.round += 1;
+    setTimeout(renderPropagandaDecoder, 250);
+  }));
+  renderScoreStrip();
+}
+
 /** ========= End session ========= */
 function endSession() {
   stopTimer();
@@ -3469,16 +3638,6 @@ function endSession() {
 /** ========= Toast ========= */
 $("#toastClose").addEventListener("click", toastHide);
 setInterval(() => { if (!$("#toast").classList.contains("hidden") && !$("#modal").classList.contains("show")) toastHide(); }, 4200);
-
-/** ========= Showdown shortcut ========= */
-document.querySelectorAll('[data-start="showdown"]').forEach(btn => {
-  btn.addEventListener("click", () => {
-    App.settings.play = "teams";
-    persist();
-    syncHomeControls();
-    startMode("quick", { label: "Team Showdown" });
-  });
-});
 
 /** ========= Boot ========= */
 
