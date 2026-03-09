@@ -1904,13 +1904,12 @@ function startMode(modeId, opts={}) {
     teamIndex: 0,
     opts
   };
-  setNav("game");
 
   // mode init
   if (modeId === "buzzbowl") { App.session.buzz = { open:true, team:null, used:new Set() }; }
   if (modeId === "sudden") { App.session.aliveTeams = App.teams.map(()=>true); App.session.teamIndex = 0; }
   if (modeId === "relay") { App.session.relay = { team: 0, done: [] }; App.session.teamIndex = 0; App.session.timeLeft = 30; }
-  if (modeId === "timeline") { App.session.timeline = null;
+  if (modeId === "timeline") { App.session.timeline = null; }
   // Arcade imports (offline v11) — init mode state
   if (modeId === "blitz") { App.session.blitz = { remaining: 10, correct: 0 }; App.session.timeLeft = App.settings.timerSeconds; }
   if (modeId === "type") { App.session.typeSprint = { correct: 0, wrong: 0 }; App.session.timeLeft = 60; }
@@ -1924,7 +1923,8 @@ function startMode(modeId, opts={}) {
   if (modeId === "jeopardy") { App.session.jeopardy = initJeopardyBoard(); }
   if (modeId === "wager") { App.session.wager = { bank: 0, lastWager: 10 }; }
   if (modeId === "chrono") { App.session.chrono = initChronoStream(); }
- }
+
+  setNav("game");
   renderGame();
 
   if (modeId === "streak") App.session.timeLeft = 60;
@@ -3477,34 +3477,45 @@ const PROPAGANDA_PROMPTS = [
 function renderHistoricalDetective() {
   const s = App.session;
   stopTimer();
-  const q = s.question || pickNextQuestion();
+
+  const detectivePool = s.pool.filter(q => hasAutoAnswers(q) && !Array.isArray(q.acceptedAnswers?.[0]));
+  const available = detectivePool.filter(q => !s.used.has(q.id));
+  const q = s.question || available[0] || detectivePool[0];
   if (!q) { endSession(); return; }
   s.question = q;
+  s.used.add(q.id);
 
-  const answerText = bestAnswerText(q).split("/")[0].trim();
+  const answerText = String(bestAnswerText(q).split("/")[0] || "").trim();
+  const answerWords = answerText ? answerText.split(/\s+/).length : 0;
+  const firstLetter = answerText ? answerText[0].toUpperCase() : "?";
+  const promptPreview = (q.prompt || "").replace(/\s+/g, " ").trim();
   const cluePack = [
-    `Unit: ${q.unitName || UNIT_META[q.unit] || q.unit}`,
-    `Hint: ${q.hint || "Think about key terms and context."}`,
-    `Prompt starts: ${(q.prompt || "").slice(0, 44)}...`,
-    `Answer length: ${answerText.length} characters`
+    `Category: ${q.unitName || UNIT_META[q.unit] || q.unit}`,
+    `Solve this missing term from the prompt: ${promptPreview}`,
+    `Answer starts with: ${firstLetter}`,
+    `Answer length: ${answerWords} word${answerWords === 1 ? "" : "s"}`,
+    `Teacher hint code: ${q.hint || "Use unit context clues"}`
   ];
+
   const clueIndex = s.detective?.clueIndex || 0;
-  const visible = cluePack.slice(0, Math.max(1, clueIndex + 1));
-  const points = Math.max(6, 20 - clueIndex * 4);
+  const visible = cluePack.slice(0, Math.max(2, clueIndex + 2));
+  const points = Math.max(6, 22 - clueIndex * 4);
 
   $("#prompt").innerHTML = `
     <div class="row justify-between"><div style="font-weight:900;">Historical Detective</div><span class="badge">Worth ${points}</span></div>
-    <div class="muted mt-10">Solve early for more points. Reveal clues only if needed.</div>
+    <div class="muted mt-10">Guess the exact missing term/phrase. Reveal clues if needed (fewer points each reveal).</div>
     <ul class="muted mt-10">${visible.map(c=>`<li>${escapeHtml(c)}</li>`).join("")}</ul>
   `;
+
   $("#gameControls").innerHTML = `
     <div class="row mt-12">
-      <input id="detectiveInput" class="input" placeholder="Your deduction..." />
+      <input id="detectiveInput" class="input" placeholder="Type the missing term/phrase..." />
       <button class="btn primary" id="detectiveGuess">Submit guess</button>
-      <button class="btn" id="detectiveReveal" ${clueIndex >= cluePack.length-1 ? "disabled" : ""}>Reveal clue</button>
+      <button class="btn" id="detectiveReveal" ${clueIndex >= cluePack.length-2 ? "disabled" : ""}>Reveal clue</button>
       <button class="btn" id="detectiveSkip">Skip</button>
     </div>
   `;
+
   $("#detectiveGuess").addEventListener("click", () => {
     const val = $("#detectiveInput").value;
     const ok = isCorrect(q, val);
@@ -3519,10 +3530,21 @@ function renderHistoricalDetective() {
     }
     s.question = null;
     s.detective.clueIndex = 0;
-    setTimeout(renderGame, 260);
+    setTimeout(renderHistoricalDetective, 220);
   });
-  $("#detectiveReveal").addEventListener("click", () => { s.detective.clueIndex += 1; renderHistoricalDetective(); });
-  $("#detectiveSkip").addEventListener("click", () => { recordAttempt(q,false); s.question = null; s.detective.clueIndex = 0; setTimeout(renderGame, 120); });
+
+  $("#detectiveReveal").addEventListener("click", () => {
+    s.detective.clueIndex += 1;
+    renderHistoricalDetective();
+  });
+  $("#detectiveSkip").addEventListener("click", () => {
+    recordAttempt(q, false);
+    s.question = null;
+    s.detective.clueIndex = 0;
+    if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
+    setTimeout(renderHistoricalDetective, 140);
+  });
+
   renderScoreStrip();
 }
 
