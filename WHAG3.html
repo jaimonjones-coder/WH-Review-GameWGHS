@@ -1076,7 +1076,7 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
     <div class="card section col-span-5">
       <h2 class="title">What’s new in this rebuild</h2>
       <ul class="muted" style="margin:10px 0 0 18px;">
-        <li><strong>Auto-checking</strong> for Core questions (PDF answer key)</li>
+        <li><strong>Auto-checking</strong> for Core questions (built-in answer keys)</li>
         <li><strong>No buzzer beeps</strong> — sound is off by default</li>
         <li><strong>Multiple modes</strong> from the same deck (competitive + review)</li>
         <li><strong>Progress + mistake bank</strong> saved on-device</li>
@@ -1385,6 +1385,8 @@ const App = {
   modeStats: {}, // by mode id => {bestScore,lastPlayed,plays}
   session: null // active mode session
 };
+
+let reviewKeyHandler = null;
 
 function $(sel) { return document.querySelector(sel); }
 function $all(sel) { return Array.from(document.querySelectorAll(sel)); }
@@ -2456,15 +2458,17 @@ function renderReviewGuide() {
     renderHomeKpis(); renderProgress(); renderAboutKpis();
   });
 
-  // quick: Ctrl/Cmd+Enter to grade
-  document.addEventListener("keydown", function reviewKey(e){
-    if (!App.session || App.session.modeId !== "review") { document.removeEventListener("keydown", reviewKey); return; }
+  // quick: Ctrl/Cmd+Enter to grade (deduped listener)
+  if (reviewKeyHandler) document.removeEventListener("keydown", reviewKeyHandler);
+  reviewKeyHandler = (e) => {
+    if (!App.session || App.session.modeId !== "review") return;
     const isMac = navigator.platform.toLowerCase().includes("mac");
     if ((isMac ? e.metaKey : e.ctrlKey) && e.key === "Enter") {
       e.preventDefault();
       $("#btnReviewGrade")?.click();
     }
-  });
+  };
+  document.addEventListener("keydown", reviewKeyHandler);
 }
 
 /** ========= Timeline mode ========= */
@@ -2520,7 +2524,7 @@ function renderTimeline() {
               <button class="iconBtn" data-move="-1" title="Move up">▲</button>
               <button class="iconBtn" data-move="1" title="Move down">▼</button>
             </div>
-          </button>
+          </div>
         `).join("")}
       </div>
       <div class="row">
@@ -3398,7 +3402,7 @@ function renderMysteryGrid() {
           <button type="button" class="tile ${t.used ? "used" : ""}" data-tile="${t.key}" aria-label="${escapeHtml(t.label)} ${t.used ? "used" : "tile"}" ${t.used ? "disabled" : ""}>
             <div class="tTitle">${escapeHtml(t.label)}</div>
             <div class="tMeta">${escapeHtml(t.used ? "Used" : "Tap to reveal")}</div>
-          </button>
+          </div>
         `).join("")}
       </div>
       <div class="row" style="padding:0 14px 14px;">
@@ -3523,10 +3527,10 @@ function renderHistoricalDetective() {
     if (ok) {
       s.score += points;
       if (App.settings.play === "teams") App.teams[s.teamIndex].score += points;
-      showAfter("Solved!", `+${points} • ${bestAnswerText(q)}`, "good");
+      toast("Solved!", `+${points} • ${bestAnswerText(q)}`);
     } else {
       if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
-      showAfter("Not quite", `Answer: ${bestAnswerText(q)}`, "bad");
+      toast("Not quite", `Answer: ${bestAnswerText(q)}`);
     }
     s.question = null;
     s.detective.clueIndex = 0;
@@ -3561,9 +3565,9 @@ function renderMapDrop() {
     if (ok) {
       s.score += 12;
       if (App.settings.play==="teams") App.teams[s.teamIndex].score += 12;
-      showAfter("Placed!", `${escapeHtml(item.prompt)} → ${escapeHtml(item.answer)}`, "good");
+      toast("Placed!", `${escapeHtml(item.prompt)} → ${escapeHtml(item.answer)}`);
     } else {
-      showAfter("Miss", `Correct region: ${escapeHtml(item.answer)}`, "bad");
+      toast("Miss", `Correct region: ${escapeHtml(item.answer)}`);
       if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
     }
     s.mapdrop.round += 1;
@@ -3594,7 +3598,7 @@ function renderCauseChain() {
     s.causechain.pick.forEach((x,i)=>{ if (chain[i]===x) score += 4; });
     s.score += score;
     if (App.settings.play==="teams") App.teams[s.teamIndex].score += score;
-    showAfter("Chain scored", `You earned ${score} points.`, score>=12?"good":"bad");
+    toast("Chain scored", `You earned ${score} points.`);
     s.causechain.round += 1; s.causechain.pick=[]; s.causechain.order=null;
     if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
     setTimeout(renderCauseChain, 260);
@@ -3615,9 +3619,9 @@ function renderPropagandaDecoder() {
     if (ok) {
       s.score += 10;
       if (App.settings.play==="teams") App.teams[s.teamIndex].score += 10;
-      showAfter("Decoded", `${escapeHtml(item.answer)} (+10)`, "good");
+      toast("Decoded", `${escapeHtml(item.answer)} (+10)`);
     } else {
-      showAfter("Not quite", `Best answer: ${escapeHtml(item.answer)}`, "bad");
+      toast("Not quite", `Best answer: ${escapeHtml(item.answer)}`);
       if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
     }
     s.propaganda.round += 1;
@@ -3665,11 +3669,8 @@ setInterval(() => { if (!$("#toast").classList.contains("hidden") && !$("#modal"
 
 
 function currentPool(){
-  const decks = (App.settings.deck === "core") ? DEFAULT_DECKS.core
-              : (App.settings.deck === "extended") ? DEFAULT_DECKS.extended
-              : DEFAULT_DECKS.core.concat(DEFAULT_DECKS.extended);
-  const units = selectedUnits();
-  return decks.filter(q => units.includes(q.unit));
+  // Legacy helper kept for compatibility; uses live filtered pool.
+  return getQuestionPool();
 }
 
 /** =======================
@@ -4044,7 +4045,7 @@ function renderNeonBlitz() {
   s.onTimeUp = () => {
     if (!App.session || App.session.modeId !== "blitz") return;
     recordAttempt(q, false);
-    showAfter("Time’s up", `Answer: ${bestAnswerText(q)}`, "bad");
+    toast("Time’s up", `Answer: ${bestAnswerText(q)}`);
     if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
     s.blitz.remaining -= 1;
     s.question = null;
@@ -4075,9 +4076,9 @@ function renderNeonBlitz() {
           s.score += gained;
           if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
           beepSoft();
-          showAfter("✅ Hit!", `+${gained} • ${mc.accepted}`, "good");
+          toast("Correct", `+${gained} • ${mc.accepted}`);
         } else {
-          showAfter("❌ Miss", `Answer: ${mc.accepted}`, "bad");
+          toast("Miss", `Answer: ${mc.accepted}`);
         }
         if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
         s.blitz.remaining -= 1;
@@ -4105,9 +4106,9 @@ function renderNeonBlitz() {
         s.score += gained;
         if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
         beepSoft();
-        showAfter("✅", `+${gained} • ${bestAnswerText(q)}`, "good");
+        toast("Correct", `+${gained} • ${bestAnswerText(q)}`);
       } else {
-        showAfter("❌", `Answer: ${bestAnswerText(q)}`, "bad");
+        toast("Miss", `Answer: ${bestAnswerText(q)}`);
       }
       if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
       s.blitz.remaining -= 1;
@@ -4116,7 +4117,7 @@ function renderNeonBlitz() {
     };
     $("#submitBtn").addEventListener("click", submit);
     input.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
-    $("#skipBtn").addEventListener("click", () => { stopTimer(); recordAttempt(q,false); s.blitz.remaining -= 1; showAfter("Skipped", `Answer: ${bestAnswerText(q)}`, "bad"); setTimeout(renderNeonBlitz, 250); });
+    $("#skipBtn").addEventListener("click", () => { stopTimer(); recordAttempt(q,false); s.blitz.remaining -= 1; toast("Skipped", `Answer: ${bestAnswerText(q)}`); setTimeout(renderNeonBlitz, 250); });
   }
 
   renderScoreStrip();
@@ -4258,10 +4259,10 @@ function renderSurvival() {
       s.score += gained;
       if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
       beepSoft();
-      showAfter("✅", `+${gained} • ${bestAnswerText(q)}`, "good");
+      toast("Correct", `+${gained} • ${bestAnswerText(q)}`);
     } else {
       s.survival.lives -= 1;
-      showAfter("❌", `Life lost • Answer: ${bestAnswerText(q)}`, "bad");
+      toast("Wrong", `Life lost • Answer: ${bestAnswerText(q)}`);
     }
     if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
     s.question = null;
@@ -4270,7 +4271,7 @@ function renderSurvival() {
 
   $("#submitBtn").addEventListener("click", submit);
   input.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
-  $("#skipBtn").addEventListener("click", () => { stopTimer(); recordAttempt(q,false); s.survival.lives -= 1; showAfter("Skipped", `Life lost • ${bestAnswerText(q)}`, "bad"); s.question=null; setTimeout(renderSurvival, 250); });
+  $("#skipBtn").addEventListener("click", () => { stopTimer(); recordAttempt(q,false); s.survival.lives -= 1; toast("Skipped", `Life lost • ${bestAnswerText(q)}`); s.question=null; setTimeout(renderSurvival, 250); });
 
   renderScoreStrip();
 }
@@ -4443,7 +4444,7 @@ if (mc) {
       bossUpdateBars(s.boss.playerHP, s.boss.bossHP);
 
       beepSoft();
-      showAfter("⚔️ HIT!", `-${dmg} boss HP • +${gained} pts`, "good");
+      toast("Hit!", `-${dmg} boss HP • +${gained} pts`);
     } else {
       const dmg = 22;
       s.boss.playerHP -= dmg;
@@ -4456,7 +4457,7 @@ if (mc) {
       bossFloatDamage("hero", dmg, "bad");
       bossUpdateBars(s.boss.playerHP, s.boss.bossHP);
 
-      showAfter("💥 OUCH", `-${dmg} your HP • Answer: ${mc.accepted}`, "bad");
+      toast("Ouch", `-${dmg} your HP • Answer: ${mc.accepted}`);
     }
 
     if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
@@ -4508,7 +4509,7 @@ if (mc) {
     bossUpdateBars(s.boss.playerHP, s.boss.bossHP);
 
     beepSoft();
-    showAfter("⚔️ HIT!", `-${dmg} boss HP • +${gained} pts`, "good");
+    toast("Hit!", `-${dmg} boss HP • +${gained} pts`);
   } else {
     const dmg = 22;
     s.boss.playerHP -= dmg;
@@ -4520,7 +4521,7 @@ if (mc) {
     bossFloatDamage("hero", dmg, "bad");
     bossUpdateBars(s.boss.playerHP, s.boss.bossHP);
 
-    showAfter("💥 OUCH", `-${dmg} your HP • Answer: ${bestAnswerText(q)}`, "bad");
+    toast("Ouch", `-${dmg} your HP • Answer: ${bestAnswerText(q)}`);
   }
 
   if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
@@ -4838,11 +4839,11 @@ function renderWagerWheel() {
             s.score += wager; w.bank += wager;
             if (App.settings.play==="teams") App.teams[s.teamIndex].score += wager;
             beepSoft();
-            showAfter("✅", `+${wager} • ${ans}`, "good");
+            toast("Correct", `+${wager} • ${ans}`);
           } else {
             s.score -= wager; w.bank -= wager;
             if (App.settings.play==="teams") App.teams[s.teamIndex].score -= wager;
-            showAfter("❌", `-${wager} (${why}) • Ans: ${ans}`, "bad");
+            toast("Wrong", `-${wager} (${why}) • Ans: ${ans}`);
           }
           if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
           w.lastWager = wager;
