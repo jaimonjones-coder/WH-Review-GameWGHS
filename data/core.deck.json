@@ -1,0 +1,2109 @@
+[
+  {
+    "id": "wh-1",
+    "num": 1,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The earliest civilizations developed in areas known as ______ ______, where rivers provided water, fertile soil, and transportation.",
+    "acceptedAnswers": [
+      [
+        "River"
+      ],
+      [
+        "Valleys"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-2",
+    "num": 2,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The region between the Tigris and Euphrates Rivers is known as ______.",
+    "acceptedAnswers": [
+      "Mesopotamia"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-3",
+    "num": 3,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The wedge-shaped writing system developed by the Sumerians is called ______.",
+    "acceptedAnswers": [
+      "Cuneiform"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-4",
+    "num": 4,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The Babylonian king famous for a harsh law code based on “an eye for an eye” was ______.",
+    "acceptedAnswers": [
+      "Hammurabi"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-5",
+    "num": 5,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The Egyptian writing system that used pictures and symbols is called ______.",
+    "acceptedAnswers": [
+      "Hieroglyphics"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-6",
+    "num": 6,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "Egyptians wrote on a type of paper made from reeds called ______.",
+    "acceptedAnswers": [
+      "Papyrus"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-7",
+    "num": 7,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The process by which rulers in China claimed the right to rule from the gods is called the Mandate of ______.",
+    "acceptedAnswers": [
+      "Heaven"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-8",
+    "num": 8,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "Respect for parents and ancestors, a key idea in Confucianism, is known as ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Filial"
+      ],
+      [
+        "Piety"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-9",
+    "num": 9,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "In the Indian caste system, a person’s social class was determined largely by ______ at birth.",
+    "acceptedAnswers": [
+      "Caste",
+      "Birth"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-10",
+    "num": 10,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The seasonal winds that affect agriculture in India were called ______.",
+    "acceptedAnswers": [
+      "Monsoons"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-11",
+    "num": 11,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The belief in many gods is called ______, while the belief in one god is called ______.",
+    "acceptedAnswers": [
+      [
+        "Polytheism"
+      ],
+      [
+        "Monotheism"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-12",
+    "num": 12,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The ancient Hebrews developed the monotheistic religion of ______.",
+    "acceptedAnswers": [
+      "Judaism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-13",
+    "num": 13,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The trade route that connected China to the Mediterranean world was called the ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Silk"
+      ],
+      [
+        "Road"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-14",
+    "num": 14,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The Bantu migrations spread knowledge of ______ working and ______ agriculture throughout sub-Saharan Africa.",
+    "acceptedAnswers": [
+      [
+        "Iron"
+      ],
+      [
+        "Slash-and-burn",
+        "settled"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-15",
+    "num": 15,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The early Mesoamerican civilization known for building colossal stone heads was the ______.",
+    "acceptedAnswers": [
+      "Olmec"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-16",
+    "num": 16,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "The Chinese philosophy that stresses strict laws and harsh punishments is called ______.",
+    "acceptedAnswers": [
+      "Legalism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-17",
+    "num": 17,
+    "unit": "unit2",
+    "unitName": "Unit 2 • Ancient Civilizations",
+    "type": "fill-blank",
+    "prompt": "Fine yellow soil deposited by wind and rivers in northern China is called ______.",
+    "acceptedAnswers": [
+      "Loess"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U2"
+  },
+  {
+    "id": "wh-18",
+    "num": 18,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "A Greek city-state, which was the basic political unit of ancient Greece, was called a ______.",
+    "acceptedAnswers": [
+      "Polis"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-19",
+    "num": 19,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The Greek city-state known for democracy and cultural achievements was ______, while the one known for a militaristic society was ______.",
+    "acceptedAnswers": [
+      [
+        "Athens"
+      ],
+      [
+        "Sparta"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-20",
+    "num": 20,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "Government in which citizens vote directly on laws is called direct ______.",
+    "acceptedAnswers": [
+      "Democracy"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-21",
+    "num": 21,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The most famous Greek philosophers included Socrates, ______, and ______.",
+    "acceptedAnswers": [
+      [
+        "Plato"
+      ],
+      [
+        "Aristotle"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-22",
+    "num": 22,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "After conquering a vast empire that spread Greek culture, ______ the Great helped create the Hellenistic world.",
+    "acceptedAnswers": [
+      "Alexander"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-23",
+    "num": 23,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The Roman Republic was originally governed by a Senate made up mainly of wealthy landowners called ______.",
+    "acceptedAnswers": [
+      "Patricians"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-24",
+    "num": 24,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "Written Roman laws that protected citizens’ rights were called the ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Twelve"
+      ],
+      [
+        "Tables"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-25",
+    "num": 25,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The long period of peace and prosperity in the Roman Empire beginning with Augustus is known as the ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Pax"
+      ],
+      [
+        "Romana"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-26",
+    "num": 26,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The spread of ______ throughout the Roman Empire was helped by Rome’s roads, cities, and trade networks.",
+    "acceptedAnswers": [
+      "Christianity"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-27",
+    "num": 27,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The fall of the ______ Roman Empire in 476 CE is often used as a marker for the end of ancient history in Western Europe.",
+    "acceptedAnswers": [
+      "Western"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-28",
+    "num": 28,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The ______ Empire preserved Roman and Greek learning and had its capital at Constantinople.",
+    "acceptedAnswers": [
+      "Byzantine"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-29",
+    "num": 29,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The Byzantine emperor who ordered the compilation of Roman laws into a single code was ______, and his powerful wife was Empress ______.",
+    "acceptedAnswers": [
+      [
+        "Justinian"
+      ],
+      [
+        "Theodora"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-30",
+    "num": 30,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The Christian church split in 1054 in an event known as the ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Great"
+      ],
+      [
+        "Schism"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-31",
+    "num": 31,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The city that served as a vital trade link between Europe and Asia and later became Istanbul was ______.",
+    "acceptedAnswers": [
+      "Constantinople"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-32",
+    "num": 32,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The nomadic horsemen who created the largest land empire in history under Chinggis (Genghis) Khan were the ______.",
+    "acceptedAnswers": [
+      "Mongols"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-33",
+    "num": 33,
+    "unit": "unit3",
+    "unitName": "Unit 3 • Classical Mediterranean Societies & Empires",
+    "type": "fill-blank",
+    "prompt": "The empire ruled from ______ (city) in the eastern Mediterranean is considered the continuation of the Roman Empire in the East.",
+    "acceptedAnswers": [
+      "Constantinople"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U3"
+  },
+  {
+    "id": "wh-34",
+    "num": 34,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The religion founded by the prophet ______ in the Arabian Peninsula is called Islam.",
+    "acceptedAnswers": [
+      "Muhammad"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-35",
+    "num": 35,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The holy book of Islam, believed to contain the word of God as revealed to Muhammad, is the ______.",
+    "acceptedAnswers": [
+      "Quran",
+      "Koran"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-36",
+    "num": 36,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The five basic religious duties every Muslim is expected to carry out are called the Five ______ of Islam.",
+    "acceptedAnswers": [
+      "Pillars"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-37",
+    "num": 37,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The leader of the Muslim community after Muhammad’s death was called a ______.",
+    "acceptedAnswers": [
+      "Caliph"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-38",
+    "num": 38,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The two main branches of Islam that split over disagreements about leadership are ______ and ______.",
+    "acceptedAnswers": [
+      [
+        "Sunni"
+      ],
+      [
+        "Shia"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4",
+    "unordered": true
+  },
+  {
+    "id": "wh-39",
+    "num": 39,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "Islam is part of the family of ______ religions (along with Judaism and Christianity).",
+    "acceptedAnswers": [
+      "Abrahamic"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-40",
+    "num": 40,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The Islamic empire that moved its capital to Baghdad and presided over a golden age of science and learning was the ______ Caliphate.",
+    "acceptedAnswers": [
+      "Abbasid"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-41",
+    "num": 41,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "A center of learning in Baghdad where scholars translated and preserved Greek and other texts was the House of ______.",
+    "acceptedAnswers": [
+      "Wisdom"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-42",
+    "num": 42,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The great West African trading kingdoms that grew wealthy from the gold-salt trade included Ghana, ______, and ______.",
+    "acceptedAnswers": [
+      [
+        "Mali"
+      ],
+      [
+        "Songhai"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4",
+    "unordered": true
+  },
+  {
+    "id": "wh-43",
+    "num": 43,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The Muslim ruler of Mali who made a famous pilgrimage to Mecca and distributed gold along the way was ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Mansa"
+      ],
+      [
+        "Musa"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-44",
+    "num": 44,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "Trade across the Sahara Desert was carried out on ______ trade routes.",
+    "acceptedAnswers": [
+      "Trans-Saharan"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-45",
+    "num": 45,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "A blended language and culture that developed on the East African coast through trade was ______ culture.",
+    "acceptedAnswers": [
+      "Swahili"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-46",
+    "num": 46,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The traveler who recorded his journeys across the Islamic world, including Africa and Asia, was Ibn ______.",
+    "acceptedAnswers": [
+      "Battuta"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-47",
+    "num": 47,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "The spread of Islam into Africa and Asia is an example of religious ______.",
+    "acceptedAnswers": [
+      "Diffusion"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-48",
+    "num": 48,
+    "unit": "unit4",
+    "unitName": "Unit 4 • Islamic & African Civilizations",
+    "type": "fill-blank",
+    "prompt": "European attempts to control foreign regions, often through military ______, fueled tension and conflict.",
+    "acceptedAnswers": [
+      "Invasions",
+      "Intervention"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U4"
+  },
+  {
+    "id": "wh-49",
+    "num": 49,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The political and social system in medieval Europe based on land ownership, loyalty, and military service was called ______.",
+    "acceptedAnswers": [
+      "Feudalism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-50",
+    "num": 50,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The economic system of large estates where peasants farmed land for a lord in exchange for protection was the ______ system.",
+    "acceptedAnswers": [
+      "Manorial"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-51",
+    "num": 51,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "Peasants who were legally bound to the land and owed service to their lord were called ______.",
+    "acceptedAnswers": [
+      "Serfs"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-52",
+    "num": 52,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "Mounted warriors who followed a code of conduct known as chivalry were called ______.",
+    "acceptedAnswers": [
+      "Knights"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-53",
+    "num": 53,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "During the Middle Ages, the Christian ______ played a central role in people’s lives, providing spiritual guidance and social services.",
+    "acceptedAnswers": [
+      "Church"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-54",
+    "num": 54,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "A series of religious wars between Christians and Muslims for control of the Holy Land were called the ______.",
+    "acceptedAnswers": [
+      "Crusades"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-55",
+    "num": 55,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The deadly epidemic that killed millions in Europe during the 14th century was the ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Black",
+        "Bubonic"
+      ],
+      [
+        "Death",
+        "Plague"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-56",
+    "num": 56,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "In 1215, English nobles forced King John to sign the ______ ______, which limited the power of the king.",
+    "acceptedAnswers": [
+      [
+        "Magna"
+      ],
+      [
+        "Carta"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-57",
+    "num": 57,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The “rebirth” of art and learning that began in Italian city-states like Florence in the 1300s is called the ______.",
+    "acceptedAnswers": [
+      "Renaissance"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-58",
+    "num": 58,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "A movement that focused on human potential, worldly subjects, and classical learning is called ______.",
+    "acceptedAnswers": [
+      "Humanism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-59",
+    "num": 59,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The city of ______ became a center of Renaissance banking, trade, and art, supported by the Medici family.",
+    "acceptedAnswers": [
+      "Florence"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-60",
+    "num": 60,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The German printer who invented a movable-type press that helped spread ideas quickly was Johannes ______.",
+    "acceptedAnswers": [
+      "Gutenberg"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-61",
+    "num": 61,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The German monk who wrote the 95 Theses criticizing indulgences and began the Protestant Reformation was Martin ______.",
+    "acceptedAnswers": [
+      "Luther"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-62",
+    "num": 62,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The term for payments made to the Church to reduce punishment for sins is ______.",
+    "acceptedAnswers": [
+      "Indulgences"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-63",
+    "num": 63,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The branch of Christianity founded in England when Henry VIII broke with the Catholic Church is called the ______ Church.",
+    "acceptedAnswers": [
+      "Anglican"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-64",
+    "num": 64,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The Catholic response to the Protestant Reformation, including the Council of Trent and the Jesuits, is called the ______ or Catholic Reformation.",
+    "acceptedAnswers": [
+      "Counter"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-65",
+    "num": 65,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "In Japan, the military government headed by a shogun that controlled the country from the 1600s to the 1800s is known as the ______ Shogunate.",
+    "acceptedAnswers": [
+      "Tokugawa"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-66",
+    "num": 66,
+    "unit": "unit5",
+    "unitName": "Unit 5 • Middle Ages, Renaissance, & East Asia",
+    "type": "fill-blank",
+    "prompt": "The last two major dynasties of China were the ______ and ______ dynasties.",
+    "acceptedAnswers": [
+      [
+        "Ming"
+      ],
+      [
+        "Qing"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U5"
+  },
+  {
+    "id": "wh-67",
+    "num": 67,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The three major early civilizations of the Americas were the ______ in Mesoamerica, the ______ in central Mexico, and the ______ in the Andes.",
+    "acceptedAnswers": [
+      [
+        "Maya"
+      ],
+      [
+        "Aztec"
+      ],
+      [
+        "Inca"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-68",
+    "num": 68,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The Aztecs built “floating gardens” on Lake Texcoco known as ______ to increase farmland.",
+    "acceptedAnswers": [
+      "Chinampas"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-69",
+    "num": 69,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The Inca kept records using knotted strings called ______.",
+    "acceptedAnswers": [
+      "Quipu"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-70",
+    "num": 70,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "Spanish conquerors who defeated Native American empires were called ______.",
+    "acceptedAnswers": [
+      "Conquistadors"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-71",
+    "num": 71,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The Spanish conquistador who defeated the Aztec Empire was Hernán ______, while ______ ______ conquered the Inca.",
+    "acceptedAnswers": [
+      [
+        "Cortés",
+        "Cortes"
+      ],
+      [
+        "Francisco"
+      ],
+      [
+        "Pizarro"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-72",
+    "num": 72,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The exchange of plants, animals, diseases, and people between the Old World and the New World is called the ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Columbian"
+      ],
+      [
+        "Exchange"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-73",
+    "num": 73,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The forced voyage of enslaved Africans across the Atlantic Ocean to the Americas was known as the ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Middle"
+      ],
+      [
+        "Passage"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-74",
+    "num": 74,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The economic system in which colonies exist to benefit the mother country by supplying raw materials and markets is called ______.",
+    "acceptedAnswers": [
+      "Mercantilism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-75",
+    "num": 75,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The three-part trade route between Europe, Africa, and the Americas is known as ______ trade.",
+    "acceptedAnswers": [
+      "Triangular"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-76",
+    "num": 76,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The rigid labor system in Spanish colonies that granted colonists the right to demand labor from Native Americans was called the ______ system.",
+    "acceptedAnswers": [
+      "Encomienda"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-77",
+    "num": 77,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "Explorers could sail farther and faster using improved ships called ______ that used lateen sails.",
+    "acceptedAnswers": [
+      "Caravels"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-78",
+    "num": 78,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "Two important navigational tools that helped exploration were the magnetic ______ and the ______, which measured latitude using the stars.",
+    "acceptedAnswers": [
+      [
+        "Compass"
+      ],
+      [
+        "Astrolabe"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6",
+    "unordered": true
+  },
+  {
+    "id": "wh-79",
+    "num": 79,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The Treaty of ______ divided newly discovered lands outside Europe between Spain and Portugal.",
+    "acceptedAnswers": [
+      "Tordesillas"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-80",
+    "num": 80,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "The blending of indigenous and European cultures and religions in the Americas is an example of cultural ______.",
+    "acceptedAnswers": [
+      "Diffusion",
+      "Syncretism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-81",
+    "num": 81,
+    "unit": "unit6",
+    "unitName": "Unit 6 • Exploration, Conquest, & Colonization",
+    "type": "fill-blank",
+    "prompt": "European diseases like smallpox caused a massive population ______ among indigenous peoples of the Americas.",
+    "acceptedAnswers": [
+      "Decline",
+      "Collapse",
+      "Decimation"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U6"
+  },
+  {
+    "id": "wh-82",
+    "num": 82,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "The Polish astronomer ______ proposed a heliocentric model of the universe with the sun at the center.",
+    "acceptedAnswers": [
+      "Copernicus"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-83",
+    "num": 83,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "The Italian scientist ______ used a telescope to support the heliocentric theory and was tried by the Inquisition.",
+    "acceptedAnswers": [
+      "Galileo"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-84",
+    "num": 84,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "The English scientist ______ ______ developed the law of gravity and helped explain motion in the universe.",
+    "acceptedAnswers": [
+      [
+        "Isaac"
+      ],
+      [
+        "Newton"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-85",
+    "num": 85,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "A step-by-step process of experimentation and observation used to test ideas is called the ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Scientific"
+      ],
+      [
+        "Method"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-86",
+    "num": 86,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "Enlightenment thinkers such as Voltaire and ______ used reason to criticize absolute monarchy and traditional authority.",
+    "acceptedAnswers": [
+      "Rousseau",
+      "Diderot"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-87",
+    "num": 87,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "John ______ argued that people have natural rights to life, liberty, and property.",
+    "acceptedAnswers": [
+      "Locke"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-88",
+    "num": 88,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "Montesquieu believed that government power should be divided among three branches, a concept known as ______ of ______.",
+    "acceptedAnswers": [
+      [
+        "Separation"
+      ],
+      [
+        "Powers"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-89",
+    "num": 89,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "A voluntary agreement in which people give up some freedoms in exchange for an organized society is known as a social ______.",
+    "acceptedAnswers": [
+      "Contract"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-90",
+    "num": 90,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "Absolute monarchs who adopted some Enlightenment ideas were called ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Enlightened"
+      ],
+      [
+        "Despots"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-91",
+    "num": 91,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "In 1776, American colonists declared independence from ______ in a document known as the ______ of Independence.",
+    "acceptedAnswers": [
+      [
+        "Britain"
+      ],
+      [
+        "Declaration"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-92",
+    "num": 92,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "The French Revolution began in 1789 when members of the Third Estate formed the ______ Assembly.",
+    "acceptedAnswers": [
+      "National"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-93",
+    "num": 93,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "The storming of the ______ on July 14, 1789, became a powerful symbol of the French Revolution.",
+    "acceptedAnswers": [
+      "Bastille"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-94",
+    "num": 94,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "A radical phase of the French Revolution marked by mass executions under Robespierre is called the Reign of ______.",
+    "acceptedAnswers": [
+      "Terror"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-95",
+    "num": 95,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "The military leader who rose to power after the French Revolution and became emperor of France was ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Napoleon"
+      ],
+      [
+        "Bonaparte"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-96",
+    "num": 96,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "In Latin America, leaders such as Simón ______ and José de San Martín fought for independence from ______ colonial rule.",
+    "acceptedAnswers": [
+      [
+        "Bolivar"
+      ],
+      [
+        "Spanish"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-97",
+    "num": 97,
+    "unit": "unit7",
+    "unitName": "Unit 7 • Scientific Revolution & Political Revolutions",
+    "type": "fill-blank",
+    "prompt": "After Napoleon’s defeat, European leaders met at the Congress of ______ to restore balance of power.",
+    "acceptedAnswers": [
+      "Vienna"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U7"
+  },
+  {
+    "id": "wh-98",
+    "num": 98,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "The Industrial Revolution began in the country of ______ ______ in the late 1700s.",
+    "acceptedAnswers": [
+      [
+        "Great"
+      ],
+      [
+        "Britain"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-99",
+    "num": 99,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "The first industry to be transformed by machines was the ______ industry.",
+    "acceptedAnswers": [
+      "Textile"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-100",
+    "num": 100,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "A machine that used coal to power engines and factories was the ______ engine.",
+    "acceptedAnswers": [
+      "Steam"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-101",
+    "num": 101,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "The movement of people from rural areas to cities is called ______.",
+    "acceptedAnswers": [
+      "Urbanization"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-102",
+    "num": 102,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "Crowded neighborhoods with poor housing and sanitation in industrial cities were called ______.",
+    "acceptedAnswers": [
+      "Slums",
+      "Tenements"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-103",
+    "num": 103,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "Factories often employed ______ as workers, leading to harsh and dangerous conditions.",
+    "acceptedAnswers": [
+      "Children"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-104",
+    "num": 104,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "Organizations formed by workers to demand better wages and working conditions were called ______.",
+    "acceptedAnswers": [
+      "Unions"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-105",
+    "num": 105,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "The economic system in which individuals own businesses and operate them for profit is called ______.",
+    "acceptedAnswers": [
+      "Capitalism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-106",
+    "num": 106,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "Karl Marx argued for a classless society and called his ideas ______.",
+    "acceptedAnswers": [
+      "Communism",
+      "Socialism",
+      "Marxism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-107",
+    "num": 107,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "A strong feeling of pride in and loyalty to one’s nation is called ______.",
+    "acceptedAnswers": [
+      "Nationalism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-108",
+    "num": 108,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "Leaders who helped unify Germany and Italy in the 1800s included Otto von ______ and Count Camillo di ______.",
+    "acceptedAnswers": [
+      [
+        "Bismarck"
+      ],
+      [
+        "Cavour"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-109",
+    "num": 109,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "The rapid modernization of Japan under Emperor Meiji, including industrialization and military reform, is known as the ______ Restoration.",
+    "acceptedAnswers": [
+      "Meiji"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-110",
+    "num": 110,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "The domination of one country by another for political and economic gain is called ______.",
+    "acceptedAnswers": [
+      "Imperialism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-111",
+    "num": 111,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "The late-1800s rush by European powers to colonize Africa is often called the “Scramble for ______.”",
+    "acceptedAnswers": [
+      "Africa"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-112",
+    "num": 112,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "At the ______ Conference of 1884–1885, European powers divided Africa into colonies without regard for ethnic boundaries.",
+    "acceptedAnswers": [
+      "Berlin"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-113",
+    "num": 113,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "In China, the British victory in the ______ Wars led to unequal treaties and spheres of influence.",
+    "acceptedAnswers": [
+      "Opium"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-114",
+    "num": 114,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "The 1857 rebellion by Indian soldiers against British rule, sparked by rumors about rifle cartridges, is known as the ______ Rebellion.",
+    "acceptedAnswers": [
+      "Sepoy"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-115",
+    "num": 115,
+    "unit": "unit8",
+    "unitName": "Unit 8 • Industrialization, Nationalism, & Imperialism",
+    "type": "fill-blank",
+    "prompt": "Chinese resentment of foreign influence and Christian missionaries led to the ______ Rebellion in 1899.",
+    "acceptedAnswers": [
+      "Boxer"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U8"
+  },
+  {
+    "id": "wh-116",
+    "num": 116,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "The four main long-term causes of World War I are often summarized by the acronym MAIN: Militarism, Alliances, ______, and ______.",
+    "acceptedAnswers": [
+      [
+        "Imperialism"
+      ],
+      [
+        "Nationalism"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9",
+    "unordered": true
+  },
+  {
+    "id": "wh-117",
+    "num": 117,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "World War I began in 1914 after the assassination of Archduke ______ ______ in Sarajevo.",
+    "acceptedAnswers": [
+      [
+        "Franz"
+      ],
+      [
+        "Ferdinand"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-118",
+    "num": 118,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "Fighting from deep ditches along the Western Front is known as ______ warfare.",
+    "acceptedAnswers": [
+      "Trench"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-119",
+    "num": 119,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "A war in which nations devote all their resources to the war effort is called ______ ______.",
+    "acceptedAnswers": [
+      [
+        "Total"
+      ],
+      [
+        "War"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-120",
+    "num": 120,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "The peace agreement that officially ended World War I and blamed Germany for the war was the Treaty of ______.",
+    "acceptedAnswers": [
+      "Versailles"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-121",
+    "num": 121,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "The international organization created after World War I to promote peace was called the League of ______.",
+    "acceptedAnswers": [
+      "Nations"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-122",
+    "num": 122,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "In 1917, the ______ Revolution in Russia brought the Bolsheviks to power under Vladimir ______.",
+    "acceptedAnswers": [
+      [
+        "Russian"
+      ],
+      [
+        "Lenin"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-123",
+    "num": 123,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "Under Joseph ______, the Soviet Union became a totalitarian state with a command economy and forced collectivization.",
+    "acceptedAnswers": [
+      "Stalin"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-124",
+    "num": 124,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "A political movement that emphasizes extreme nationalism, loyalty to the state, and a dictatorial leader is called ______.",
+    "acceptedAnswers": [
+      "Fascism"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-125",
+    "num": 125,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "In Italy, fascism was led by ______ ______, while in Germany it was led by Adolf ______.",
+    "acceptedAnswers": [
+      [
+        "Benito"
+      ],
+      [
+        "Mussolini"
+      ],
+      [
+        "Hitler"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-126",
+    "num": 126,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "The severe global economic downturn of the 1930s is known as the Great ______.",
+    "acceptedAnswers": [
+      "Depression"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-127",
+    "num": 127,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "The policy of giving in to an aggressor’s demands to avoid war, used at the 1938 Munich Conference, is called ______.",
+    "acceptedAnswers": [
+      "Appeasement"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-128",
+    "num": 128,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "World War II began in 1939 when Germany invaded ______.",
+    "acceptedAnswers": [
+      "Poland"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-129",
+    "num": 129,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "Germany’s fast, coordinated attack strategy combining air and ground forces was called ______.",
+    "acceptedAnswers": [
+      "Blitzkrieg"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-130",
+    "num": 130,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "The surprise Japanese attack on the U.S. naval base at ______ ______ in 1941 brought the United States into World War II.",
+    "acceptedAnswers": [
+      [
+        "Pearl"
+      ],
+      [
+        "Harbor"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-131",
+    "num": 131,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "The mass genocide of six million Jews and millions of others by the Nazis is known as the ______.",
+    "acceptedAnswers": [
+      "Holocaust"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-132",
+    "num": 132,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "Laws passed in Nazi Germany that stripped Jews of citizenship and rights were called the ______ Laws.",
+    "acceptedAnswers": [
+      "Nuremberg"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-133",
+    "num": 133,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "The Allied invasion of Nazi-occupied France on June 6, 1944, is known as ______-Day.",
+    "acceptedAnswers": [
+      "D"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-134",
+    "num": 134,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "After World War II, an international organization formed to promote peace and cooperation among nations was the ______ ______.",
+    "acceptedAnswers": [
+      [
+        "United"
+      ],
+      [
+        "Nations"
+      ]
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  },
+  {
+    "id": "wh-135",
+    "num": 135,
+    "unit": "unit9",
+    "unitName": "Unit 9 • World Wars & Global Conflict",
+    "type": "fill-blank",
+    "prompt": "Trials held after the war to prosecute Nazi leaders for crimes against humanity took place in the city of ______.",
+    "acceptedAnswers": [
+      "Nuremberg"
+    ],
+    "difficulty": 2,
+    "points": 10,
+    "hint": "U9"
+  }
+]
