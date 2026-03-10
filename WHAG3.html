@@ -920,58 +920,6 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
   .bar > div{ transition: none !important; }
 }
 
-
-/* ===== Dashboard + semantic control polish ===== */
-:root{
-  --space-10: 10px;
-  --space-12: 12px;
-}
-.mt-10{ margin-top: var(--space-10); }
-.mt-12{ margin-top: var(--space-12); }
-.grow{ flex: 1; }
-.justify-between{ justify-content: space-between; }
-.align-start{ align-items: flex-start; }
-.align-end{ align-items: flex-end; }
-
-.modeCard,
-.tile,
-.featuredCard{
-  appearance: none;
-  font: inherit;
-  color: inherit;
-}
-.modeCard{ width: 100%; text-align: left; cursor: pointer; }
-.modeMeta{ display:grid; gap: 4px; margin-top: 10px; font-size: 11px; color: rgba(226,232,240,.8); }
-.modeMeta .recommend{ color: #fde68a; font-weight: 700; }
-
-.featuredStrip{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.featuredCard{
-  border: 1px solid rgba(255,255,255,.16);
-  background: rgba(2,6,23,.42);
-  border-radius: 14px;
-  padding: 12px;
-  text-align: left;
-  cursor: pointer;
-}
-.featuredCard .fTitle{ font-weight: 800; }
-.featuredCard .fMeta{ margin-top: 6px; color: rgba(226,232,240,.78); font-size: 12px; }
-
-.modeCard:focus-visible,
-.tile:focus-visible,
-.featuredCard:focus-visible,
-.btn:focus-visible,
-.pill:focus-visible{
-  outline: 2px solid rgba(250,204,21,.95);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(250,204,21,.2);
-}
-
-.tile{ width: 100%; text-align:left; }
-
-@media (max-width: 900px){
-  .featuredStrip{ grid-template-columns: 1fr; }
-}
-
 </style>
 </head>
 <body>
@@ -1002,23 +950,6 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
       </div>
     </div>
 
-    <div class="card section col-span-12">
-      <h2 class="title">Continue learning</h2>
-      <div class="row justify-between mt-10 align-start">
-        <div class="grow" id="continueLearningCard"></div>
-        <div class="row mt-10">
-          <button class="btn" id="btnContinueReview">Review misses</button>
-          <button class="btn primary" id="btnContinueQuick">Resume Quick Quiz</button>
-          <button class="btn" id="btnOpenProgress">Open Progress</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card section col-span-12">
-      <h2 class="title">Featured modes</h2>
-      <div class="featuredStrip mt-10" id="featuredModes"></div>
-    </div>
-
     <div class="card section col-span-7">
       <h2 class="title">Quick start</h2>
       <p class="muted">Pick your units, then jump into a mode. Everything is auto‑graded on this device.</p>
@@ -1038,15 +969,15 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
         <button class="btn" id="btnTeams" title="Edit teams">Edit teams</button>
       </div>
 
-      <div class="row mt-10 align-end">
-        <div class="col grow">
+      <div class="row" style="margin-top:10px; align-items:flex-end;">
+        <div class="col" style="flex:1;">
           <label class="mini" for="globalSearchInput" style="margin-bottom:6px; display:block;">Search</label>
           <input id="globalSearchInput" class="input" placeholder="Type to filter questions…" />
           <div class="mini muted" style="margin-top:6px;">Units + Search filters apply to every mode.</div>
         </div>
       </div>
 
-      <div class="row mt-12">
+      <div class="row" style="margin-top:12px;">
         <label class="tag">Units</label>
         <button class="pill active" data-unit="unit2" aria-pressed="true">Unit 2</button>
         <button class="pill active" data-unit="unit3" aria-pressed="true">Unit 3</button>
@@ -1058,15 +989,12 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
         <button class="pill active" data-unit="unit9" aria-pressed="true">Unit 9</button>
       </div>
 
-      <div class="row mt-12">
+      <div class="row" style="margin-top:12px;">
         <button class="btn primary" data-start="quick">▶ Quick Quiz</button>
         <button class="btn" data-start="lightning">⚡ Lightning</button>
         <button class="btn" data-start="streak">🔥 Streak Sprint</button>
         <button class="btn" data-start="flashcards">🃏 Flashcards</button>
-        <button class="btn" data-start="detective">🕵️ Historical Detective</button>
-        <button class="btn" data-start="mapdrop">🗺️ Map Drop</button>
-        <button class="btn" data-start="causechain">⛓️ Cause & Effect Chain</button>
-        <button class="btn" data-start="propaganda">📰 Propaganda Decoder</button>
+        <button class="btn" data-start="match">🧩 Match‑Up</button>
         <button class="btn" data-start="review">📝 Auto‑graded Review Guide</button>
       </div>
 
@@ -1076,16 +1004,16 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
     <div class="card section col-span-5">
       <h2 class="title">What’s new in this rebuild</h2>
       <ul class="muted" style="margin:10px 0 0 18px;">
-        <li><strong>Auto-checking</strong> for Core questions (built-in answer keys)</li>
+        <li><strong>Auto-checking</strong> for Core questions (PDF answer key)</li>
         <li><strong>No buzzer beeps</strong> — sound is off by default</li>
         <li><strong>Multiple modes</strong> from the same deck (competitive + review)</li>
         <li><strong>Progress + mistake bank</strong> saved on-device</li>
         <li><strong>World History theme</strong> (map/timeline vibe)</li>
       </ul>
 
-      <div class="row mt-12">
+      <div class="row" style="margin-top:12px;">
         <button class="btn" data-start="mystery">🟦 Mystery Grid</button>
-        <button class="btn" data-start="buzzbowl">🔔 Buzz Bowl</button>
+        <button class="btn" data-start="showdown">🏁 Team Showdown</button>
       </div>
 
       
@@ -1104,7 +1032,7 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
       <h2 class="title">Mastery</h2>
       <p class="muted">Tracks correctness per question (on this device). Use “Review misses” to target weak spots.</p>
       <div id="masteryBars" style="margin-top:12px;"></div>
-      <div class="row mt-12">
+      <div class="row" style="margin-top:12px;">
         <button class="btn" id="btnReviewMisses">🎯 Review misses</button>
         <button class="btn" id="btnResetProgress">Reset progress</button>
       </div>
@@ -1154,7 +1082,7 @@ body::-webkit-scrollbar-thumb { background: rgba(59,130,246,.65); border-radius:
           <option value="off">Off</option>
         </select>
       </div>
-      <div class="row mt-12">
+      <div class="row" style="margin-top:12px;">
         <button class="btn" id="btnSaveSettings">Save settings</button>
       </div>
 
@@ -1239,21 +1167,22 @@ const MODES = [
 {"id": "lightning", "title": "Lightning", "desc": "Multiple‑choice speed round. 10 questions, timed.", "icon": "⚡"},
 {"id": "streak", "title": "Streak Sprint", "desc": "60 seconds. Answer as many as you can. Streak boosts points.", "icon": "🔥"},
 {"id": "flashcards", "title": "Flashcards", "desc": "Flip, self‑rate, and build mastery (simple spaced review).", "icon": "🃏"},
-{"id": "memory", "title": "Memory Flip", "desc": "Flip cards to match prompt ↔ answer pairs.", "icon": "🧠"},
-{"id": "detective", "title": "Historical Detective", "desc": "Deduce the historical answer from escalating clues.", "icon": "🕵️"},
-{"id": "mapdrop", "title": "Map Drop", "desc": "Place empires, routes, and battles in the correct world region.", "icon": "🗺️"},
-{"id": "causechain", "title": "Cause & Effect Chain", "desc": "Arrange events into the strongest causal sequence.", "icon": "⛓️"},
-{"id": "propaganda", "title": "Propaganda Decoder", "desc": "Interpret perspective, purpose, and context from short sources.", "icon": "📰"},
+{"id": "match", "title": "Match‑Up", "desc": "Match key terms to definitions (pulled from prompts).", "icon": "🧩"},
+{"id": "showdown", "title": "Team Showdown", "desc": "Pass‑and‑play. Teams take turns; optional steals.", "icon": "🏁"},
 {"id": "mystery", "title": "Mystery Grid", "desc": "Pick tiles to reveal questions. Projector‑friendly.", "icon": "🟦"},
 {"id": "buzzbowl", "title": "Buzz Bowl", "desc": "Local quiz‑bowl style: teams buzz in, answer, and steal.", "icon": "🔔"},
 {"id": "sudden", "title": "Sudden Death", "desc": "Teams are eliminated on a miss. Last team standing wins.", "icon": "💀"},
 {"id": "relay", "title": "Relay Sprint", "desc": "Each team gets 30 seconds. Pass the device between teams.", "icon": "🔁"},
 {"id": "timeline", "title": "Timeline Showdown", "desc": "Drag events into chronological order. Score by accuracy + speed.", "icon": "🗓️"},
-{"id": "review", "title": "Auto‑graded Review Guide", "desc": "Fill every blank, then click Grade. Units + Search filters apply.", "icon": "📝"},
+{"id": "review", "title": "Auto‑graded Review Guide", "desc": "Fill every blank, then click Grade. Units + Search filters apply.", "icon": "📝"}
+,
+{"id": "blitz", "title": "Neon Blitz", "desc": "10-question speed run. Fast points and flashy feedback.", "icon": "⚡"},
+{"id": "type", "title": "Type‑It Sprint", "desc": "Short-answer rush. One minute, as many as you can.", "icon": "⌨️"},
 {"id": "boss", "title": "Boss Battle", "desc": "HP bars + hits. Correct answers deal damage; mistakes hurt.", "icon": "👑"},
-{"id": "conquest", "title": "Realm Conquest", "desc": "3×3 grid war. Attack adjacent tiles to expand your empire.", "icon": "🏰"},
+{"id": "conquest", "title": "Realm Conquest", "desc": "3×3 grid war. Attack adjacent tiles to expand your empire.", "icon": "🗺️"},
 {"id": "chrono", "title": "Time Stream", "desc": "Before/After chronology duel. Keep the streak alive.", "icon": "⏳"},
 {"id": "survival", "title": "Survival", "desc": "Three lives. Stay alive as long as you can.", "icon": "❤️"},
+{"id": "memory", "title": "Memory Flip", "desc": "Flip cards to match prompt ↔ answer pairs.", "icon": "🃏"},
 {"id": "jeopardy", "title": "Jeopardy Grid", "desc": "Pick tiles, answer, earn points. Great for teams.", "icon": "🏆"},
 {"id": "wager", "title": "Wager Wheel", "desc": "Choose your wager each question. Risk it for big points.", "icon": "🎰"}
 ];
@@ -1358,8 +1287,7 @@ const STORAGE_KEYS = {
   decks: "whra_decks_v2",
   leitner: "whra_leitner_v1",
   mistakes: "whra_mistakes_v1",
-  teams: "whra_teams_v1",
-  modeStats: "whra_mode_stats_v1"
+  teams: "whra_teams_v1"
 };
 
 const App = {
@@ -1382,11 +1310,8 @@ const App = {
   progress: {}, // by question id => {attempts, correct}
   mistakes: [], // question ids missed recently
   leitner: {},  // id => box 1-4
-  modeStats: {}, // by mode id => {bestScore,lastPlayed,plays}
   session: null // active mode session
 };
-
-let reviewKeyHandler = null;
 
 function $(sel) { return document.querySelector(sel); }
 function $all(sel) { return Array.from(document.querySelectorAll(sel)); }
@@ -1506,7 +1431,6 @@ function persist() {
   saveJSON(STORAGE_KEYS.leitner, App.leitner);
   saveJSON(STORAGE_KEYS.mistakes, App.mistakes);
   saveJSON(STORAGE_KEYS.teams, App.teams);
-  saveJSON(STORAGE_KEYS.modeStats, App.modeStats);
   saveJSON(STORAGE_KEYS.decks, App.decks);
 }
 
@@ -1515,9 +1439,7 @@ function load() {
   App.progress = loadJSON(STORAGE_KEYS.progress, {});
   App.leitner = loadJSON(STORAGE_KEYS.leitner, {});
   App.mistakes = loadJSON(STORAGE_KEYS.mistakes, []);
-  App.teams = loadJSON(STORAGE_KEYS.teams, App.teams);
-  App.modeStats = loadJSON(STORAGE_KEYS.modeStats, {});
-  const savedDecks = loadJSON(STORAGE_KEYS.decks, null);
+  App.teams = loadJSON(STORAGE_KEYS.teams, App.teams);  const savedDecks = loadJSON(STORAGE_KEYS.decks, null);
 
   // If a previous version saved a partial/incorrect deck, automatically restore the built-in World History deck.
   const expectedCore = Array.isArray(DEFAULT_DECKS?.core) ? DEFAULT_DECKS.core.length : 0;
@@ -1554,13 +1476,6 @@ load();
 })();
 
 /** ========= Navigation ========= */
-function clearBuzzTimer() {
-  if (App.session?._buzzTimer) {
-    clearTimeout(App.session._buzzTimer);
-    App.session._buzzTimer = null;
-  }
-}
-
 function setNav(view) {
   const views = ["home","modes","progress","settings","game"];
   for (const v of views) {
@@ -1569,7 +1484,7 @@ function setNav(view) {
     el.classList.toggle("hidden", v !== view);
   }
   $all("nav .pill").forEach(btn => btn.classList.toggle("active", btn.dataset.nav === view));
-  if (view !== "game") { clearBuzzTimer(); App.session = null; }
+  if (view !== "game") App.session = null;
   renderAll();
 }
 $all("nav .pill").forEach(btn => btn.addEventListener("click", () => setNav(btn.dataset.nav)));
@@ -1689,7 +1604,7 @@ $("#btnTeams").addEventListener("click", () => {
   showModal("Edit teams", `
     <p class="muted">Pass-and-play: teams share one device.</p>
     ${rows}
-    <div class="row mt-12">
+    <div class="row" style="margin-top:12px;">
       <button class="btn" id="addTeam">Add team</button>
       <button class="btn primary" id="saveTeams">Save</button>
     </div>
@@ -1775,7 +1690,7 @@ if ($("#btnOpenEditor")) $("#btnOpenEditor").addEventListener("click", () => {
   showModal("Question editor (JSON)", `
     <p class="muted">Paste a question object or an array. If an id already exists, it will be replaced. If id starts with <code>core-</code>, it updates Core; otherwise Extended.</p>
     <textarea id="editorArea">${escapeHtml(JSON.stringify(example, null, 2))}</textarea>
-    <div class="row mt-12">
+    <div class="row" style="margin-top:12px;">
       <button class="btn primary" id="applyEditor">Apply</button>
       <button class="btn" id="exportDecks">Copy all decks</button>
     </div>
@@ -1819,7 +1734,7 @@ $("#btnExport").addEventListener("click", async () => {
   showModal("Export (copy/paste)", `
     <p class="muted">Copy this JSON to save or move to another device.</p>
     <textarea id="exportArea">${escapeHtml(txt)}</textarea>
-    <div class="row mt-12">
+    <div class="row" style="margin-top:12px;">
       <button class="btn" id="copyExport">Copy</button>
     </div>
   `);
@@ -1832,7 +1747,7 @@ $("#btnImport").addEventListener("click", () => {
   showModal("Import", `
     <p class="muted">Paste an exported JSON blob here. This will overwrite current progress/settings.</p>
     <textarea id="importArea"></textarea>
-    <div class="row mt-12">
+    <div class="row" style="margin-top:12px;">
       <button class="btn primary" id="doImport">Import</button>
     </div>
   `);
@@ -1860,7 +1775,7 @@ $("#btnImport").addEventListener("click", () => {
 $("#btnResetProgress").addEventListener("click", () => {
   showModal("Reset progress?", `
     <p class="muted">This clears attempts, mastery, and the mistake bank on this device.</p>
-    <div class="row mt-12">
+    <div class="row" style="margin-top:12px;">
       <button class="btn bad" id="confirmReset">Yes, reset</button>
       <button class="btn" id="cancelReset">Cancel</button>
     </div>
@@ -1880,9 +1795,12 @@ $("#btnResetProgress").addEventListener("click", () => {
 
 /** ========= Mode launcher ========= */
 function startMode(modeId, opts={}) {
-  // Legacy deep-link support
+  // Redirect "showdown" to Quick Quiz with team rules + steals
   if (modeId === "showdown") {
-    modeId = "detective";
+    App.settings.play = "teams";
+    persist();
+    syncHomeControls();
+    return startMode("quick", { label: "Team Showdown" });
   }
 
   // Competitive local modes default to Teams
@@ -1913,25 +1831,23 @@ function startMode(modeId, opts={}) {
     teamIndex: 0,
     opts
   };
+  setNav("game");
 
   // mode init
   if (modeId === "buzzbowl") { App.session.buzz = { open:true, team:null, used:new Set() }; }
   if (modeId === "sudden") { App.session.aliveTeams = App.teams.map(()=>true); App.session.teamIndex = 0; }
   if (modeId === "relay") { App.session.relay = { team: 0, done: [] }; App.session.teamIndex = 0; App.session.timeLeft = 30; }
-  if (modeId === "timeline") { App.session.timeline = null; }
+  if (modeId === "timeline") { App.session.timeline = null;
   // Arcade imports (offline v11) — init mode state
+  if (modeId === "blitz") { App.session.blitz = { remaining: 10, correct: 0 }; App.session.timeLeft = App.settings.timerSeconds; }
+  if (modeId === "type") { App.session.typeSprint = { correct: 0, wrong: 0 }; App.session.timeLeft = 60; }
   if (modeId === "survival") { App.session.survival = { lives: 3, best: App.bestSurvival||0 }; }
-  if (modeId === "detective") { App.session.detective = { clueIndex: 0 }; }
-  if (modeId === "mapdrop") { App.session.mapdrop = { round: 0, total: 6 }; }
-  if (modeId === "causechain") { App.session.causechain = { round: 0, total: 5 }; }
-  if (modeId === "propaganda") { App.session.propaganda = { round: 0, total: 6 }; }
   if (modeId === "boss") { App.session.boss = { playerHP: 100, bossHP: 120, phase: "fight" }; }
   if (modeId === "conquest") { App.session.conquest = { grid: initConquestGrid(), turn: 1, selected: null, msg: "Attack an adjacent tile." }; }
   if (modeId === "jeopardy") { App.session.jeopardy = initJeopardyBoard(); }
   if (modeId === "wager") { App.session.wager = { bank: 0, lastWager: 10 }; }
   if (modeId === "chrono") { App.session.chrono = initChronoStream(); }
-
-  setNav("game");
+ }
   renderGame();
 
   if (modeId === "streak") App.session.timeLeft = 60;
@@ -2000,7 +1916,6 @@ function onTimeUp() {
       return;
     }
     if (s.modeId === "buzzbowl") {
-      clearBuzzTimer();
       if (s.buzz) { s.buzz.team = null; s.buzz.open = true; }
       showAfter("Time’s up", `Correct: ${bestAnswerText(s.question)}.`, "bad");
       return;
@@ -2029,112 +1944,12 @@ function beepSoft() {
 function renderAll() {
   syncHomeControls();
   syncSettingsUI();
-  renderContinueLearning();
-  renderFeaturedModes();
   renderModeGrid();
   renderHomeKpis();
   renderProgress();
   renderAboutKpis();
   if (!$("#view-game").classList.contains("hidden")) renderGame();
 }
-
-function getModeMeta(modeId) {
-  const modeMeta = {
-    quick: { duration: "3–5 min", fit: "both", vibe: "core practice" },
-    detective: { duration: "3–5 min", fit: "both", vibe: "deduction" },
-    mapdrop: { duration: "3–5 min", fit: "both", vibe: "spatial history" },
-    causechain: { duration: "3–6 min", fit: "both", vibe: "causal reasoning" },
-    propaganda: { duration: "3–5 min", fit: "both", vibe: "source analysis" },
-    lightning: { duration: "2–3 min", fit: "solo", vibe: "fast warm-up" },
-    streak: { duration: "1 min", fit: "solo", vibe: "high intensity" },
-    flashcards: { duration: "5+ min", fit: "both", vibe: "memory builder" },
-    match: { duration: "3–4 min", fit: "both", vibe: "term matching" },
-    showdown: { duration: "4–6 min", fit: "teams", vibe: "class battle" },
-    mystery: { duration: "4–6 min", fit: "teams", vibe: "projector friendly" },
-    buzzbowl: { duration: "4–7 min", fit: "teams", vibe: "quiz bowl" },
-    sudden: { duration: "3–5 min", fit: "teams", vibe: "elimination" },
-    relay: { duration: "3–4 min", fit: "teams", vibe: "pass-and-play" },
-    timeline: { duration: "4–6 min", fit: "both", vibe: "chronology" },
-    review: { duration: "5–10 min", fit: "both", vibe: "from your misses" },
-    boss: { duration: "4–6 min", fit: "both", vibe: "boss fight" },
-    conquest: { duration: "5–7 min", fit: "teams", vibe: "strategy grid" },
-    chrono: { duration: "2–4 min", fit: "both", vibe: "before/after" },
-    survival: { duration: "3–6 min", fit: "both", vibe: "last as long as possible" },
-    memory: { duration: "3–5 min", fit: "both", vibe: "flip cards" },
-    jeopardy: { duration: "6–10 min", fit: "teams", vibe: "projector favorite" },
-    wager: { duration: "3–5 min", fit: "both", vibe: "risk/reward" }
-  };
-  return modeMeta[modeId] || { duration: "3–5 min", fit: "both", vibe: "review" };
-}
-
-function getModeStat(modeId) {
-  const fallback = { bestScore: 0, lastPlayed: null, plays: 0 };
-  return Object.assign({}, fallback, App.modeStats?.[modeId] || {});
-}
-
-function isRecommendedMode(modeId) {
-  if (modeId === "review") return App.mistakes.length > 0;
-  if (modeId === "lightning") return App.mistakes.length === 0;
-  return false;
-}
-
-function timeAgo(ts) {
-  if (!ts) return "";
-  const diff = Date.now() - ts;
-  const h = Math.floor(diff / 3600000);
-  if (h < 1) return "just now";
-  if (h < 24) return `${h}h ago`;
-  const d = Math.floor(h / 24);
-  return d === 1 ? "1 day ago" : `${d} days ago`;
-}
-
-function renderContinueLearning() {
-  const units = Object.keys(UNIT_META).filter(u => App.settings.units[u]);
-  const weakest = units
-    .map(u => ({ u, m: masteryForUnit(u) }))
-    .sort((a,b) => (a.m.attempts || 9999) - (b.m.attempts || 9999) || a.m.rate - b.m.rate)[0];
-  const weakestText = weakest
-    ? `${UNIT_META[weakest.u].split("•")[0].trim()} — ${Math.round((weakest.m.rate || 0) * 100)}% accuracy`
-    : "Build data by answering a few questions";
-  const strong = Object.entries(App.modeStats || {}).sort((a,b) => (b[1].bestScore||0) - (a[1].bestScore||0))[0];
-  const strongMode = strong ? (MODES.find(m => m.id === strong[0])?.title || "Quick Quiz") : "Quick Quiz";
-  const recommended = App.mistakes.length ? "Review misses" : "Lightning";
-  $("#continueLearningCard").innerHTML = `
-    <div class="kpi">
-      <div class="chip"><strong>Weakest area:</strong> ${escapeHtml(weakestText)}</div>
-      <div class="chip"><strong>Mistake bank:</strong> ${App.mistakes.length} questions</div>
-      <div class="chip"><strong>Recommended next step:</strong> ${escapeHtml(recommended)}</div>
-      <div class="chip"><strong>Last strong mode:</strong> ${escapeHtml(strongMode)}</div>
-    </div>
-  `;
-
-  const btnReview = $("#btnContinueReview");
-  if (btnReview) btnReview.onclick = () => $("#btnReviewMisses")?.click();
-  const btnQuick = $("#btnContinueQuick");
-  if (btnQuick) btnQuick.onclick = () => startMode("quick");
-  const btnProgress = $("#btnOpenProgress");
-  if (btnProgress) btnProgress.onclick = () => setNav("progress");
-}
-
-function renderFeaturedModes() {
-  const featured = [
-    { id: "lightning", blurb: "2 min • fastest warm-up" },
-    { id: "detective", blurb: "Deduce with clues for bigger points" },
-    { id: "review", blurb: "Built from your errors" }
-  ];
-  const container = $("#featuredModes");
-  if (!container) return;
-  container.innerHTML = featured.map(({id, blurb}) => {
-    const mode = MODES.find(m => m.id === id);
-    if (!mode) return "";
-    return `<button type="button" class="featuredCard" data-start="${id}" aria-label="Start ${escapeHtml(mode.title)}">
-      <div class="fTitle">${mode.icon} ${escapeHtml(mode.title)}</div>
-      <div class="fMeta">${escapeHtml(blurb)}</div>
-    </button>`;
-  }).join("");
-  $all("#featuredModes [data-start]").forEach(btn => btn.addEventListener("click", () => startMode(btn.dataset.start)));
-}
-
 function renderModeGrid() {
   const grid = $("#modeGrid");
   if (!grid) return;
@@ -2142,13 +1957,13 @@ function renderModeGrid() {
   // Map each mode to a neon "cabinet" color (matches the Retro‑Futuristic Cyber‑Arcade theme)
   const colorMap = {
     // Tech / Quiz
-    quick: "cyan", review: "cyan", propaganda: "cyan",
+    quick: "cyan", type: "cyan", review: "cyan", blitz: "cyan",
     // Speed / Timeline
-    lightning: "yellow", streak: "yellow", chrono: "yellow", detective: "yellow",
+    lightning: "yellow", streak: "yellow", chrono: "yellow", timeline: "yellow",
     // Memory / Cards
-    flashcards: "purple", memory: "purple", causechain: "purple",
+    flashcards: "purple", match: "purple", memory: "purple",
     // Strategy / Grids
-    conquest: "emerald", mystery: "emerald", mapdrop: "emerald",
+    conquest: "emerald", mystery: "emerald",
     // Competitive / Buzzers
     showdown: "pink", jeopardy: "pink", buzzbowl: "pink", sudden: "pink", relay: "pink",
     // Combat / Survival
@@ -2159,25 +1974,14 @@ function renderModeGrid() {
 
   grid.innerHTML = MODES.map(m => {
     const c = colorMap[m.id] || "cyan";
-    const meta = getModeMeta(m.id);
-    const stat = getModeStat(m.id);
-    const isRecommended = isRecommendedMode(m.id);
-    const fitLabel = (meta.fit === "both") ? (App.settings.play === "teams" ? "Teams" : "Solo") : (meta.fit === "teams" ? "Teams" : "Solo");
     return `
-      <button type="button" class="modeCard" data-start="${m.id}" data-color="${c}" aria-label="Start ${escapeHtml(m.title)}">
-        <div class="row justify-between">
+      <div class="modeCard" data-start="${m.id}" data-color="${c}">
+        <div class="row" style="justify-content:space-between;">
           <h3>${m.icon} ${escapeHtml(m.title)}</h3>
-          <span class="tag">${escapeHtml(fitLabel)}</span>
+          <span class="tag">${escapeHtml(App.settings.play === "teams" ? "Teams" : "Solo")}</span>
         </div>
         <p>${escapeHtml(m.desc)}</p>
-        <div class="modeMeta">
-          <span>${escapeHtml(meta.duration)}</span>
-          <span>${escapeHtml(meta.vibe)}</span>
-          <span>${stat.bestScore ? `Best score: ${stat.bestScore}` : "No score yet"}</span>
-          <span>${stat.lastPlayed ? `Last played ${timeAgo(stat.lastPlayed)}` : "Not played yet"}</span>
-          ${isRecommended ? '<span class="recommend">Recommended</span>' : ''}
-        </div>
-      </button>
+      </div>
     `;
   }).join("");
 
@@ -2462,17 +2266,15 @@ function renderReviewGuide() {
     renderHomeKpis(); renderProgress(); renderAboutKpis();
   });
 
-  // quick: Ctrl/Cmd+Enter to grade (deduped listener)
-  if (reviewKeyHandler) document.removeEventListener("keydown", reviewKeyHandler);
-  reviewKeyHandler = (e) => {
-    if (!App.session || App.session.modeId !== "review") return;
+  // quick: Ctrl/Cmd+Enter to grade
+  document.addEventListener("keydown", function reviewKey(e){
+    if (!App.session || App.session.modeId !== "review") { document.removeEventListener("keydown", reviewKey); return; }
     const isMac = navigator.platform.toLowerCase().includes("mac");
     if ((isMac ? e.metaKey : e.ctrlKey) && e.key === "Enter") {
       e.preventDefault();
       $("#btnReviewGrade")?.click();
     }
-  };
-  document.addEventListener("keydown", reviewKeyHandler);
+  });
 }
 
 /** ========= Timeline mode ========= */
@@ -2598,7 +2400,7 @@ function renderTimeline() {
     showModal("Timeline results", `
       <p class="muted">${escapeHtml(teamName)} scored <strong>${points}</strong> points (${correctPos}/${correct.length} positions correct) • ${speedTag}</p>
       <pre style="white-space:pre-wrap; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:14px; padding:10px;">${escapeHtml(reveal)}</pre>
-      <div class="row mt-12">
+      <div class="row" style="margin-top:12px;">
         <button class="btn primary" id="tlNext">Next</button>
         <button class="btn" id="tlExit">Exit</button>
       </div>
@@ -2650,7 +2452,7 @@ function renderBuzzBowl(q) {
       if (buzz.used.has(team)) return;
       buzz.team = team;
       buzz.open = false;
-      clearBuzzTimer();
+      clearTimeout(s._buzzTimer);
       s._buzzTimer = setTimeout(() => {
         if (!App.session || App.session.modeId !== "buzzbowl") return;
         if (App.session.buzz?.team === team) {
@@ -2664,7 +2466,6 @@ function renderBuzzBowl(q) {
       renderBuzzBowl(q);
     }));
     $("#skipBtn").addEventListener("click", () => {
-      clearBuzzTimer();
       recordAttempt(q, false);
       showAfter("Skipped", `Correct: ${bestAnswerText(q)}.`, "bad");
     });
@@ -2707,7 +2508,6 @@ function renderBuzzBowl(q) {
   if (blanks<=1) { $("#answerInput").focus(); $("#answerInput").addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); }); }
   $("#submitBtn").addEventListener("click", submit);
   $("#passBtn").addEventListener("click", () => {
-    clearBuzzTimer();
     buzz.used.add(buzz.team);
     buzz.team = null;
     buzz.open = true;
@@ -2728,7 +2528,7 @@ function advanceRelayTeam() {
 
   showModal("Pass the device", `
     <p class="muted">Hand it to <strong>${teamLabel(next)}</strong>. They get 30 seconds.</p>
-    <div class="row mt-12">
+    <div class="row" style="margin-top:12px;">
       <button class="btn primary" id="relayReady">Ready</button>
       <button class="btn" id="relayExit">Exit</button>
     </div>
@@ -2757,7 +2557,7 @@ function renderGame() {
   $("#afterControls").classList.add("hidden");
   $("#afterControls").innerHTML = "";
 
-  if (s.modeId === "causechain") { renderCauseChain(); return; }
+  if (s.modeId === "match") { renderMatch(); return; }
   if (s.modeId === "review") { renderReviewGuide(); return; }
   if (s.modeId === "flashcards") { renderFlashcards(); return; }
   if (s.modeId === "mystery") { renderMysteryGrid(); return; }
@@ -2771,9 +2571,8 @@ function renderGame() {
   if (s.modeId === "memory") { renderMemoryFlip(); return; }
   if (s.modeId === "chrono") { renderChronoStream(); return; }
   if (s.modeId === "wager") { renderWagerWheel(); return; }
-  if (s.modeId === "detective") { renderHistoricalDetective(); return; }
-  if (s.modeId === "mapdrop") { renderMapDrop(); return; }
-  if (s.modeId === "propaganda") { renderPropagandaDecoder(); return; }
+  if (s.modeId === "type") { renderTypeSprint(); return; }
+  if (s.modeId === "blitz") { renderNeonBlitz(); return; }
   if (s.modeId === "survival") { renderSurvival(); return; }
 
 if (!s.question) {
@@ -2805,7 +2604,7 @@ if (!s.question) {
     setTimeout(renderSurvival, App.settings.reduceMotion ? 150 : 420);
   };
   $("#prompt").innerHTML = `
-    <div class="row justify-between">
+    <div class="row" style="justify-content:space-between;">
       <div style="font-weight:900;">${escapeHtml(UNIT_META[q.unit] || q.unitName || q.unit)}</div>
       <span class="tag">${hasAutoAnswers(q) ? "Auto‑graded" : "Self‑check"}</span>
     </div>
@@ -2838,7 +2637,6 @@ function renderTyped(q) {
     $("#submitBtn").addEventListener("click", submit);
     input.addEventListener("keydown", (e) => { if (e.key === "Enter") submit(); });
     $("#skipBtn").addEventListener("click", () => {
-      clearBuzzTimer();
       recordAttempt(q, false);
       if (App.session?.modeId === "relay") {
       toast("⏭️", `Correct: ${bestAnswerText(q)}`);
@@ -3073,7 +2871,6 @@ function handleAnswer(q, userAnswer) {
     recordAttempt(q, verdict);
 
     if (verdict) {
-      clearBuzzTimer();
       const gained = 10;
       s.score += gained;
       if (App.settings.play==="teams") App.teams[team].score += gained;
@@ -3084,7 +2881,6 @@ function handleAnswer(q, userAnswer) {
     }
 
     // Wrong: open steal
-    clearBuzzTimer();
     s.buzz.used.add(team);
     s.buzz.team = null;
     s.buzz.open = true;
@@ -3100,7 +2896,6 @@ function handleAnswer(q, userAnswer) {
     recordAttempt(q, verdict);
 
     if (verdict) {
-      clearBuzzTimer();
       const gained = 10;
       s.score += gained;
       App.teams[s.teamIndex].score += gained;
@@ -3298,7 +3093,91 @@ function renderFlashcards() {
 }
 
 /** ========= Match-Up ========= */
+function renderMatch() {
+  const s = App.session;
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
 
+  const pool = (s.opts.customPool || s.pool).filter(q => hasAutoAnswers(q) && !Array.isArray(q.acceptedAnswers[0]));
+  const pairs = sample(pool, 6).map(q => ({ id: q.id, term: q.acceptedAnswers[0], def: q.prompt.replace(/_{5,}/g, "_____"), unit: q.unit }));
+  if (pairs.length < 4) {
+    $("#prompt").innerHTML = `<div class="muted">Not enough auto-graded questions for Match‑Up. Turn on Core deck or more units.</div>`;
+    $("#gameControls").innerHTML = `<button class="btn primary" id="backHome">Back</button>`;
+    $("#backHome").addEventListener("click", ()=>setNav("home"));
+    return;
+  }
+
+  const terms = shuffle(pairs.map(p => ({ key: "t-"+p.id, kind:"term", text:p.term, match:p.id })));
+  const defs  = shuffle(pairs.map(p => ({ key: "d-"+p.id, kind:"def",  text:p.def,  match:p.id })));
+  const cards = [...terms, ...defs];
+
+  s.matchState = { cards, picked: [], matched: new Set(), moves: 0 };
+
+  $("#prompt").innerHTML = `
+    <div class="row" style="justify-content:space-between;">
+      <div style="font-weight:900;">Match‑Up</div>
+      <span class="tag">Match terms ↔ definitions</span>
+    </div>
+    <div class="muted" style="margin-top:10px;">Tap two cards. If they match, they stay revealed.</div>
+  `;
+
+  const renderBoard = () => {
+    const ms = s.matchState;
+    $("#gameControls").innerHTML = `
+      <div class="choices" style="grid-template-columns: repeat(2, minmax(0,1fr));">
+        ${ms.cards.map(c => {
+          const isPicked = ms.picked.includes(c.key);
+          const isMatched = ms.matched.has(c.match);
+          const show = isPicked || isMatched;
+          const label = show ? escapeHtml(c.text) : "• • •";
+          const style = isMatched ? "opacity:.6;" : "";
+          return `<button class="choice" style="${style}" data-mcard="${escapeHtml(c.key)}">${label}</button>`;
+        }).join("")}
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <span class="badge">Moves: ${ms.moves}</span>
+        <span class="badge">Matched: ${ms.matched.size}/${pairs.length}</span>
+        <button class="btn" id="reshuffle">Reshuffle</button>
+      </div>
+    `;
+    $all("[data-mcard]").forEach(btn => btn.addEventListener("click", () => onPick(btn.dataset.mcard)));
+    $("#reshuffle").addEventListener("click", () => { ms.cards = shuffle(ms.cards); ms.picked = []; renderBoard(); });
+    renderScoreStrip();
+  };
+
+  const onPick = (key) => {
+    const ms = s.matchState;
+    const card = ms.cards.find(c => c.key === key);
+    if (!card) return;
+    if (ms.matched.has(card.match)) return;
+    if (ms.picked.includes(key)) return;
+    if (ms.picked.length >= 2) return;
+
+    ms.picked.push(key);
+    if (ms.picked.length === 2) {
+      ms.moves += 1;
+      const a = ms.cards.find(c => c.key === ms.picked[0]);
+      const b = ms.cards.find(c => c.key === ms.picked[1]);
+      const match = a && b && a.match === b.match && a.kind !== b.kind;
+      if (match) {
+        ms.matched.add(a.match);
+        s.score += 10;
+        if (App.settings.play==="teams") App.teams[s.teamIndex].score += 10;
+        beepSoft();
+        ms.picked = [];
+        if (ms.matched.size === pairs.length) endSession();
+      } else {
+        setTimeout(() => { ms.picked = []; renderBoard(); }, App.settings.reduceMotion ? 150 : 650);
+        return;
+      }
+    }
+    renderBoard();
+  };
+
+  renderBoard();
+}
+
+/** ========= Mystery Grid ========= */
 function renderMysteryGrid() {
   const s = App.session;
   stopTimer();
@@ -3320,15 +3199,15 @@ function renderMysteryGrid() {
         <div style="font-weight:900;">Mystery Grid</div>
         <span class="tag">${escapeHtml(App.settings.play==="teams" ? "Teams" : "Solo")}</span>
       </div>
-      <div class="muted mt-10">Pick a tile to reveal a question. Mark it correct/incorrect.</div>
+      <div class="muted" style="margin-top:10px;">Pick a tile to reveal a question. Mark it correct/incorrect.</div>
     `;
     $("#gameControls").innerHTML = `
       <div class="gridTiles">
         ${tiles.map(t => `
-          <button type="button" class="tile ${t.used ? "used" : ""}" data-tile="${t.key}" aria-label="${escapeHtml(t.label)} ${t.used ? "used" : "tile"}" ${t.used ? "disabled" : ""}>
+          <div class="tile ${t.used ? "used" : ""}" data-tile="${t.key}">
             <div class="tTitle">${escapeHtml(t.label)}</div>
             <div class="tMeta">${escapeHtml(t.used ? "Used" : "Tap to reveal")}</div>
-          </button>
+          </div>
         `).join("")}
       </div>
       <div class="row" style="padding:0 14px 14px;">
@@ -3348,7 +3227,7 @@ function renderMysteryGrid() {
         showModal("Tile question", `
           <div style="font-weight:900; margin-bottom:8px;">${escapeHtml(UNIT_META[pick.unit] || pick.unitName || pick.unit)}</div>
           <div style="line-height:1.35;">${formatPrompt(pick)}</div>
-          <div class="row mt-12">
+          <div class="row" style="margin-top:12px;">
             <button class="btn good" id="tileCorrect">Correct</button>
             <button class="btn bad" id="tileWrong">Incorrect</button>
           </div>
@@ -3374,203 +3253,11 @@ function renderMysteryGrid() {
   renderTiles();
 }
 
-
-const MAP_DROP_ITEMS = [
-  { prompt: "Ottoman Empire core", answer: "Southwest Asia" },
-  { prompt: "Silk Road trade heartland", answer: "Central Asia" },
-  { prompt: "Battle of Stalingrad", answer: "Eastern Europe" },
-  { prompt: "Mali Empire", answer: "West Africa" },
-  { prompt: "Meiji Japan", answer: "East Asia" },
-  { prompt: "Inca Empire", answer: "South America" },
-  { prompt: "Mughal Empire", answer: "South Asia" },
-  { prompt: "Aztec Empire", answer: "Mesoamerica" }
-];
-const MAP_REGIONS = ["East Asia","South Asia","Central Asia","Southwest Asia","Eastern Europe","West Africa","South America","Mesoamerica"];
-
-const CAUSE_CHAINS = [
-  ["Industrialization", "Urbanization", "Labor unrest", "Reform movements"],
-  ["Nationalism", "Alliance building", "Assassination at Sarajevo", "World War I"],
-  ["Enlightenment ideas", "American Revolution", "French Revolution", "Latin American independence"],
-  ["Imperial rivalry", "Colonial resistance", "Resource extraction", "Global conflict"],
-  ["Treaty of Versailles", "Economic instability", "Authoritarian rise", "World War II"]
-];
-
-const PROPAGANDA_PROMPTS = [
-  { text: "Our empire must civilize less developed peoples.", choices:["Imperial justification","Anti-colonial protest","Labor union appeal"], answer:"Imperial justification" },
-  { text: "Workers of all nations, unite against exploitation.", choices:["Nationalist slogan","Socialist perspective","Religious reform"], answer:"Socialist perspective" },
-  { text: "The fatherland is in danger; every citizen must serve.", choices:["Pacifist appeal","Wartime mobilization","Trade charter"], answer:"Wartime mobilization" },
-  { text: "Glorious progress comes from factories and science.", choices:["Industrial boosterism","Medieval worldview","Feudal contract"], answer:"Industrial boosterism" },
-  { text: "Decolonization is our right and destiny.", choices:["Imperial edict","Independence movement","Mercantilist policy"], answer:"Independence movement" },
-  { text: "One leader, one people, one destiny.", choices:["Democratic pluralism","Authoritarian propaganda","UN charter language"], answer:"Authoritarian propaganda" }
-];
-
-function renderHistoricalDetective() {
-  const s = App.session;
-  stopTimer();
-
-  const detectivePool = s.pool.filter(q => hasAutoAnswers(q) && !Array.isArray(q.acceptedAnswers?.[0]));
-  const available = detectivePool.filter(q => !s.used.has(q.id));
-  const q = s.question || available[0] || detectivePool[0];
-  if (!q) { endSession(); return; }
-  s.question = q;
-  s.used.add(q.id);
-
-  const answerText = String(bestAnswerText(q).split("/")[0] || "").trim();
-  const answerWords = answerText ? answerText.split(/\s+/).length : 0;
-  const firstLetter = answerText ? answerText[0].toUpperCase() : "?";
-  const promptPreview = (q.prompt || "").replace(/\s+/g, " ").trim();
-  const cluePack = [
-    `Category: ${q.unitName || UNIT_META[q.unit] || q.unit}`,
-    `Solve this missing term from the prompt: ${promptPreview}`,
-    `Answer starts with: ${firstLetter}`,
-    `Answer length: ${answerWords} word${answerWords === 1 ? "" : "s"}`,
-    `Teacher hint code: ${q.hint || "Use unit context clues"}`
-  ];
-
-  const clueIndex = s.detective?.clueIndex || 0;
-  const visible = cluePack.slice(0, Math.max(2, clueIndex + 2));
-  const points = Math.max(6, 22 - clueIndex * 4);
-
-  $("#prompt").innerHTML = `
-    <div class="row justify-between"><div style="font-weight:900;">Historical Detective</div><span class="badge">Worth ${points}</span></div>
-    <div class="muted mt-10">Guess the exact missing term/phrase. Reveal clues if needed (fewer points each reveal).</div>
-    <ul class="muted mt-10">${visible.map(c=>`<li>${escapeHtml(c)}</li>`).join("")}</ul>
-  `;
-
-  $("#gameControls").innerHTML = `
-    <div class="row mt-12">
-      <input id="detectiveInput" class="input" placeholder="Type the missing term/phrase..." />
-      <button class="btn primary" id="detectiveGuess">Submit guess</button>
-      <button class="btn" id="detectiveReveal" ${clueIndex >= cluePack.length-2 ? "disabled" : ""}>Reveal clue</button>
-      <button class="btn" id="detectiveSkip">Skip</button>
-    </div>
-  `;
-
-  $("#detectiveGuess").addEventListener("click", () => {
-    const val = $("#detectiveInput").value;
-    const ok = isCorrect(q, val);
-    recordAttempt(q, !!ok);
-    if (ok) {
-      s.score += points;
-      if (App.settings.play === "teams") App.teams[s.teamIndex].score += points;
-      toast("Solved!", `+${points} • ${bestAnswerText(q)}`);
-    } else {
-      if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
-      toast("Not quite", `Answer: ${bestAnswerText(q)}`);
-    }
-    s.question = null;
-    s.detective.clueIndex = 0;
-    setTimeout(renderHistoricalDetective, 220);
-  });
-
-  $("#detectiveReveal").addEventListener("click", () => {
-    s.detective.clueIndex += 1;
-    renderHistoricalDetective();
-  });
-  $("#detectiveSkip").addEventListener("click", () => {
-    recordAttempt(q, false);
-    s.question = null;
-    s.detective.clueIndex = 0;
-    if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
-    setTimeout(renderHistoricalDetective, 140);
-  });
-
-  renderScoreStrip();
-}
-
-function renderMapDrop() {
-  const s = App.session;
-  stopTimer();
-  if (!s.mapdrop.deck) s.mapdrop.deck = sample(MAP_DROP_ITEMS, s.mapdrop.total);
-  if (s.mapdrop.round >= s.mapdrop.deck.length) { endSession(); return; }
-  const item = s.mapdrop.deck[s.mapdrop.round];
-  $("#prompt").innerHTML = `<div style="font-weight:900;">Map Drop</div><div class="muted mt-10">Round ${s.mapdrop.round+1}/${s.mapdrop.deck.length}: ${escapeHtml(item.prompt)}</div>`;
-  $("#gameControls").innerHTML = `<div class="choices">${MAP_REGIONS.map(r=>`<button class="choice" data-region="${escapeHtml(r)}">${escapeHtml(r)}</button>`).join("")}</div>`;
-  $all("[data-region]").forEach(b=>b.addEventListener("click",()=>{
-    const ok = b.dataset.region === item.answer;
-    if (ok) {
-      s.score += 12;
-      if (App.settings.play==="teams") App.teams[s.teamIndex].score += 12;
-      toast("Placed!", `${escapeHtml(item.prompt)} → ${escapeHtml(item.answer)}`);
-    } else {
-      toast("Miss", `Correct region: ${escapeHtml(item.answer)}`);
-      if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
-    }
-    s.mapdrop.round += 1;
-    setTimeout(renderMapDrop, 260);
-  }));
-  renderScoreStrip();
-}
-
-function renderCauseChain() {
-  const s = App.session;
-  stopTimer();
-  if (!s.causechain.deck) s.causechain.deck = sample(CAUSE_CHAINS, s.causechain.total);
-  if (s.causechain.round >= s.causechain.deck.length) { endSession(); return; }
-  const chain = s.causechain.deck[s.causechain.round];
-  if (!s.causechain.order) s.causechain.order = shuffle(chain);
-  if (!s.causechain.pick) s.causechain.pick = [];
-
-  $("#prompt").innerHTML = `<div style="font-weight:900;">Cause & Effect Chain</div><div class="muted mt-10">Build the strongest causal sequence.</div>`;
-  $("#gameControls").innerHTML = `
-    <div class="kpi">${s.causechain.pick.map(x=>`<div class="chip"><strong>${escapeHtml(x)}</strong></div>`).join("")}</div>
-    <div class="choices mt-12">${s.causechain.order.filter(x=>!s.causechain.pick.includes(x)).map(x=>`<button class="choice" data-step="${escapeHtml(x)}">${escapeHtml(x)}</button>`).join("")}</div>
-    <div class="row mt-12"><button class="btn primary" id="chainSubmit" ${s.causechain.pick.length!==chain.length?"disabled":""}>Submit chain</button><button class="btn" id="chainReset">Reset</button></div>
-  `;
-  $all("[data-step]").forEach(b=>b.addEventListener("click",()=>{ s.causechain.pick.push(b.dataset.step); renderCauseChain(); }));
-  $("#chainReset").addEventListener("click",()=>{ s.causechain.pick=[]; renderCauseChain(); });
-  $("#chainSubmit").addEventListener("click",()=>{
-    let score = 0;
-    s.causechain.pick.forEach((x,i)=>{ if (chain[i]===x) score += 4; });
-    s.score += score;
-    if (App.settings.play==="teams") App.teams[s.teamIndex].score += score;
-    toast("Chain scored", `You earned ${score} points.`);
-    s.causechain.round += 1; s.causechain.pick=[]; s.causechain.order=null;
-    if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
-    setTimeout(renderCauseChain, 260);
-  });
-  renderScoreStrip();
-}
-
-function renderPropagandaDecoder() {
-  const s = App.session;
-  stopTimer();
-  if (!s.propaganda.deck) s.propaganda.deck = sample(PROPAGANDA_PROMPTS, s.propaganda.total);
-  if (s.propaganda.round >= s.propaganda.deck.length) { endSession(); return; }
-  const item = s.propaganda.deck[s.propaganda.round];
-  $("#prompt").innerHTML = `<div style="font-weight:900;">Propaganda Decoder</div><div class="muted mt-10">Identify perspective/purpose: “${escapeHtml(item.text)}”</div>`;
-  $("#gameControls").innerHTML = `<div class="choices">${item.choices.map(c=>`<button class="choice" data-ans="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join("")}</div>`;
-  $all("[data-ans]").forEach(b=>b.addEventListener("click",()=>{
-    const ok = b.dataset.ans === item.answer;
-    if (ok) {
-      s.score += 10;
-      if (App.settings.play==="teams") App.teams[s.teamIndex].score += 10;
-      toast("Decoded", `${escapeHtml(item.answer)} (+10)`);
-    } else {
-      toast("Not quite", `Best answer: ${escapeHtml(item.answer)}`);
-      if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
-    }
-    s.propaganda.round += 1;
-    setTimeout(renderPropagandaDecoder, 250);
-  }));
-  renderScoreStrip();
-}
-
 /** ========= End session ========= */
 function endSession() {
   stopTimer();
-  clearBuzzTimer();
   const s = App.session;
   const finalScore = s?.score || 0;
-  if (s?.modeId) {
-    const prev = App.modeStats[s.modeId] || { bestScore: 0, plays: 0, lastPlayed: null };
-    App.modeStats[s.modeId] = {
-      bestScore: Math.max(prev.bestScore || 0, finalScore),
-      plays: (prev.plays || 0) + 1,
-      lastPlayed: Date.now()
-    };
-    persist();
-  }
   const teamScores = (App.settings.play==="teams") ? App.teams.map(t => `${t.name}: ${t.score}`).join(" • ") : null;
   showModal("Session complete", `
     <p class="muted">Play again, switch units, or try a different mode.</p>
@@ -3579,7 +3266,7 @@ function endSession() {
       ${teamScores ? `<div class="chip"><strong>${escapeHtml(teamScores)}</strong></div>` : ""}
       <div class="chip"><strong>${App.mistakes.length}</strong> in mistake bank</div>
     </div>
-    <div class="row mt-12">
+    <div class="row" style="margin-top:12px;">
       <button class="btn primary" id="playAgain">Play again</button>
       <button class="btn" id="goHome">Home</button>
     </div>
@@ -3592,12 +3279,25 @@ function endSession() {
 $("#toastClose").addEventListener("click", toastHide);
 setInterval(() => { if (!$("#toast").classList.contains("hidden") && !$("#modal").classList.contains("show")) toastHide(); }, 4200);
 
+/** ========= Showdown shortcut ========= */
+document.querySelectorAll('[data-start="showdown"]').forEach(btn => {
+  btn.addEventListener("click", () => {
+    App.settings.play = "teams";
+    persist();
+    syncHomeControls();
+    startMode("quick", { label: "Team Showdown" });
+  });
+});
+
 /** ========= Boot ========= */
 
 
 function currentPool(){
-  // Legacy helper kept for compatibility; uses live filtered pool.
-  return getQuestionPool();
+  const decks = (App.settings.deck === "core") ? DEFAULT_DECKS.core
+              : (App.settings.deck === "extended") ? DEFAULT_DECKS.extended
+              : DEFAULT_DECKS.core.concat(DEFAULT_DECKS.extended);
+  const units = selectedUnits();
+  return decks.filter(q => units.includes(q.unit));
 }
 
 /** =======================
@@ -3674,7 +3374,7 @@ function openGameOverlay(title, html, opts={}) {
   }
 }
 
-function closeGameOverlay(reason = "dismiss") {
+function closeGameOverlay() {
   const s = App.session;
   $("#gameOverlay")?.classList.add("hidden");
   // stop timer and clear handler
@@ -3682,7 +3382,7 @@ function closeGameOverlay(reason = "dismiss") {
   if (s) s.onTimeUp = null;
   const cb = s?._overlayOnClose;
   if (s) s._overlayOnClose = null;
-  if (typeof cb === "function") { try { cb(reason); } catch(e){} }
+  if (typeof cb === "function") { try { cb(); } catch(e){} }
 }
 /** ---- Shared: build 4-option MC for a question when possible ----
  *  Smarter distractors:
@@ -3821,12 +3521,12 @@ function overlayAskQuestion(q, title, opts={}) {
         // time up counts wrong
         if (!App.session) return;
         recordAttempt(q, false);
-        closeGameOverlay("timeout");
+        closeGameOverlay();
         (opts.onResult||(()=>{}))(false, mc.accepted, "timeout");
       },
-      onClose: (reason) => {
-        // Only explicit dismiss counts as wrong-close
-        if (reason === "dismiss" && opts.closeIsWrong) {
+      onClose: () => {
+        // If player closes without answering, treat as wrong if required
+        if (opts.closeIsWrong) {
           recordAttempt(q, false);
           (opts.onResult||(()=>{}))(false, mc.accepted, "closed");
         }
@@ -3847,7 +3547,7 @@ function overlayAskQuestion(q, title, opts={}) {
         stopTimer();
         recordAttempt(q, correct);
         setTimeout(() => {
-          closeGameOverlay("answered");
+          closeGameOverlay();
           (opts.onResult||(()=>{}))(correct, mc.accepted, "answered");
         }, App.settings.reduceMotion ? 150 : 420);
       });
@@ -3875,11 +3575,11 @@ function overlayAskQuestion(q, title, opts={}) {
     onTimeUp: () => {
       if (!App.session) return;
       recordAttempt(q, false);
-      closeGameOverlay("timeout");
+      closeGameOverlay();
       (opts.onResult||(()=>{}))(false, bestAnswerText(q), "timeout");
     },
-    onClose: (reason) => {
-      if (reason === "dismiss" && opts.closeIsWrong) {
+    onClose: () => {
+      if (opts.closeIsWrong) {
         recordAttempt(q, false);
         (opts.onResult||(()=>{}))(false, bestAnswerText(q), "closed");
       }
@@ -3906,19 +3606,19 @@ function overlayAskQuestion(q, title, opts={}) {
       inp.disabled = true;
       $("#ovMarkCorrect").addEventListener("click", () => {
         recordAttempt(q, true);
-        closeGameOverlay("answered");
+        closeGameOverlay();
         (opts.onResult||(()=>{}))(true, bestAnswerText(q), "self");
       });
       $("#ovMarkWrong").addEventListener("click", () => {
         recordAttempt(q, false);
-        closeGameOverlay("answered");
+        closeGameOverlay();
         (opts.onResult||(()=>{}))(false, bestAnswerText(q), "self");
       });
       return;
     }
     stopTimer();
     recordAttempt(q, v);
-    closeGameOverlay("answered");
+    closeGameOverlay();
     (opts.onResult||(()=>{}))(v, bestAnswerText(q), "answered");
   };
   $("#ovSubmitBtn").addEventListener("click", submit);
@@ -3927,6 +3627,209 @@ function overlayAskQuestion(q, title, opts={}) {
   return { kind:"typed" };
 }
 
+/** =======================
+ * Mode: Neon Blitz (10 Q speed run)
+ * ======================= */
+function renderNeonBlitz() {
+  const s = App.session;
+  const pool = s.opts.customPool || s.pool;
+  if (!s.blitz) s.blitz = { remaining: 10, correct: 0 };
+
+  $("#prompt").innerHTML = `
+    <div class="row" style="justify-content:space-between;">
+      <div class="font-tech neon-text-blue" style="font-weight:900;">NEON BLITZ</div>
+      <div class="tag">Remaining: ${s.blitz.remaining}</div>
+    </div>
+    <div class="mini" style="margin-top:8px;">10 questions. Fast answers score more.</div>
+  `;
+
+  if (s.blitz.remaining <= 0) {
+    showAfter("Blitz complete", `Correct: ${s.blitz.correct}/10 • Score: ${s.score}`, "good");
+    $("#afterControls").classList.remove("hidden");
+    $("#afterControls").innerHTML = `<div class="row" style="gap:10px;">
+      <button class="btn primary" id="blitzAgain">Play again</button>
+      <button class="btn" id="blitzExit">Exit</button>
+    </div>`;
+    $("#blitzAgain").addEventListener("click", () => startMode("blitz"));
+    $("#blitzExit").addEventListener("click", endSession);
+    return;
+  }
+
+  // draw next q (not using global s.question loop)
+  const q = pickNextQuestion();
+  if (!q) { endSession(); return; }
+  s.used.add(q.id);
+
+  // per question timer
+  if (App.settings.timerOn) { 
+    s.timeLeft = App.settings.timerSeconds; 
+    startTimer(); 
+  } else { 
+    stopTimer(); 
+    $("#timerBadge").textContent = "⏱ Off"; 
+  }
+  // If time runs out in Blitz, count it as wrong and move on.
+  s.onTimeUp = () => {
+    if (!App.session || App.session.modeId !== "blitz") return;
+    recordAttempt(q, false);
+    showAfter("Time’s up", `Answer: ${bestAnswerText(q)}`, "bad");
+    if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
+    s.blitz.remaining -= 1;
+    s.question = null;
+    setTimeout(renderNeonBlitz, App.settings.reduceMotion ? 150 : 420);
+  };
+
+  // MC when possible else typed
+  const mc = buildMCOptionsFor(q, pool, 4);
+  $("#prompt").insertAdjacentHTML("beforeend", `<div style="margin-top:10px;">${formatPrompt(q)}</div>`);
+  if (mc) {
+    $("#gameControls").innerHTML = `
+      <div class="choices">
+        ${mc.options.map((o,i)=>`<button class="choice" data-bchoice="${i}">${escapeHtml(o)}</button>`).join("")}
+      </div>
+      <div class="mini" style="margin-top:10px;">Bonus scales with time left.</div>
+    `;
+    $all("[data-bchoice]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const pick = mc.options[Number(btn.dataset.bchoice)];
+        const correct = normalize(pick) === normalize(mc.accepted);
+        stopTimer();
+        recordAttempt(q, correct);
+        if (correct) {
+          s.blitz.correct += 1;
+          const base = 12;
+          const bonus = App.settings.timerOn ? Math.floor((s.timeLeft / App.settings.timerSeconds) * 10) : 5;
+          const gained = base + bonus;
+          s.score += gained;
+          if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
+          beepSoft();
+          showAfter("✅ Hit!", `+${gained} • ${mc.accepted}`, "good");
+        } else {
+          showAfter("❌ Miss", `Answer: ${mc.accepted}`, "bad");
+        }
+        if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
+        s.blitz.remaining -= 1;
+        setTimeout(renderNeonBlitz, App.settings.reduceMotion ? 150 : 420);
+      });
+    });
+  } else {
+    // typed fallback
+    $("#gameControls").innerHTML = `
+      <div class="row">
+        <input id="answerInput" class="input" placeholder="Type your answer…" autocomplete="off" />
+        <button class="btn primary" id="submitBtn">Submit</button>
+        <button class="btn" id="skipBtn">Skip</button>
+      </div>
+    `;
+    const input = $("#answerInput"); input.focus();
+    const submit = () => {
+      const v = isCorrect(q, input.value);
+      if (v === null) { showSelfCheck(q, input.value); return; }
+      stopTimer();
+      recordAttempt(q, v);
+      if (v) {
+        s.blitz.correct += 1;
+        const gained = 12;
+        s.score += gained;
+        if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
+        beepSoft();
+        showAfter("✅", `+${gained} • ${bestAnswerText(q)}`, "good");
+      } else {
+        showAfter("❌", `Answer: ${bestAnswerText(q)}`, "bad");
+      }
+      if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
+      s.blitz.remaining -= 1;
+      s.question = null;
+      setTimeout(renderNeonBlitz, App.settings.reduceMotion ? 150 : 420);
+    };
+    $("#submitBtn").addEventListener("click", submit);
+    input.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
+    $("#skipBtn").addEventListener("click", () => { stopTimer(); recordAttempt(q,false); s.blitz.remaining -= 1; showAfter("Skipped", `Answer: ${bestAnswerText(q)}`, "bad"); setTimeout(renderNeonBlitz, 250); });
+  }
+
+  renderScoreStrip();
+}
+
+/** =======================
+ * Mode: Type-It Sprint (60s continuous)
+ * ======================= */
+function renderTypeSprint() {
+  const s = App.session;
+  if (!s.typeSprint) s.typeSprint = { correct: 0, wrong: 0 };
+
+  // continuous timer
+  if (App.settings.timerOn) {
+    if (!s.timer) { s.timeLeft = 60; startTimer();
+      // End sprint cleanly on timeout
+      s.onTimeUp = () => { renderTypeSprint(); }; }
+  } else {
+    stopTimer();
+    $("#timerBadge").textContent = "⏱ Off";
+  }
+
+  if (App.settings.timerOn && s.timeLeft <= 0) {
+    showAfter("Time!", `Correct: ${s.typeSprint.correct} • Wrong: ${s.typeSprint.wrong} • Score: ${s.score}`, "good");
+    $("#afterControls").classList.remove("hidden");
+    $("#afterControls").innerHTML = `<div class="row" style="gap:10px;">
+      <button class="btn primary" id="typeAgain">Play again</button>
+      <button class="btn" id="typeExit">Exit</button>
+    </div>`;
+    $("#typeAgain").addEventListener("click", () => startMode("type"));
+    $("#typeExit").addEventListener("click", endSession);
+    return;
+  }
+
+  // Ask next typed question using standard picker
+  const q = pickNextQuestion();
+  if (!q) { endSession(); return; }
+  s.used.add(q.id);
+
+  $("#prompt").innerHTML = `
+    <div class="row" style="justify-content:space-between;">
+      <div class="font-tech neon-text-pink" style="font-weight:900;">TYPE‑IT SPRINT</div>
+      <div class="tag">✅ ${s.typeSprint.correct} / ❌ ${s.typeSprint.wrong}</div>
+    </div>
+    <div style="margin-top:10px;">${formatPrompt(q)}</div>
+  `;
+
+  $("#gameControls").innerHTML = `
+    <div class="row">
+      <input id="answerInput" class="input" placeholder="Type your answer…" autocomplete="off" />
+      <button class="btn primary" id="submitBtn">Submit</button>
+      <button class="btn" id="skipBtn">Skip</button>
+    </div>
+    <div class="mini" style="margin-top:10px;">60 seconds. Keep moving.</div>
+  `;
+  const input = $("#answerInput"); input.focus();
+
+  const submit = () => {
+    const v = isCorrect(q, input.value);
+    if (v === null) { showSelfCheck(q, input.value); return; }
+    recordAttempt(q, v);
+    if (v) {
+      s.typeSprint.correct += 1;
+      const gained = 8;
+      s.score += gained;
+      if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
+      beepSoft();
+      toast("✅", `+${gained}`);
+    } else {
+      s.typeSprint.wrong += 1;
+      toast("❌", `Ans: ${bestAnswerText(q)}`);
+    }
+    if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
+    renderTypeSprint();
+  };
+  $("#submitBtn").addEventListener("click", submit);
+  input.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
+  $("#skipBtn").addEventListener("click", () => { recordAttempt(q,false); s.typeSprint.wrong += 1; toast("Skipped", `Ans: ${bestAnswerText(q)}`); renderTypeSprint(); });
+
+  renderScoreStrip();
+}
+
+/** =======================
+ * Mode: Survival (3 lives)
+ * ======================= */
 function renderSurvival() {
   const s = App.session;
   if (!s.survival) s.survival = { lives: 3 };
@@ -3983,10 +3886,10 @@ function renderSurvival() {
       s.score += gained;
       if (App.settings.play==="teams") App.teams[s.teamIndex].score += gained;
       beepSoft();
-      toast("Correct", `+${gained} • ${bestAnswerText(q)}`);
+      showAfter("✅", `+${gained} • ${bestAnswerText(q)}`, "good");
     } else {
       s.survival.lives -= 1;
-      toast("Wrong", `Life lost • Answer: ${bestAnswerText(q)}`);
+      showAfter("❌", `Life lost • Answer: ${bestAnswerText(q)}`, "bad");
     }
     if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
     s.question = null;
@@ -3995,7 +3898,7 @@ function renderSurvival() {
 
   $("#submitBtn").addEventListener("click", submit);
   input.addEventListener("keydown",(e)=>{ if(e.key==="Enter") submit(); });
-  $("#skipBtn").addEventListener("click", () => { stopTimer(); recordAttempt(q,false); s.survival.lives -= 1; toast("Skipped", `Life lost • ${bestAnswerText(q)}`); s.question=null; setTimeout(renderSurvival, 250); });
+  $("#skipBtn").addEventListener("click", () => { stopTimer(); recordAttempt(q,false); s.survival.lives -= 1; showAfter("Skipped", `Life lost • ${bestAnswerText(q)}`, "bad"); s.question=null; setTimeout(renderSurvival, 250); });
 
   renderScoreStrip();
 }
@@ -4168,7 +4071,7 @@ if (mc) {
       bossUpdateBars(s.boss.playerHP, s.boss.bossHP);
 
       beepSoft();
-      toast("Hit!", `-${dmg} boss HP • +${gained} pts`);
+      showAfter("⚔️ HIT!", `-${dmg} boss HP • +${gained} pts`, "good");
     } else {
       const dmg = 22;
       s.boss.playerHP -= dmg;
@@ -4181,7 +4084,7 @@ if (mc) {
       bossFloatDamage("hero", dmg, "bad");
       bossUpdateBars(s.boss.playerHP, s.boss.bossHP);
 
-      toast("Ouch", `-${dmg} your HP • Answer: ${mc.accepted}`);
+      showAfter("💥 OUCH", `-${dmg} your HP • Answer: ${mc.accepted}`, "bad");
     }
 
     if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
@@ -4233,7 +4136,7 @@ if (mc) {
     bossUpdateBars(s.boss.playerHP, s.boss.bossHP);
 
     beepSoft();
-    toast("Hit!", `-${dmg} boss HP • +${gained} pts`);
+    showAfter("⚔️ HIT!", `-${dmg} boss HP • +${gained} pts`, "good");
   } else {
     const dmg = 22;
     s.boss.playerHP -= dmg;
@@ -4245,7 +4148,7 @@ if (mc) {
     bossFloatDamage("hero", dmg, "bad");
     bossUpdateBars(s.boss.playerHP, s.boss.bossHP);
 
-    toast("Ouch", `-${dmg} your HP • Answer: ${bestAnswerText(q)}`);
+    showAfter("💥 OUCH", `-${dmg} your HP • Answer: ${bestAnswerText(q)}`, "bad");
   }
 
   if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
@@ -4563,11 +4466,11 @@ function renderWagerWheel() {
             s.score += wager; w.bank += wager;
             if (App.settings.play==="teams") App.teams[s.teamIndex].score += wager;
             beepSoft();
-            toast("Correct", `+${wager} • ${ans}`);
+            showAfter("✅", `+${wager} • ${ans}`, "good");
           } else {
             s.score -= wager; w.bank -= wager;
             if (App.settings.play==="teams") App.teams[s.teamIndex].score -= wager;
-            toast("Wrong", `-${wager} (${why}) • Ans: ${ans}`);
+            showAfter("❌", `-${wager} (${why}) • Ans: ${ans}`, "bad");
           }
           if (App.settings.play==="teams") s.teamIndex = (s.teamIndex+1)%App.teams.length;
           w.lastWager = wager;
@@ -4782,7 +4685,1115 @@ function renderMemoryFlip() {
 function shorten(t, n){ t = (t||"").trim(); return t.length>n ? t.slice(0,n-1)+"…" : t; }
 
 
+
+
+/* =======================
+ * Question Family Runtime Patch
+ * - canonical source items remain the source of truth
+ * - runtime derives family variants: fill-blank, MCQ, flashcard,
+ *   detective, timeline, mapdrop, causechain
+ * - progress rolls up to familyId, not per variant id
+ * ======================= */
+
+(function installQuestionFamilyModes(){
+  const additions = [
+    {id:"detective", title:"Historical Detective", desc:"Deduce the answer from escalating clue ladders.", icon:"🕵️"},
+    {id:"mapdrop", title:"Map Drop", desc:"Match events, empires, and ideas to world regions.", icon:"🗺️"},
+    {id:"causechain", title:"Cause & Effect Chain", desc:"Arrange events or causes into the strongest sequence.", icon:"⛓️"}
+  ];
+  additions.forEach(mode => {
+    if (!MODES.some(m => m.id === mode.id)) MODES.push(mode);
+  });
+  ["Western Europe","North America","South America","Mesoamerica","West Africa","Central Asia","Southwest Asia","East Asia","South Asia","Eastern Europe"].forEach(region => {
+    if (typeof MAP_REGIONS !== "undefined" && Array.isArray(MAP_REGIONS) && !MAP_REGIONS.includes(region)) {
+      MAP_REGIONS.push(region);
+    }
+  });
+})();
+
+const QUESTION_FAMILY_OVERRIDES = {
+  "wh-91": {
+    concept: "American Revolution",
+    standard: "SSWH13",
+    keywords: ["1776","independence","Britain","Declaration of Independence"],
+    year: 1776,
+    region: "North America",
+    causes: ["Enlightenment ideas","colonial grievances","taxation without representation"],
+    clues: [
+      "This event took place in 1776.",
+      "It involved a break from British rule.",
+      "It produced a famous independence document."
+    ],
+    distractors: ["France","Spain","Constitution","Magna Carta"],
+    skill: "historical-knowledge"
+  },
+  "wh-92": {
+    concept: "French Revolution begins",
+    year: 1789,
+    region: "Western Europe",
+    causes: ["social inequality","financial crisis","Enlightenment ideas","weak monarchy"],
+    clues: [
+      "This answer is tied to the start of the French Revolution.",
+      "It was formed by members of the Third Estate.",
+      "Its name signaled a claim to represent the French nation."
+    ],
+    distractors: ["Estates-General","Directory","Convention","Consulate"]
+  },
+  "wh-93": {
+    concept: "Storming of the Bastille",
+    year: 1789,
+    region: "Western Europe",
+    clues: [
+      "It was stormed on July 14, 1789.",
+      "It symbolized royal authority in Paris.",
+      "Its fall became one of the best-known images of the French Revolution."
+    ],
+    distractors: ["Versailles","Waterloo","Tuileries","Louvre"]
+  },
+  "wh-95": {
+    concept: "Napoleon rises to power",
+    year: 1799,
+    region: "Western Europe",
+    clues: [
+      "This leader rose after the French Revolution.",
+      "He became emperor of France.",
+      "His last name is Bonaparte."
+    ],
+    distractors: ["Louis XVI","Bismarck","Robespierre","Metternich"]
+  },
+  "wh-109": {
+    concept: "Meiji Restoration",
+    year: 1868,
+    region: "East Asia",
+    causes: ["foreign pressure","end of Tokugawa rule","state modernization","industrial growth"],
+    clues: [
+      "This answer is tied to Japan in the late 1800s.",
+      "It involved rapid modernization.",
+      "It is named for an emperor."
+    ],
+    distractors: ["Tokugawa Shogunate","Boxer Rebellion","Qing Dynasty","Tanzimat"]
+  },
+  "wh-112": {
+    concept: "Berlin Conference",
+    year: 1884,
+    region: "Western Europe",
+    clues: [
+      "This meeting happened in 1884–1885.",
+      "European powers attended it.",
+      "It formalized the scramble for Africa."
+    ],
+    distractors: ["Congress of Vienna","Yalta Conference","Versailles Conference","Congress of Berlin"]
+  },
+  "wh-116": {
+    concept: "MAIN causes of World War I",
+    year: 1914,
+    region: "Eastern Europe",
+    causes: ["militarism","alliances","imperialism","nationalism"],
+    clues: [
+      "This prompt uses the acronym MAIN.",
+      "The missing answers are two long-term causes of World War I.",
+      "Both terms end in -ism."
+    ],
+    skill: "causation"
+  },
+  "wh-117": {
+    concept: "Assassination of Franz Ferdinand",
+    year: 1914,
+    region: "Eastern Europe",
+    clues: [
+      "This event happened in Sarajevo.",
+      "It triggered World War I.",
+      "The victim was an Austrian archduke."
+    ],
+    distractors: ["Nicholas II","Wilhelm II","Otto von Bismarck","Woodrow Wilson"]
+  },
+  "wh-128": {
+    concept: "Germany invades Poland",
+    year: 1939,
+    region: "Eastern Europe",
+    clues: [
+      "This answer marks the start of World War II in Europe.",
+      "Germany attacked this country in 1939.",
+      "Britain and France declared war afterward."
+    ],
+    distractors: ["Austria","Belgium","Czechoslovakia","France"]
+  },
+  "wh-130": {
+    concept: "Attack on Pearl Harbor",
+    year: 1941,
+    region: "North America",
+    clues: [
+      "This event brought the United States into World War II.",
+      "It was a surprise attack by Japan.",
+      "It happened in Hawaii."
+    ],
+    distractors: ["Midway","Guadalcanal","Iwo Jima","Normandy"]
+  },
+  "wh-133": {
+    concept: "D-Day invasion",
+    year: 1944,
+    region: "Western Europe",
+    clues: [
+      "This event happened on June 6, 1944.",
+      "It was an Allied invasion of Nazi-occupied France.",
+      "Its nickname begins with the letter D."
+    ],
+    distractors: ["VE-Day","VJ-Day","Blitzkrieg","Operation Barbarossa"]
+  }
+};
+
+const SHORT_RESPONSE_ITEMS = [
+  {
+    id: "sr-french-rev-causes",
+    familyId: "sr-french-rev-causes",
+    unit: "unit7",
+    unitName: UNIT_META.unit7,
+    sourceType: "short-response",
+    prompt: "What were the main causes of the French Revolution?",
+    concept: "French Revolution causes",
+    skill: "causation",
+    keywords: ["French Revolution","causes","taxes","inequality","Enlightenment"],
+    expectedPoints: ["social inequality","financial crisis","Enlightenment ideas","weak monarchy"],
+    causes: ["social inequality","financial crisis","Enlightenment ideas","political weakness"],
+    year: 1789,
+    region: "Western Europe"
+  },
+  {
+    id: "sr-industrial-effects",
+    familyId: "sr-industrial-effects",
+    unit: "unit8",
+    unitName: UNIT_META.unit8,
+    sourceType: "short-response",
+    prompt: "How did industrialization transform daily life and society?",
+    concept: "Industrial Revolution effects",
+    skill: "cause-effect",
+    keywords: ["industrialization","urbanization","factories","labor"],
+    expectedPoints: ["urbanization","factory labor","class tension","reform movements"],
+    causes: ["industrialization","urbanization","labor unrest","reform movements"],
+    year: 1760,
+    region: "Western Europe"
+  },
+  {
+    id: "sr-ww1-causes",
+    familyId: "sr-ww1-causes",
+    unit: "unit9",
+    unitName: UNIT_META.unit9,
+    sourceType: "short-response",
+    prompt: "Explain the chain of causes that led to World War I.",
+    concept: "World War I causes",
+    skill: "causation",
+    keywords: ["WWI","MAIN","alliances","nationalism"],
+    expectedPoints: ["militarism","alliances","imperialism","nationalism","Sarajevo assassination"],
+    causes: ["militarism","alliances","nationalism","assassination at Sarajevo"],
+    year: 1914,
+    region: "Eastern Europe"
+  },
+  {
+    id: "sr-ww2-global-power",
+    familyId: "sr-ww2-global-power",
+    unit: "unit9",
+    unitName: UNIT_META.unit9,
+    sourceType: "short-response",
+    prompt: "How did World War II reshape global power?",
+    concept: "World War II reshapes global power",
+    skill: "historical-development",
+    keywords: ["WWII","Cold War","United Nations","superpowers"],
+    expectedPoints: ["United States rises","Soviet Union rises","Europe weakened","United Nations created"],
+    causes: ["global war","Axis defeat","U.S. and USSR rise","Cold War tension"],
+    year: 1945,
+    region: "Western Europe"
+  },
+  {
+    id: "sr-mongol-exchange",
+    familyId: "sr-mongol-exchange",
+    unit: "unit3",
+    unitName: UNIT_META.unit3,
+    sourceType: "short-response",
+    prompt: "How did Mongol rule increase exchange across Eurasia?",
+    concept: "Mongol exchange across Eurasia",
+    skill: "historical-development",
+    keywords: ["Mongols","trade","Silk Road","diffusion"],
+    expectedPoints: ["safer routes","trade growth","technology diffusion","disease spread"],
+    causes: ["Mongol unification","safer trade routes","greater exchange","wider diffusion"],
+    year: 1206,
+    region: "Central Asia"
+  }
+];
+
+function getPrimaryAnswer(q) {
+  if (!q) return "";
+  if (typeof q.correctAnswer === "string" && q.correctAnswer) return q.correctAnswer;
+  if (typeof q.back === "string" && q.back) return q.back;
+  if (typeof q.answer === "string" && q.answer) return q.answer;
+  if (!Array.isArray(q.acceptedAnswers) || !q.acceptedAnswers.length) return "";
+  if (Array.isArray(q.acceptedAnswers[0])) {
+    return q.acceptedAnswers.map(group => Array.isArray(group) && group.length ? group[0] : "").join(" ").trim();
+  }
+  return q.acceptedAnswers[0] || "";
+}
+
+function isSingleBlankAnswer(q) {
+  return Array.isArray(q?.acceptedAnswers) && q.acceptedAnswers.length > 0 && !Array.isArray(q.acceptedAnswers[0]);
+}
+
+function tokenKeywords(text) {
+  const stop = new Set(["the","and","with","from","that","this","into","which","known","called","their","were","was","have","has","for","are","who","what","when","where","how","using","used","been","than","after","before","under","over","between"]);
+  return uniq(String(text || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter(tok => tok.length > 2 && !stop.has(tok))
+  ).slice(0, 10);
+}
+
+function extractYearFromPrompt(prompt) {
+  const matches = String(prompt || "").match(/\b(\d{3,4})\b/g);
+  if (!matches) return null;
+  const year = Number(matches[0]);
+  return Number.isFinite(year) ? year : null;
+}
+
+function inferRegion(q) {
+  const text = normalize([q?.prompt || "", q?.concept || "", getPrimaryAnswer(q)].join(" "));
+  const regions = [
+    { region: "North America", keywords: ["american", "colonists", "britain", "declaration of independence", "pearl harbor", "u s"] },
+    { region: "Western Europe", keywords: ["french", "napoleon", "industrial revolution", "berlin conference", "france", "germany", "italy"] },
+    { region: "Eastern Europe", keywords: ["sarajevo", "franz ferdinand", "poland", "russia", "stalingrad"] },
+    { region: "East Asia", keywords: ["china", "japan", "meiji", "ming", "qing"] },
+    { region: "South Asia", keywords: ["india", "mughal", "sepoy", "monsoons", "caste"] },
+    { region: "Southwest Asia", keywords: ["ottoman", "arabian", "islam", "mecca", "baghdad"] },
+    { region: "West Africa", keywords: ["mali", "ghana", "songhai", "swahili", "trans saharan"] },
+    { region: "Central Asia", keywords: ["mongol", "silk road", "eurasia"] },
+    { region: "South America", keywords: ["inca", "andes", "pizarro"] },
+    { region: "Mesoamerica", keywords: ["aztec", "maya", "olmec", "mexoamerica", "cortes"] }
+  ];
+  for (const item of regions) {
+    if (item.keywords.some(keyword => text.includes(normalize(keyword)))) return item.region;
+  }
+  return null;
+}
+
+function inferConcept(q) {
+  if (q?.concept) return q.concept;
+  const answer = getPrimaryAnswer(q);
+  if (answer) return answer;
+  return String(q?.prompt || "").replace(/_{3,}/g, "blank").slice(0, 70).trim();
+}
+
+function buildDefaultClues(q) {
+  const answer = getPrimaryAnswer(q);
+  const year = q?.year || extractYearFromPrompt(q?.prompt);
+  return [
+    q?.unitName || q?.unit || null,
+    year ? `This clue is tied to the year ${year}.` : null,
+    q?.hint ? `Hint code: ${q.hint}` : null,
+    answer ? `Starts with: ${String(answer)[0]}` : null,
+    answer ? `Length: ${String(answer).split(/\s+/).length} word(s)` : null
+  ].filter(Boolean);
+}
+
+function normalizeSourceItem(q) {
+  const meta = QUESTION_FAMILY_OVERRIDES[q.id] || {};
+  const concept = meta.concept || inferConcept(q);
+  const keywords = uniq([
+    ...(q.keywords || []),
+    ...tokenKeywords(q.prompt),
+    ...tokenKeywords(concept),
+    ...tokenKeywords(getPrimaryAnswer(q)),
+    ...(meta.keywords || [])
+  ]);
+
+  return {
+    ...q,
+    familyId: q.familyId || q.id,
+    variantType: "fill-blank",
+    concept,
+    standard: meta.standard || q.standard || "",
+    keywords,
+    year: meta.year ?? q.year ?? extractYearFromPrompt(q.prompt),
+    region: meta.region || q.region || inferRegion({ ...q, concept }),
+    causes: meta.causes || q.causes || null,
+    clues: meta.clues || q.clues || null,
+    distractors: uniq([...(q.distractors || []), ...(meta.distractors || [])]),
+    skill: meta.skill || q.skill || "historical-knowledge"
+  };
+}
+
+function buildMcqVariant(q, sourceDeck) {
+  if (!isSingleBlankAnswer(q)) return null;
+  const correct = getPrimaryAnswer(q);
+  const sameUnit = sourceDeck
+    .filter(x => x.unit === q.unit && x.familyId !== q.familyId && isSingleBlankAnswer(x))
+    .map(x => getPrimaryAnswer(x));
+
+  const distractors = uniq([...(q.distractors || []), ...sameUnit])
+    .filter(x => normalize(x) !== normalize(correct))
+    .slice(0, 8);
+
+  if (distractors.length < 3) return null;
+
+  return {
+    ...q,
+    id: `${q.familyId}::mcq`,
+    variantType: "mcq",
+    correctAnswer: correct,
+    options: shuffle([correct, ...sample(distractors, 3)])
+  };
+}
+
+function buildFlashcardVariant(q) {
+  return {
+    ...q,
+    id: `${q.familyId}::flashcard`,
+    variantType: "flashcard",
+    front: q.prompt,
+    back: getPrimaryAnswer(q)
+  };
+}
+
+function buildDetectiveVariant(q) {
+  return {
+    ...q,
+    id: `${q.familyId}::detective`,
+    variantType: "detective",
+    answer: getPrimaryAnswer(q),
+    clues: Array.isArray(q.clues) && q.clues.length ? q.clues : buildDefaultClues(q)
+  };
+}
+
+function buildTimelineVariant(q) {
+  if (!q.year) return null;
+  return {
+    ...q,
+    id: `${q.familyId}::timeline`,
+    variantType: "timeline",
+    title: q.concept || getPrimaryAnswer(q),
+    year: q.year
+  };
+}
+
+function buildMapVariant(q) {
+  if (!q.region) return null;
+  return {
+    ...q,
+    id: `${q.familyId}::map`,
+    variantType: "mapdrop",
+    prompt: q.concept || q.prompt,
+    answer: q.region
+  };
+}
+
+function buildCauseChainVariant(q) {
+  if (!Array.isArray(q.causes) || q.causes.length < 3) return null;
+  return {
+    ...q,
+    id: `${q.familyId}::causechain`,
+    variantType: "causechain",
+    chain: q.causes.slice(0, 4)
+  };
+}
+
+function buildShortResponseVariants(item) {
+  const base = {
+    ...item,
+    familyId: item.familyId || item.id,
+    variantType: "short-response",
+    sourceType: "short-response",
+    keywords: uniq([...(item.keywords || []), ...tokenKeywords(item.prompt), ...tokenKeywords(item.concept)])
+  };
+
+  return [
+    {
+      ...base,
+      id: `${base.familyId}::claim`,
+      responseMode: "claim-evidence"
+    },
+    Array.isArray(base.causes) && base.causes.length >= 3 ? {
+      ...base,
+      id: `${base.familyId}::causechain`,
+      variantType: "causechain",
+      chain: base.causes.slice(0, 4)
+    } : null,
+    base.year ? {
+      ...base,
+      id: `${base.familyId}::timeline`,
+      variantType: "timeline",
+      title: base.concept || base.prompt,
+      year: base.year
+    } : null,
+    base.region ? {
+      ...base,
+      id: `${base.familyId}::map`,
+      variantType: "mapdrop",
+      prompt: base.concept || base.prompt,
+      answer: base.region
+    } : null
+  ].filter(Boolean);
+}
+
+function buildPlayableDeck(sourceDeck, shortResponseItems = []) {
+  const normalized = (sourceDeck || []).map(normalizeSourceItem).map(q => ({
+    ...q,
+    clues: Array.isArray(q.clues) && q.clues.length ? q.clues : buildDefaultClues(q)
+  }));
+
+  const derived = [];
+  for (const q of normalized) {
+    derived.push({ ...q, id: q.familyId, variantType: "fill-blank" });
+    const mcq = buildMcqVariant(q, normalized);
+    if (mcq) derived.push(mcq);
+    derived.push(buildFlashcardVariant(q));
+    derived.push(buildDetectiveVariant(q));
+    const tl = buildTimelineVariant(q);
+    if (tl) derived.push(tl);
+    const map = buildMapVariant(q);
+    if (map) derived.push(map);
+    const chain = buildCauseChainVariant(q);
+    if (chain) derived.push(chain);
+  }
+
+  (shortResponseItems || []).forEach(item => {
+    derived.push(...buildShortResponseVariants(item));
+  });
+
+  return derived.filter(Boolean);
+}
+
+function ensureRuntimeDecks() {
+  const source = App.decks || DEFAULT_DECKS;
+  App.sourceDecks = {
+    core: (source.core || []).map(normalizeSourceItem),
+    extended: (source.extended || []).map(normalizeSourceItem)
+  };
+  App.playableDecks = {
+    core: buildPlayableDeck(source.core || [], SHORT_RESPONSE_ITEMS),
+    extended: buildPlayableDeck(source.extended || [], [])
+  };
+}
+
+function getDeckKey() {
+  return App.settings.deck === "extended" ? "extended" : "core";
+}
+
+const FAMILY_MODE_VARIANTS = {
+  quick: ["fill-blank", "mcq"],
+  lightning: ["mcq"],
+  streak: ["fill-blank", "mcq"],
+  flashcards: ["flashcard"],
+  detective: ["detective"],
+  mapdrop: ["mapdrop"],
+  causechain: ["causechain"],
+  timeline: ["timeline"]
+};
+
+function filterBySearch(qs, term) {
+  if (!term) return qs;
+  return qs.filter(q => {
+    const hay = [
+      q.prompt || "",
+      q.front || "",
+      q.back || "",
+      q.title || "",
+      q.answer || "",
+      q.concept || "",
+      (q.keywords || []).join(" "),
+      bestAnswerText(q)
+    ].join(" ");
+    return normalize(hay).includes(term);
+  });
+}
+
+function getSourceQuestionPool() {
+  ensureRuntimeDecks();
+  const deckKey = getDeckKey();
+  const units = new Set(selectedUnits());
+  const term = normalize(App.settings.search || "");
+  let qs = (App.sourceDecks?.[deckKey] || []).filter(q => units.has(q.unit));
+  return filterBySearch(qs, term);
+}
+
+function getQuestionPool(modeId = null) {
+  ensureRuntimeDecks();
+  if (!modeId || !FAMILY_MODE_VARIANTS[modeId]) return getSourceQuestionPool();
+
+  const units = new Set(selectedUnits());
+  const term = normalize(App.settings.search || "");
+  const deckKey = getDeckKey();
+  const allowed = FAMILY_MODE_VARIANTS[modeId];
+
+  let qs = (App.playableDecks?.[deckKey] || []).filter(q => units.has(q.unit));
+  qs = qs.filter(q => allowed.includes(q.variantType));
+  qs = filterBySearch(qs, term);
+
+  if (!qs.length && modeId !== "review") return getSourceQuestionPool();
+  return qs;
+}
+
+function getProgressKey(q) {
+  return q?.familyId || q?.id;
+}
+
+function getProgressStats(q) {
+  return App.progress[getProgressKey(q)] || { attempts: 0, correct: 0 };
+}
+
+function currentPool() {
+  return getSourceQuestionPool();
+}
+
+function recordAttempt(q, correct) {
+  const id = getProgressKey(q);
+  const p = App.progress[id] || { attempts: 0, correct: 0 };
+  p.attempts += 1;
+  if (correct) p.correct += 1;
+  App.progress[id] = p;
+
+  if (!correct) App.mistakes = [id, ...App.mistakes.filter(x => x !== id)].slice(0, 80);
+  else App.mistakes = App.mistakes.filter(x => x !== id);
+
+  persist();
+}
+
+function masteryForUnit(unitKey) {
+  const qs = getSourceQuestionPool().filter(q => q.unit === unitKey);
+  if (!qs.length) return { unitKey, total: 0, correct: 0, attempts: 0, rate: 0 };
+  let attempts = 0;
+  let correct = 0;
+  for (const q of qs) {
+    const p = getProgressStats(q);
+    attempts += p.attempts;
+    correct += p.correct;
+  }
+  return { unitKey, total: qs.length, correct, attempts, rate: attempts ? (correct / attempts) : 0 };
+}
+
+function bestAnswerText(q) {
+  if (!q) return "";
+  if (Array.isArray(q.chain) && q.chain.length) return q.chain.join(" → ");
+  if (q.variantType === "flashcard") return q.back || "";
+  if (q.variantType === "mcq") return q.correctAnswer || getPrimaryAnswer(q);
+  if (q.answer && !Array.isArray(q.answer)) return q.answer;
+  if (Array.isArray(q.expectedPoints) && q.expectedPoints.length) return q.expectedPoints.join(" • ");
+  if (!hasAutoAnswers(q)) return "Self-check";
+  const a = q.acceptedAnswers;
+  if (Array.isArray(a[0])) return a.map(x => (x && x.length ? x[0] : "—")).join(" / ");
+  const first = a.slice(0, 2);
+  return first.join(" / ") + (a.length > 2 ? " …" : "");
+}
+
+function pickNextQuestion() {
+  const s = App.session;
+  if (!s) return null;
+  const pool = s.opts.customPool || s.pool;
+
+  let candidates = pool.filter(q => !s.used.has(q.id));
+  if (!candidates.length) {
+    if (s.modeId === "streak") {
+      s.used = new Set();
+      candidates = pool.slice();
+    } else {
+      return null;
+    }
+  }
+
+  candidates = shuffle(candidates).sort((a, b) => {
+    const pa = getProgressStats(a);
+    const pb = getProgressStats(b);
+    const ra = pa.attempts ? (pa.correct / pa.attempts) : 0.5;
+    const rb = pb.attempts ? (pb.correct / pb.attempts) : 0.5;
+    return ra - rb;
+  });
+  return candidates[0];
+}
+
+function renderHomeKpis() {
+  ensureRuntimeDecks();
+  const sourcePool = getSourceQuestionPool();
+  const derivedPool = (App.playableDecks?.[getDeckKey()] || []).filter(q => selectedUnits().includes(q.unit));
+  const auto = countAutogradable(sourcePool);
+  let attempts = 0, correct = 0;
+  for (const id in App.progress) {
+    attempts += App.progress[id]?.attempts || 0;
+    correct += App.progress[id]?.correct || 0;
+  }
+  $("#homeKpis").innerHTML = `
+    <div class="chip"><strong>${sourcePool.length}</strong> source questions</div>
+    <div class="chip"><strong>${derivedPool.length}</strong> runtime variants</div>
+    <div class="chip"><strong>${auto}</strong> auto‑graded sources</div>
+    <div class="chip"><strong>${attempts ? Math.round((correct/attempts)*100) : 0}%</strong> overall accuracy</div>
+    <div class="chip"><strong>${App.mistakes.length}</strong> in mistake bank</div>
+  `;
+}
+
+function renderAboutKpis() {
+  ensureRuntimeDecks();
+  const deckKey = getDeckKey();
+  $("#aboutKpis").innerHTML = `
+    <div class="chip"><strong>${App.sourceDecks.core.length}</strong> source questions</div>
+    <div class="chip"><strong>${App.playableDecks.core.length}</strong> derived variants</div>
+    <div class="chip"><strong>${SHORT_RESPONSE_ITEMS.length}</strong> short‑response anchors</div>
+    <div class="chip"><strong>${new Date().toLocaleDateString()}</strong> local date</div>
+  `;
+}
+
+function renderProgress() {
+  const container = $("#masteryBars");
+  if (!container) return;
+  const units = Object.keys(UNIT_META).filter(u => App.settings.units[u]);
+  container.innerHTML = units.map(u => {
+    const m = masteryForUnit(u);
+    const pct = Math.round(m.rate * 100);
+    return `
+      <div style="margin-bottom:12px;">
+        <div class="row" style="justify-content:space-between; margin-bottom:6px;">
+          <div style="font-weight:900;">${escapeHtml(UNIT_META[u])}</div>
+          <div class="muted">${m.attempts ? `${pct}% accuracy • ${m.correct}/${m.attempts} correct` : "No attempts yet"}</div>
+        </div>
+        <div class="bar"><i style="width:${pct}%;"></i></div>
+      </div>
+    `;
+  }).join("");
+
+  const sourcePool = getSourceQuestionPool();
+  const total = sourcePool.length;
+  const auto = countAutogradable(sourcePool);
+  let attempts = 0, correct = 0;
+  for (const id in App.progress) {
+    attempts += App.progress[id]?.attempts || 0;
+    correct += App.progress[id]?.correct || 0;
+  }
+  const overall = attempts ? Math.round((correct / attempts) * 100) : 0;
+  $("#statsTable").innerHTML = `
+    <tr><th>Metric</th><th class="right">Value</th></tr>
+    <tr><td>Total source families</td><td class="right">${total}</td></tr>
+    <tr><td>Auto-graded</td><td class="right">${auto}</td></tr>
+    <tr><td>Attempts</td><td class="right">${attempts}</td></tr>
+    <tr><td>Correct</td><td class="right">${correct}</td></tr>
+    <tr><td>Accuracy</td><td class="right">${overall}%</td></tr>
+    <tr><td>Mistake bank</td><td class="right">${App.mistakes.length}</td></tr>
+  `;
+}
+
+function startMode(modeId, opts = {}) {
+  if (modeId === "showdown") {
+    App.settings.play = "teams";
+    persist();
+    syncHomeControls();
+    return startMode("quick", { label: "Team Showdown" });
+  }
+
+  if (["buzzbowl", "sudden", "relay", "timeline", "jeopardy", "conquest"].includes(modeId)) {
+    App.settings.play = "teams";
+    ensureTeams(2);
+    persist();
+    syncHomeControls();
+  }
+
+  const pool = opts.customPool || getQuestionPool(modeId);
+  if (!pool.length) {
+    toast("No questions selected", "Turn on at least one unit in Home or clear your search filter.");
+    return;
+  }
+
+  if (App.settings.play === "teams") App.teams.forEach(t => t.score = 0);
+
+  const mode = MODES.find(m => m.id === modeId);
+  App.session = {
+    modeId,
+    title: mode?.title || modeId,
+    pool,
+    used: new Set(),
+    score: 0,
+    streak: 0,
+    bestStreak: 0,
+    question: null,
+    choices: null,
+    timeLeft: App.settings.timerSeconds,
+    timer: null,
+    teamIndex: 0,
+    opts
+  };
+
+  if (modeId === "buzzbowl") App.session.buzz = { open: true, team: null, used: new Set() };
+  if (modeId === "sudden") App.session.aliveTeams = App.teams.map(() => true);
+  if (modeId === "relay") App.session.relay = { team: 0, done: [] };
+  if (modeId === "timeline") App.session.timeline = null;
+  if (modeId === "detective") App.session.detective = { clueIndex: 0 };
+  if (modeId === "mapdrop") App.session.mapdrop = { round: 0, total: 6, deck: null };
+  if (modeId === "causechain") App.session.causechain = { round: 0, total: 5, deck: null, pick: [], order: null };
+  if (modeId === "boss") App.session.boss = { playerHP: 100, bossHP: 120, phase: "fight" };
+  if (modeId === "conquest") App.session.conquest = { grid: initConquestGrid(), turn: 1, selected: null, msg: "Attack an adjacent tile." };
+  if (modeId === "jeopardy") App.session.jeopardy = initJeopardyBoard();
+  if (modeId === "wager") App.session.wager = { bank: 0, lastWager: 10 };
+  if (modeId === "chrono") App.session.chrono = initChronoStream();
+  if (modeId === "survival") App.session.survival = { lives: 3, best: App.bestSurvival || 0 };
+
+  setNav("game");
+  renderGame();
+
+  if (modeId === "streak") App.session.timeLeft = 60;
+  if (App.settings.timerOn && !["flashcards", "timeline", "mystery", "review", "causechain", "mapdrop", "detective"].includes(modeId)) startTimer();
+  else { stopTimer(); $("#timerBadge").textContent = "⏱ Off"; }
+}
+
+function renderStandardMcq(q) {
+  const options = q.options?.length ? q.options.slice() : (buildMCOptionsFor(q, getSourceQuestionPool(), 4)?.options || []);
+  const correct = q.correctAnswer || getPrimaryAnswer(q);
+  if (!options.length) { renderTyped(q); return; }
+
+  $("#gameControls").innerHTML = `
+    <div class="choices">
+      ${options.map((o, i) => `<button class="choice" data-choice="${i}">${escapeHtml(o)}</button>`).join("")}
+    </div>
+    <div class="row" style="margin-top:10px;">
+      <button class="btn" id="skipBtn">Skip</button>
+    </div>
+  `;
+
+  $all("[data-choice]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const idx = Number(btn.dataset.choice);
+      const pick = options[idx];
+      const ok = normalize(pick) === normalize(correct);
+      $all("[data-choice]").forEach(b => {
+        const val = options[Number(b.dataset.choice)];
+        if (normalize(val) === normalize(correct)) b.classList.add("correct");
+        else if (b === btn && !ok) b.classList.add("wrong");
+        b.disabled = true;
+      });
+      setTimeout(() => handleAnswer(q, pick), App.settings.reduceMotion ? 90 : 260);
+    });
+  });
+
+  $("#skipBtn").addEventListener("click", () => {
+    recordAttempt(q, false);
+    if (App.session?.modeId === "streak") App.session.streak = 0;
+    showAfter("Skipped", `Correct: ${bestAnswerText(q)}.`, "bad");
+  });
+}
+
+function renderFlashcards() {
+  const s = App.session;
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
+
+  const pool = (s.opts.customPool || s.pool).filter(q => q.variantType === "flashcard");
+  const scored = pool.map(q => {
+    const key = getProgressKey(q);
+    const box = App.leitner[key] || 1;
+    const p = App.progress[key] || { attempts: 0, correct: 0 };
+    const acc = p.attempts ? (p.correct / p.attempts) : 0.5;
+    return { q, box, acc };
+  }).sort((a, b) => (a.box - b.box) || (a.acc - b.acc));
+
+  const item = scored[0]?.q;
+  if (!item) { endSession(); return; }
+  s.question = item;
+
+  $("#prompt").innerHTML = `
+    <div class="row" style="justify-content:space-between;">
+      <div style="font-weight:900;">Flashcard • ${escapeHtml(UNIT_META[item.unit] || item.unit)}</div>
+      <span class="tag">Box ${App.leitner[getProgressKey(item)] || 1}</span>
+    </div>
+    <div style="margin-top:10px;">${formatPrompt({ prompt: item.front || item.prompt || "" })}</div>
+    <div class="muted" style="margin-top:10px;">Tap “Reveal”, then rate yourself.</div>
+  `;
+
+  $("#gameControls").innerHTML = `
+    <div class="row">
+      <button class="btn primary" id="revealBtn">Reveal</button>
+      <button class="btn" id="skipCard">Skip</button>
+    </div>
+  `;
+  $("#afterControls").classList.add("hidden");
+  $("#afterControls").innerHTML = "";
+
+  $("#revealBtn").addEventListener("click", () => {
+    $("#afterControls").classList.remove("hidden");
+    $("#afterControls").innerHTML = `
+      <div class="card" style="padding:12px; border-radius:16px; border:1px solid rgba(255,255,255,.12);">
+        <div style="font-weight:950;">Answer</div>
+        <div class="muted" style="margin-top:4px;">${escapeHtml(item.back || bestAnswerText(item))}</div>
+        <div class="row" style="margin-top:10px;">
+          <button class="btn bad" data-rate="again">Again</button>
+          <button class="btn" data-rate="hard">Hard</button>
+          <button class="btn good" data-rate="good">Good</button>
+          <button class="btn primary" data-rate="easy">Easy</button>
+        </div>
+      </div>
+    `;
+    $all("[data-rate]").forEach(b => {
+      b.addEventListener("click", () => {
+        const r = b.dataset.rate;
+        const key = getProgressKey(item);
+        const box = App.leitner[key] || 1;
+        let next = box;
+        if (r === "again") next = 1;
+        if (r === "hard") next = clamp(box, 1, 4);
+        if (r === "good") next = clamp(box + 1, 1, 4);
+        if (r === "easy") next = clamp(box + 2, 1, 4);
+        App.leitner[key] = next;
+        recordAttempt(item, r !== "again");
+        s.score += (r === "easy") ? 12 : (r === "good") ? 10 : (r === "hard") ? 7 : 0;
+        s.question = null;
+        persist();
+        renderGame();
+      });
+    });
+  });
+  $("#skipCard").addEventListener("click", () => { s.question = null; renderGame(); });
+
+  renderScoreStrip();
+}
+
+function pickTimelineSet() {
+  const s = App.session;
+  const runtime = (s?.pool || getQuestionPool("timeline"))
+    .filter(item => item.variantType === "timeline")
+    .map(item => ({ id: item.id, unit: item.unit, year: item.year, title: item.title || item.concept || item.prompt }));
+  const src = runtime.length ? runtime : TIMELINE_EVENTS;
+  return sample(src, Math.min(8, src.length));
+}
+
+function renderHistoricalDetective() {
+  const s = App.session;
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
+
+  const pool = (s.opts.customPool || s.pool).filter(q => q.variantType === "detective");
+  if (!s.question) {
+    s.question = pickNextQuestion();
+    if (!s.question) { endSession(); return; }
+    s.used.add(s.question.id);
+    s.detective.clueIndex = 0;
+  }
+
+  const q = s.question;
+  const clues = Array.isArray(q.clues) && q.clues.length ? q.clues : buildDefaultClues(q);
+  const clueIndex = s.detective?.clueIndex || 0;
+  const visible = clues.slice(0, Math.max(2, Math.min(clues.length, clueIndex + 2)));
+  const points = Math.max(6, 22 - clueIndex * 4);
+
+  $("#prompt").innerHTML = `
+    <div class="row" style="justify-content:space-between;">
+      <div style="font-weight:900;">Historical Detective</div>
+      <span class="badge">Worth ${points}</span>
+    </div>
+    <div class="muted" style="margin-top:10px;">Solve the historical clue ladder. Fewer clues = more points.</div>
+    <ul class="muted" style="margin-top:10px;">${visible.map(clue => `<li>${escapeHtml(clue)}</li>`).join("")}</ul>
+  `;
+
+  $("#gameControls").innerHTML = `
+    <div class="row" style="margin-top:12px;">
+      <input id="detectiveInput" class="input" placeholder="Type the answer..." />
+      <button class="btn primary" id="detectiveGuess">Submit</button>
+      <button class="btn" id="detectiveReveal" ${clueIndex >= clues.length - 1 ? "disabled" : ""}>Reveal clue</button>
+      <button class="btn" id="detectiveSkip">Skip</button>
+    </div>
+  `;
+
+  const submit = () => {
+    const typed = $("#detectiveInput").value;
+    const ok = isCorrect(q, typed);
+    if (ok === null) { showSelfCheck(q, typed); return; }
+    recordAttempt(q, ok);
+    if (ok) {
+      s.score += points;
+      if (App.settings.play === "teams") App.teams[s.teamIndex].score += points;
+      beepSoft();
+      showAfter("Solved ✅", `+${points} • ${bestAnswerText(q)}`, "good");
+    } else {
+      showAfter("Not quite", `Correct: ${bestAnswerText(q)}`, "bad");
+    }
+    s.question = null;
+    s.detective.clueIndex = 0;
+  };
+
+  $("#detectiveGuess").addEventListener("click", submit);
+  $("#detectiveInput").addEventListener("keydown", e => { if (e.key === "Enter") submit(); });
+  $("#detectiveReveal").addEventListener("click", () => { s.detective.clueIndex += 1; renderHistoricalDetective(); });
+  $("#detectiveSkip").addEventListener("click", () => {
+    recordAttempt(q, false);
+    showAfter("Skipped", `Correct: ${bestAnswerText(q)}`, "bad");
+    s.question = null;
+    s.detective.clueIndex = 0;
+  });
+
+  renderScoreStrip();
+}
+
+function renderMapDrop() {
+  const s = App.session;
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
+
+  if (!s.mapdrop.deck) {
+    const runtimeDeck = (s.pool || []).filter(item => item.variantType === "mapdrop");
+    s.mapdrop.deck = runtimeDeck.length
+      ? sample(runtimeDeck, Math.min(s.mapdrop.total, runtimeDeck.length))
+      : sample(MAP_DROP_ITEMS.map(item => ({ ...item, variantType: "mapdrop", id: `legacy-map-${item.prompt}` })), Math.min(s.mapdrop.total, MAP_DROP_ITEMS.length));
+  }
+
+  if (s.mapdrop.round >= s.mapdrop.deck.length) { endSession(); return; }
+  const item = s.mapdrop.deck[s.mapdrop.round];
+  const regions = uniq([item.answer, ...(typeof MAP_REGIONS !== "undefined" ? MAP_REGIONS : [])]);
+
+  $("#prompt").innerHTML = `
+    <div style="font-weight:900;">Map Drop</div>
+    <div class="muted" style="margin-top:10px;">Round ${s.mapdrop.round + 1}/${s.mapdrop.deck.length}: place this in the best region.</div>
+    <div style="margin-top:10px; font-size:18px;">${escapeHtml(item.prompt || item.concept || item.title)}</div>
+  `;
+  $("#gameControls").innerHTML = `<div class="choices">${regions.map(r => `<button class="choice" data-region="${escapeHtml(r)}">${escapeHtml(r)}</button>`).join("")}</div>`;
+
+  $all("[data-region]").forEach(btn => btn.addEventListener("click", () => {
+    const ok = btn.dataset.region === item.answer;
+    if (ok) {
+      s.score += 12;
+      if (App.settings.play === "teams") App.teams[s.teamIndex].score += 12;
+      toast("Placed ✅", `${escapeHtml(item.prompt || item.title)} → ${escapeHtml(item.answer)}`);
+    } else {
+      toast("Miss", `Correct region: ${escapeHtml(item.answer)}`);
+      if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
+    }
+    s.mapdrop.round += 1;
+    setTimeout(renderMapDrop, App.settings.reduceMotion ? 120 : 260);
+  }));
+
+  renderScoreStrip();
+}
+
+function renderCauseChain() {
+  const s = App.session;
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
+
+  if (!s.causechain.deck) {
+    const runtimeDeck = (s.pool || []).filter(item => item.variantType === "causechain" && Array.isArray(item.chain));
+    s.causechain.deck = runtimeDeck.length
+      ? sample(runtimeDeck, Math.min(s.causechain.total, runtimeDeck.length))
+      : sample(CAUSE_CHAINS.map((chain, idx) => ({ id: `legacy-chain-${idx}`, variantType: "causechain", chain, prompt: "Cause chain" })), Math.min(s.causechain.total, CAUSE_CHAINS.length));
+  }
+
+  if (s.causechain.round >= s.causechain.deck.length) { endSession(); return; }
+  const item = s.causechain.deck[s.causechain.round];
+  const chain = item.chain;
+  if (!s.causechain.order) s.causechain.order = shuffle(chain.slice());
+  if (!s.causechain.pick) s.causechain.pick = [];
+
+  $("#prompt").innerHTML = `
+    <div style="font-weight:900;">Cause & Effect Chain</div>
+    <div class="muted" style="margin-top:10px;">${escapeHtml(item.prompt || item.concept || "Build the strongest sequence")}</div>
+  `;
+  $("#gameControls").innerHTML = `
+    <div class="kpi">${s.causechain.pick.map(x => `<div class="chip"><strong>${escapeHtml(x)}</strong></div>`).join("")}</div>
+    <div class="choices" style="margin-top:12px;">${s.causechain.order.filter(x => !s.causechain.pick.includes(x)).map(x => `<button class="choice" data-step="${escapeHtml(x)}">${escapeHtml(x)}</button>`).join("")}</div>
+    <div class="row" style="margin-top:12px;">
+      <button class="btn primary" id="chainSubmit" ${s.causechain.pick.length !== chain.length ? "disabled" : ""}>Submit</button>
+      <button class="btn" id="chainReset">Reset</button>
+    </div>
+  `;
+
+  $all("[data-step]").forEach(btn => btn.addEventListener("click", () => {
+    s.causechain.pick.push(btn.dataset.step);
+    renderCauseChain();
+  }));
+
+  $("#chainReset").addEventListener("click", () => {
+    s.causechain.pick = [];
+    renderCauseChain();
+  });
+
+  $("#chainSubmit").addEventListener("click", () => {
+    let score = 0;
+    s.causechain.pick.forEach((x, i) => { if (chain[i] === x) score += 4; });
+    s.score += score;
+    if (App.settings.play === "teams") App.teams[s.teamIndex].score += score;
+    toast("Chain scored", `You earned ${score} points.`);
+    s.causechain.round += 1;
+    s.causechain.pick = [];
+    s.causechain.order = null;
+    if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
+    setTimeout(renderCauseChain, App.settings.reduceMotion ? 120 : 260);
+  });
+
+  renderScoreStrip();
+}
+
+function renderGame() {
+  const s = App.session;
+  if (!s) return;
+
+  $("#gameModeBadge").textContent = s.title;
+  $("#gameDeckBadge").textContent = (App.settings.deck === "core") ? "Core" : (App.settings.deck === "extended") ? "Extended" : "Both";
+  $("#gameUnitBadge").textContent = selectedUnits().map(u => u.replace("unit", "U")).join(" ");
+
+  $("#afterControls").classList.add("hidden");
+  $("#afterControls").innerHTML = "";
+
+  if (s.modeId === "match") { renderMatch(); return; }
+  if (s.modeId === "review") { renderReviewGuide(); return; }
+  if (s.modeId === "flashcards") { renderFlashcards(); return; }
+  if (s.modeId === "mystery") { renderMysteryGrid(); return; }
+  if (s.modeId === "timeline") { renderTimeline(); return; }
+  if (s.modeId === "detective") { renderHistoricalDetective(); return; }
+  if (s.modeId === "mapdrop") { renderMapDrop(); return; }
+  if (s.modeId === "causechain") { renderCauseChain(); return; }
+
+  if (s.modeId === "conquest") { renderConquest(); return; }
+  if (s.modeId === "jeopardy") { renderJeopardy(); return; }
+  if (s.modeId === "boss") { renderBossBattle(); return; }
+  if (s.modeId === "memory") { renderMemoryFlip(); return; }
+  if (s.modeId === "chrono") { renderChronoStream(); return; }
+  if (s.modeId === "wager") { renderWagerWheel(); return; }
+  if (s.modeId === "type") { renderTypeSprint(); return; }
+  if (s.modeId === "blitz") { renderNeonBlitz(); return; }
+  if (s.modeId === "survival") { renderSurvival(); return; }
+
+  if (!s.question) {
+    s.question = pickNextQuestion();
+    if (!s.question) { endSession(); return; }
+    s.used.add(s.question.id);
+
+    if (App.settings.timerOn && !["streak", "relay"].includes(s.modeId)) {
+      s.timeLeft = App.settings.timerSeconds;
+      startTimer();
+    } else if (!App.settings.timerOn) {
+      stopTimer();
+      $("#timerBadge").textContent = "⏱ Off";
+    }
+  }
+  const q = s.question;
+
+  s.onTimeUp = () => {
+    if (!App.session || App.session.modeId !== "survival") return;
+    recordAttempt(q, false);
+    s.survival.lives -= 1;
+    showAfter("Time’s up", `Life lost • Answer: ${bestAnswerText(q)}`, "bad");
+    if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
+    s.question = null;
+    setTimeout(renderSurvival, App.settings.reduceMotion ? 150 : 420);
+  };
+
+  $("#prompt").innerHTML = `
+    <div class="row" style="justify-content:space-between;">
+      <div style="font-weight:900;">${escapeHtml(UNIT_META[q.unit] || q.unitName || q.unit)}</div>
+      <span class="tag">${hasAutoAnswers(q) ? "Auto‑graded" : (q.responseMode ? "Structured" : "Self‑check")}</span>
+    </div>
+    <div style="margin-top:10px;">${formatPrompt({ prompt: q.prompt || q.front || q.title || q.concept || "" })}</div>
+    ${(App.settings.showHints && (q.hint || q.topic || q.concept)) ? `<div class="muted" style="margin-top:10px;">Hint: ${escapeHtml(q.hint || q.topic || q.concept)}</div>` : ""}
+  `;
+
+  if (s.modeId === "lightning") renderLightning(q);
+  else if (s.modeId === "buzzbowl") renderBuzzBowl(q);
+  else if (q.variantType === "mcq") renderStandardMcq(q);
+  else renderTyped(q);
+
+  renderScoreStrip();
+}
+
 function renderInitial() {
+  ensureRuntimeDecks();
   ensureScanlines();
   ensureStars();
   syncHomeControls();
