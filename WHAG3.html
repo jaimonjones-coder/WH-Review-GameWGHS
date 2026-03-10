@@ -1923,6 +1923,12 @@ function startMode(modeId, opts={}) {
   if (modeId === "sudden") { App.session.aliveTeams = App.teams.map(()=>true); App.session.teamIndex = 0; }
   if (modeId === "relay") { App.session.relay = { team: 0, done: [] }; App.session.teamIndex = 0; App.session.timeLeft = 30; }
   if (modeId === "timeline") { App.session.timeline = null; }
+  if (modeId === "lightning") { App.session.lightning = { count: 0, max: 10 }; }
+  if (modeId === "streak") {
+    App.session.timeLeft = 60;
+    if (!App.settings.timerOn) App.session.streakMaxQuestions = 20;
+    App.session.streakAsked = 0;
+  }
   // Arcade imports (offline v11) — init mode state
   if (modeId === "survival") { App.session.survival = { lives: 3, best: App.bestSurvival||0 }; }
   if (modeId === "detective") { App.session.detective = { clueIndex: 0 }; }
@@ -1938,10 +1944,8 @@ function startMode(modeId, opts={}) {
   setNav("game");
   renderGame();
 
-  if (modeId === "streak") App.session.timeLeft = 60;
-  if (App.settings.timerOn) startTimer();
-  else { stopTimer(); $("#timerBadge").textContent = "⏱ Off"; }
 }
+
 $all("[data-start]").forEach(btn => btn.addEventListener("click", () => startMode(btn.dataset.start)));
 $all("[data-nav]").forEach(btn => {
   if (btn.closest("nav")) return;
@@ -2285,6 +2289,11 @@ function pickNextQuestion() {
   const s = App.session;
   if (!s) return null;
   const pool = s.opts.customPool || s.pool;
+
+  if (s.modeId === "streak" && !App.settings.timerOn) {
+    const maxQ = s.streakMaxQuestions || 20;
+    if ((s.streakAsked || 0) >= maxQ) return null;
+  }
 
   let candidates = pool.filter(q => !s.used.has(q.id));
   if (!candidates.length) {
@@ -2788,6 +2797,7 @@ if (!s.question) {
     s.question = pickNextQuestion();
     if (!s.question) { endSession(); return; }
     s.used.add(s.question.id);
+    if (s.modeId === "streak") s.streakAsked = (s.streakAsked || 0) + 1;
 
     // Per-question timer: start fresh when a new question appears.
     // (Streak + Relay are continuous timers managed elsewhere.)
@@ -2953,6 +2963,7 @@ function renderLightning(q) {
 
 function handleLightningResult(q, correct, accepted) {
   const s = App.session;
+  if (!s.lightning) s.lightning = { count: 0, max: 10 };
   const base = 10;
   const bonus = App.settings.timerOn ? Math.floor((s.timeLeft / App.settings.timerSeconds) * 10) : 5;
   const gained = correct ? base + bonus : 0;
@@ -2966,6 +2977,12 @@ function handleLightningResult(q, correct, accepted) {
   } else {
     showAfter("Not quite", `Answer: ${accepted}`, "bad");
   }
+  s.lightning.count += 1;
+  if (s.lightning.count >= (s.lightning.max || 10)) {
+    showAfter("Lightning complete", `Answered ${s.lightning.count}/${s.lightning.max || 10} • Score: ${s.score}`, "good");
+    return;
+  }
+
   if (App.settings.play === "teams") s.teamIndex = (s.teamIndex + 1) % App.teams.length;
   s.question = null;
   s.choices = null;
@@ -3308,6 +3325,8 @@ function renderFlashcards() {
 /** ========= Match-Up ========= */
 
 function renderMysteryGrid() {
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
   const s = App.session;
   stopTimer();
   $("#timerBadge").textContent = "⏱ Off";
@@ -3413,8 +3432,9 @@ const PROPAGANDA_PROMPTS = [
 ];
 
 function renderHistoricalDetective() {
-  const s = App.session;
   stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
+  const s = App.session;
 
   const detectivePool = s.pool.filter(q => hasAutoAnswers(q) && !Array.isArray(q.acceptedAnswers?.[0]));
   const available = detectivePool.filter(q => !s.used.has(q.id));
@@ -3487,8 +3507,9 @@ function renderHistoricalDetective() {
 }
 
 function renderMapDrop() {
-  const s = App.session;
   stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
+  const s = App.session;
   if (!s.mapdrop.deck) s.mapdrop.deck = sample(MAP_DROP_ITEMS, s.mapdrop.total);
   if (s.mapdrop.round >= s.mapdrop.deck.length) { endSession(); return; }
   const item = s.mapdrop.deck[s.mapdrop.round];
@@ -3511,8 +3532,9 @@ function renderMapDrop() {
 }
 
 function renderCauseChain() {
-  const s = App.session;
   stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
+  const s = App.session;
   if (!s.causechain.deck) s.causechain.deck = sample(CAUSE_CHAINS, s.causechain.total);
   if (s.causechain.round >= s.causechain.deck.length) { endSession(); return; }
   const chain = s.causechain.deck[s.causechain.round];
@@ -3541,8 +3563,9 @@ function renderCauseChain() {
 }
 
 function renderPropagandaDecoder() {
-  const s = App.session;
   stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
+  const s = App.session;
   if (!s.propaganda.deck) s.propaganda.deck = sample(PROPAGANDA_PROMPTS, s.propaganda.total);
   if (s.propaganda.round >= s.propaganda.deck.length) { endSession(); return; }
   const item = s.propaganda.deck[s.propaganda.round];
@@ -4289,6 +4312,8 @@ function cAdj(a,b){
   return Math.abs(r1-r2)+Math.abs(c1-c2)===1;
 }
 function renderConquest() {
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
   const s = App.session;
   const v = s.conquest || (s.conquest={ grid:initConquestGrid(), turn:1, selected:null, msg:"Attack an adjacent tile."});
   const grid = v.grid;
@@ -4431,6 +4456,8 @@ function initJeopardyBoard() {
 }
 
 function renderJeopardy() {
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
   const s = App.session;
   const j = s.jeopardy || (s.jeopardy = initJeopardyBoard());
   const pool = currentPool();
@@ -4525,6 +4552,8 @@ function renderJeopardy() {
  * Mode: Wager Wheel
  * ======================= */
 function renderWagerWheel() {
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
   const s = App.session;
   if (!s.wager) s.wager = { bank: 0, lastWager: 10 };
   const w = s.wager;
@@ -4699,6 +4728,8 @@ function renderChronoStream() {
  * Mode: Memory Flip
  * ======================= */
 function renderMemoryFlip() {
+  stopTimer();
+  $("#timerBadge").textContent = "⏱ Off";
   const s = App.session;
   const pool = currentPool().filter(q => hasAutoAnswers(q) && !Array.isArray(q.acceptedAnswers?.[0]));
   if (!pool.length) { toast("No cards", "Not enough auto-graded questions in this unit selection."); endSession(); return; }
